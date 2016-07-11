@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @article.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @article.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @article.status %>
+</p>
+
+<p>
+  <strong>Visibility:</strong>
+  <%= @article.visibility %>
+</p>
+
+<p>
+  <strong>Created by:</strong>
+  <%= @article.created_by %>
+</p>
+
+<p>
+  <strong>Updated by:</strong>
+  <%= @article.updated_by %>
+</p>
+
+<p>
+  <strong>Deleted by:</strong>
+  <%= @article.deleted_by %>
+</p>
+
+<p>
+  <strong>Folder:</strong>
+  <%= @article.folder %>
+</p>
+
+<p>
+  <strong>Template:</strong>
+  <%= @article.template %>
+</p>
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>

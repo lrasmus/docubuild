@@ -1,0 +1,31 @@
+%p#notice= notice
+%p
+  %strong Title:
+  = @section.title
+%p
+  %strong Content:
+  = @section.content
+%p
+  %strong Status:
+  = @section.status
+%p
+  %strong Visibility:
+  = @section.visibility
+%p
+  %strong Created by:
+  = @section.created_by
+%p
+  %strong Updated by:
+  = @section.updated_by
+%p
+  %strong Deleted by:
+  = @section.deleted_by
+%p
+  %strong Article:
+  = @section.article
+%p
+  %strong Order:
+  = @section.order
+= link_to 'Edit', edit_section_path(@section)
+|
+= link_to 'Back', sections_path

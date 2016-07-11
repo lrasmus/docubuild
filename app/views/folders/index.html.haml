@@ -1,0 +1,32 @@
+%p#notice= notice
+%h1 Listing Folders
+%table
+  %thead
+    %tr
+      %th Title
+      %th Description
+      %th Status
+      %th Visibility
+      %th Created by
+      %th Updated by
+      %th Deleted by
+      %th Parent
+      %th Owner
+      %th{:colspan => "3"}
+  %tbody
+    - @folders.each do |folder|
+      %tr
+        %td= folder.title
+        %td= folder.description
+        %td= folder.status
+        %td= folder.visibility
+        %td= folder.created_by
+        %td= folder.updated_by
+        %td= folder.deleted_by
+        %td= folder.parent
+        %td= folder.owner
+        %td= link_to 'Show', folder
+        %td= link_to 'Edit', edit_folder_path(folder)
+        %td= link_to 'Destroy', folder, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Folder', new_folder_path

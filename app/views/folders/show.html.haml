@@ -1,0 +1,31 @@
+%p#notice= notice
+%p
+  %strong Title:
+  = @folder.title
+%p
+  %strong Description:
+  = @folder.description
+%p
+  %strong Status:
+  = @folder.status
+%p
+  %strong Visibility:
+  = @folder.visibility
+%p
+  %strong Created by:
+  = @folder.created_by
+%p
+  %strong Updated by:
+  = @folder.updated_by
+%p
+  %strong Deleted by:
+  = @folder.deleted_by
+%p
+  %strong Parent:
+  = @folder.parent
+%p
+  %strong Owner:
+  = @folder.owner
+= link_to 'Edit', edit_folder_path(@folder)
+|
+= link_to 'Back', folders_path

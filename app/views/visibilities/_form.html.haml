@@ -1,0 +1,15 @@
+= form_for(@visibility) do |f|
+  - if @visibility.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@visibility.errors.count, "error")
+        prohibited this visibility from being saved:
+      %ul
+        - @visibility.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :name
+    %br/
+    = f.text_field :name
+  .actions
+    = f.submit

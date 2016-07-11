@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  status_id: 
+  visibility_id: 
+  created_by: 1
+  updated_by: 1
+  deleted_by: 1
+  parent: 1
+  owner: 1
+
+two:
+  title: MyString
+  description: MyText
+  status_id: 
+  visibility_id: 
+  created_by: 1
+  updated_by: 1
+  deleted_by: 1
+  parent: 1
+  owner: 1

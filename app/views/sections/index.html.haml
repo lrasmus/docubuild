@@ -1,0 +1,32 @@
+%p#notice= notice
+%h1 Listing Sections
+%table
+  %thead
+    %tr
+      %th Title
+      %th Content
+      %th Status
+      %th Visibility
+      %th Created by
+      %th Updated by
+      %th Deleted by
+      %th Article
+      %th Order
+      %th{:colspan => "3"}
+  %tbody
+    - @sections.each do |section|
+      %tr
+        %td= section.title
+        %td= section.content
+        %td= section.status
+        %td= section.visibility
+        %td= section.created_by
+        %td= section.updated_by
+        %td= section.deleted_by
+        %td= section.article
+        %td= section.order
+        %td= link_to 'Show', section
+        %td= link_to 'Edit', edit_section_path(section)
+        %td= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Section', new_section_path

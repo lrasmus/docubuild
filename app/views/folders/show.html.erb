@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @folder.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @folder.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @folder.status %>
+</p>
+
+<p>
+  <strong>Visibility:</strong>
+  <%= @folder.visibility %>
+</p>
+
+<p>
+  <strong>Created by:</strong>
+  <%= @folder.created_by %>
+</p>
+
+<p>
+  <strong>Updated by:</strong>
+  <%= @folder.updated_by %>
+</p>
+
+<p>
+  <strong>Deleted by:</strong>
+  <%= @folder.deleted_by %>
+</p>
+
+<p>
+  <strong>Parent:</strong>
+  <%= @folder.parent %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @folder.owner %>
+</p>
+
+<%= link_to 'Edit', edit_folder_path(@folder) %> |
+<%= link_to 'Back', folders_path %>

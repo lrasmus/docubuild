@@ -1,0 +1,166 @@
+Creating the Postgres user for development
+-----------------------------------------------
+Login to postgres
+  psql postgres
+From postgres command line:
+  create role docubuild with createdb login password 'docubuild';
+From command line
+  bundle exec rake db:setup
+  bundle exec rake db:migrate
+
+
+Added Paraoia
+----------------------------------------------
+Instructions at: https://github.com/rubysherpas/paranoia
+Added to Article, Folder and Section models
+
+
+Added Paper Trail
+----------------------------------------------
+Instructions at: https://github.com/airblade/paper_trail
+  bundle exec rails generate paper_trail:install
+  bundle exec rake db:migrate
+
+Added to Article and Section models (all actions)
+
+
+
+
+
+
+From paranoia
+---------------------------------------------
+Run your migrations for the desired models
+
+Run:
+
+rails generate migration AddDeletedAtToClients deleted_at:datetime:index
+and now you have a migration
+
+class AddDeletedAtToClients < ActiveRecord::Migration
+  def change
+    add_column :clients, :deleted_at, :datetime
+    add_index :clients, :deleted_at
+  end
+end
+Usage
+
+In your model:
+
+class Client < ActiveRecord::Base
+  acts_as_paranoid
+
+  # ...
+end
+Hey presto, it's there! Calling destroy will now set the deleted_at column:
+
+>> client.deleted_at
+# => nil
+>> client.destroy
+# => client
+>> client.deleted_at
+# => [current timestamp]
+If you really want it gone gone, call really_destroy!:
+
+>> client.deleted_at
+# => nil
+>> client.really_destroy!
+# => client
+If you want to use a column other than deleted_at, you can pass it as an option:
+
+class Client < ActiveRecord::Base
+  acts_as_paranoid column: :destroyed_at
+
+  ...
+end
+If you want to skip adding the default scope:
+
+class Client < ActiveRecord::Base
+  acts_as_paranoid without_default_scope: true
+
+  ...
+end
+If you want to access soft-deleted associations, override the getter method:
+
+def product
+  Product.unscoped { super }
+end
+If you want to include associated soft-deleted objects, you can (un)scope the association:
+
+class Person < ActiveRecord::Base
+  belongs_to :group, -> { with_deleted }
+end
+
+Person.includes(:group).all
+If you want to find all records, even those which are deleted:
+
+Client.with_deleted
+If you want to exclude deleted records, when not able to use the default_scope (e.g. when using without_default_scope):
+
+Client.without_deleted
+If you want to find only the deleted records:
+
+Client.only_deleted
+If you want to check if a record is soft-deleted:
+
+client.paranoia_destroyed?
+# or
+client.deleted?
+If you want to restore a record:
+
+Client.restore(id)
+# or
+client.restore
+If you want to restore a whole bunch of records:
+
+Client.restore([id1, id2, ..., idN])
+If you want to restore a record and their dependently destroyed associated records:
+
+Client.restore(id, :recursive => true)
+# or
+client.restore(:recursive => true)
+For more information, please look at the tests.
+
+About indexes:
+
+Beware that you should adapt all your indexes for them to work as fast as previously. For example,
+
+add_index :clients, :group_id
+add_index :clients, [:group_id, :other_id]
+should be replaced with
+
+add_index :clients, :group_id, where: "deleted_at IS NULL"
+add_index :clients, [:group_id, :other_id], where: "deleted_at IS NULL"
+Of course, this is not necessary for the indexes you always use in association with with_deleted or only_deleted.
+
+Unique Indexes
+
+Because NULL != NULL in standard SQL, we can not simply create a unique index on the deleted_at column and expect it to enforce that there only be one record with a certain combination of values.
+
+If your database supports them, good alternatives include partial indexes (above) and indexes on computed columns. E.g.
+
+add_index :clients, [:group_id, 'COALESCE(deleted_at, false)'], unique: true
+If not, an alternative is to create a separate column which is maintained alongside deleted_at for the sake of enforcing uniqueness. To that end, paranoia makes use of two method to make its destroy and restore actions: paranoia_restore_attributes and paranoia_destroy_attributes.
+
+add_column :clients, :active, :boolean
+add_index :clients, [:group_id, :active], unique: true
+
+class Client < ActiveRecord::Base
+  # optionally have paranoia make use of your unique column, so that
+  # your lookups will benefit from the unique index
+  acts_as_paranoid column: :active, sentinel_value: true
+
+  def paranoia_restore_attributes
+    {
+      deleted_at: nil,
+      active: true
+    }
+  end
+
+  def paranoia_destroy_attributes
+    {
+      deleted_at: current_time_from_proper_timezone,
+      active: nil
+    }
+  end
+end

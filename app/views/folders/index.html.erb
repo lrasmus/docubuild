@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Folders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Visibility</th>
+      <th>Created by</th>
+      <th>Updated by</th>
+      <th>Deleted by</th>
+      <th>Parent</th>
+      <th>Owner</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @folders.each do |folder| %>
+      <tr>
+        <td><%= folder.title %></td>
+        <td><%= folder.description %></td>
+        <td><%= folder.status %></td>
+        <td><%= folder.visibility %></td>
+        <td><%= folder.created_by %></td>
+        <td><%= folder.updated_by %></td>
+        <td><%= folder.deleted_by %></td>
+        <td><%= folder.parent %></td>
+        <td><%= folder.owner %></td>
+        <td><%= link_to 'Show', folder %></td>
+        <td><%= link_to 'Edit', edit_folder_path(folder) %></td>
+        <td><%= link_to 'Destroy', folder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Folder', new_folder_path %>
