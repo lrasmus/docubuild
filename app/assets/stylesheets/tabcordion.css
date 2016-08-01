@@ -1,0 +1,35 @@
+/* =============================================================================
+*  @TABCORDION
+* ========================================================================== */
+.tabcordion,
+.tabcord-headerBar {
+  *zoom: 1; }
+  .tabcordion:before, .tabcordion:after,
+  .tabcord-headerBar:before,
+  .tabcord-headerBar:after {
+    content: " ";
+    display: table; }
+  .tabcordion:after,
+  .tabcord-headerBar:after {
+    clear: both; }
+
+.tabcord-title {
+  cursor: pointer;
+  margin: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.tabcord-headerBar .tabcord-title {
+  float: left; }
+
+.tabcord-disp,
+.tabcord-headerBar {
+  display: none; }
+
+@media only screen and (min-width: 700px) {
+  .tabcord-headerBar {
+    display: block; }
+
+  .tabcordion > .tabcord-title {
+    display: none; } }

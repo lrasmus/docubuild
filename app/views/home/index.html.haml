@@ -1,2 +1,146 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+.header_bg
+  %header.head_wrapper
+    .header_nav
+      .logo
+        =image_tag("logo.png")
+      %nav.menu_item
+        %ul
+          %li
+            %a{:href => "#"} Home
+          %li
+            %a{:href => "#about"} About
+          %li
+            %a{:href => "#who-we-are"} Who we are
+          %li
+            %a{:href => "#partner"} Partners
+          %li
+            %a.active_get{:href => "#"} Get Started Now
+      .hamburg_menu
+        %button.hamburger ☰
+        %button.cross ˟
+        .menu
+          %ul
+            %li
+              %a{:href => "#"} Home
+            %li
+              %a{:href => "#about"} About
+            %li
+              %a{:href => "#who-we-are"} Who we are
+            %li
+              %a{:href => "#partner"} Partners
+            %li
+              %a.active_get{:href => "#"} Get Started Now
+    .banner_wrap
+      .b_right_col
+        =image_tag("mac-dashboard.png")
+      .b_left_col
+        %h1.heading01 Doc-U-Build
+        %p.sub_tital01 Doc-U-Build for librarians to create and share documents. Documents built using this Web App can be accessed electronically from Electronic Medical Record systems
+        %a.red_btn{:href => "#"} Learn More
+%section.section_wrapper.space_sdjust{:name => "about"}
+  .abt_col_lft
+    =image_tag("doc-graphic.jpg")
+  .abt_col_rgt
+    %h2.heading02 About Doc-U-Build
+    %p.sub_tital02 The eMERGE Network is exploring use of infobuttons[1-3] as a decision support tool to provide contextspecific links within the electronic health record (EHR) to relevant genomic medicine content
+    %p.sub_tital02 Among organizations implementing the HL7 Infobutton standard, it was a common requirement for knowledge publishers to fine tune their products in order to support clinical decision-making more effectively.
+    %a.blue_btn{:href => "#"} Learn More
+.hiw_bg
+  %section.section_wrapper
+    .title_holder
+      %h2.heading02 How It Works
+      %p There are many variations of passages of Lorem Ipsum available, but the majority
+    .hiw_wrap
+      %ul
+        %li.process01.p01
+          %span.process_name Create a new document
+        %li.process01.p02
+          %span.process_name02
+            Get started quickly with
+            shared content
+        %li.process01.p03
+          %span.process_name Author and edit content
+        %li.process01.p04
+          %span.process_name02 Uniquely brand your document
+        %li.process01.p05
+          %span.process_name Publish and share your document
+.get_bg
+  %section.section_wrapper
+    .get_started
+      %h2.heading02 Are You Ready To Get Started
+      %p.sub_tital03 Create and share your documents
+      %a.red_btn{:href => "#"} Learn More
+.abt_bg
+  %section.section_wrapper{:name => "who-we-are"}
+    .who_we_are
+      %h2.heading02 Who We Are
+      %p There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
+      %a.blue_btn{:href => "#"} Learn More
+%section.section_wrapper{:name => "partner"}
+  .title_holder
+    %h2.heading02 Partners &amp; Collaborators
+    %p There are many variations of passages of Lorem Ipsum available, but the majority
+  %ul.partner_list
+    %li
+      %a{:href => "https://emerge.mc.vanderbilt.edu/", :target => "_blank"}
+        =image_tag("partner01.jpg")
+    %li
+      %a{:href => "https://myresults.org/", :target => "_blank"}
+        =image_tag("partner02.jpg")
+    %li
+      %a{:href => "https://ignite-genomics.org/", :target => "_blank"}
+        =image_tag("partner03.jpg")
+    %li
+      %a{:href => "https://www.clinicalgenome.org/", :target => "_blank"}
+        =image_tag("partner04.jpg")
+.footer_bg
+  %footer.footer_wrap
+    .footer_link
+      %ul
+        %li
+          %a{:href => "#"} Home
+        %li
+          %a{:href => "#"} About
+        %li
+          %a{:href => "#"} Who we are
+        %li
+          %a{:href => "#"} Our Partners
+        %li
+          %a{:href => "#"} Get Started Now
+        %li
+          %a{:href => "#"} Contact Us
+    .social_media
+      %ul
+        %li
+          %a.fb.fa.fa-facebook-f{:href => "#"}
+        %li
+          %a.tw.fa.fa-twitter{:href => "#"}
+        %li
+          %a.ld.fa.fa-linkedin{:href => "#"}
+        %li
+          %a.gp.fa.fa-google-plus{:href => "#"}
+    .foot_bottom
+      .foot_logo
+        =image_tag("footer-logo.png")
+      .copy_text
+        Copyright © 2016 Docubuild INC. All rights reserved.
+        %a{:href => "#"} Terms &amp; conditions
+        |
+        %a{:href => "#"} Privacy policy
+
+:javascript
+  $(function() {
+    $('a[href*=\\#]:not([href=\\#])').click(function() {
+      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+          $('html,body').animate({
+            scrollTop: target.offset().top
+          }, 1000);
+          return false;
+        }
+      }
+    });
+  });
