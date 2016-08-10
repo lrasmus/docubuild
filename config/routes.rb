@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'home/index'
+  get 'home/dashboard'
+  match 'dashboard', :to => "home#dashboard", :via => "get"
 
   resources :sections
   resources :folders
