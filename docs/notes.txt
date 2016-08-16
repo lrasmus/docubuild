@@ -29,6 +29,12 @@ Added twitter-bootstrap-rails
 rails generate bootstrap:install scss --no-coffeescript
 
 
+Setting up mailcatcher for local development
+----------------------------------------------
+The way we have set up devise requires an SMTP server.  We can use mailcatcher locally to handle this (https://mailcatcher.me/).
+We have added mailcatcher to the development gem, but it requires you to run it (from the command line: mailcatcher).
+We assume the default port is used.
+
 
 
 From paranoia

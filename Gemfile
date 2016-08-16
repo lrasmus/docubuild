@@ -63,6 +63,9 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # Used for local SMTP needs (for Devise)
+  gem 'mailcatcher'
 end
 
 gem 'tzinfo-data'
