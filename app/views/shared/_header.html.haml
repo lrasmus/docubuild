@@ -1,0 +1,8 @@
+- flash.each do |key, value|
+  = content_tag :div, value, :class => "flash #{key}" unless value.blank?
+
+%div.inside_header_bg
+  %header.inside_head_wrapper
+    %div.inside_header
+      %div.inside_logo
+        =link_to image_tag("logo01.png"), root_path
