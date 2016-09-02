@@ -12,7 +12,7 @@ From command line
 Added Paraoia
 ----------------------------------------------
 Instructions at: https://github.com/rubysherpas/paranoia
-Added to Article, Folder and Section models
+Added to Document, Folder and Section models
 
 
 Added Paper Trail
@@ -21,12 +21,25 @@ Instructions at: https://github.com/airblade/paper_trail
   bundle exec rails generate paper_trail:install
   bundle exec rake db:migrate
 
-Added to Article and Section models (all actions)
+Added to Document and Section models (all actions)
 
 
 Added twitter-bootstrap-rails
 ----------------------------------------------
 rails generate bootstrap:install scss --no-coffeescript
+
+
+Setting up mailcatcher for local development
+----------------------------------------------
+The way we have set up devise requires an SMTP server.  We can use mailcatcher locally to handle this (https://mailcatcher.me/).
+We have added mailcatcher to the development gem, but it requires you to run it (from the command line: mailcatcher).
+We assume the default port is used.
+
+
+Pundit
+----------------------------------------------
+https://github.com/elabs/pundit
+
 
 
 

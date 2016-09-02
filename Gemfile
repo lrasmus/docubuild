@@ -10,6 +10,10 @@ gem 'pg'
 # Allows soft delete of models
 gem "paranoia", "~> 2.0"
 
+# Authentication and authorization gems
+gem 'devise'
+gem "pundit"
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -59,6 +63,9 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # Used for local SMTP needs (for Devise)
+  gem 'mailcatcher'
 end
 
 gem 'tzinfo-data'

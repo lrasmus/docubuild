@@ -7,3 +7,25 @@
   */
 
 h1 { margin: 0.67em 0; }
+
+.alert {
+  background-color: #f2dede;
+  border-color: #ebcccc;
+  color: #a94442;
+  margin-bottom: 0px;
+}
+
+.notice {
+  background-color: #dff0d8;
+  border-color: #d0e9c6;
+  color: #3c763d;
+  margin-bottom: 0px;
+  padding: 15px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+}
+
+.row {
+  margin-bottom: 20px;
+}

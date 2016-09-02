@@ -5,7 +5,7 @@
 // Plus, IE does not behave otherwise. The cost of being progressive...
 // -----------------------------------------------------------------------------
 
-document.createElement("article");
+document.createElement("document");
 document.createElement("aside");
 document.createElement("audio");
 document.createElement("canvas");

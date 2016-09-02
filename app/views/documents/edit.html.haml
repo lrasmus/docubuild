@@ -1,0 +1,718 @@
+- content_for :inside_page_name do
+  %h1
+    %label.editable City Eye Care Research &amp; Hospital
+    %input.editable.editable_name{:name => "name", :placeholder => "City Eye Care Research & Hospital", :type => "text"}/
+  %span.institution
+    %label.editable Institution: City Eye Hospital
+    %input.editable.editable_name{:name => "type", :placeholder => "Institution: City Eye Hospital", :type => "text"}/
+  %a.edit_tag.edit{:href => "#"} Edit
+
+
+%section.section_wrapper
+  .doc_features
+    %a.active{:href => "#"}
+      %i.fa.fa-file>
+      Document
+    %a{:href => "#"}
+      %i.fa.fa-share-alt{"aria-hidden" => "true"}>
+      Share Document
+    %a{:href => "#"}
+      %i.fa.fa-heart>
+      Look &amp; Feel
+  .document_detail
+    .doc_row
+      %a.cng_option{:href => "#"}
+        %i.fa.fa-cog.lft_space>
+        Configuration Options
+      %a.prv_doc{:href => "#"} Preview Document
+    #accordion.content_topics
+      .ct_tital Content Topics
+      .box_panel
+        .content_edit
+          .cnt_edit_tital
+            %input#cbxShowHide.tital_chk{:type => "checkbox"}/
+            %label.chk_box_text{:for => "cbxShowHide"} Section 01: Clinical scenario/Overview
+            #block.chk_hide_text
+              %ul
+                %li What is it about
+                %li What it is meant to cover (and what topics are excluded)
+          .cnt_text
+            .editForm
+              .form-group
+                %textarea#comment.form-control{:rows => "5"}
+                .multiple_btn
+                  %a.rs_btn.anchor{:href => "#"} Remove Section
+                  %a.cf_btn.anchor{"data-target" => "#myModal", "data-toggle" => "modal", :href => "#"} Copy From Library
+                  #myModal.modal.fade{:role => "dialog"}
+                    .modal-dialog
+                      .modal-content
+                        .modal-body
+                          .pop_up_box
+                            .pop_up_header
+                              .ph_left_col Select a Clinical Scenario
+                              .ph_right_col
+                                %input{:placeholder => "Library Search", :type => "text"}/
+                            .pop-up_body
+                              .border_box
+                                %a{:href => ""}
+                                  %h4 Warfarin Dosing in Poor Metabolizers
+                                  %p City Eye Care Research and Hospital
+                              .border_box
+                                %a{:href => "#"}
+                                  %h4 Clopidogrel Dosing in Intermediate Metabolizer
+                                  %p Institution: UmBiobank Research Center
+                              .btn_menu
+                                %a{:href => "#"} Preview
+                                %a{:href => "#"} View Content
+                                %a{:href => "#"} Cancel
+                                %a{"data-target" => "#myModal", "data-toggle" => "modal", :href => "#"} Import All
+                        .modal-footer
+                          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+            %a.cancel{:href => "#"} Save Section
+            %a.edit_btn.edit-link{:href => "#"}
+              %i.fa.fa-pencil>
+              Edit
+      .box_panel
+        .content_edit
+          .cnt_edit_tital
+            %input#cbxShowHide01.tital_chk{:type => "checkbox"}/
+            %label.chk_box_text{:for => "cbxShowHide01"} Section 2: Background and effects of the condition
+            #block01.chk_hide_text
+              %ul
+                %li The problems it can cause
+                %li Who it affects
+                %li The symptoms
+                %li How common it is
+                %li How often it occurs in different populations
+                %li An explanation of how the condition runs in a famil
+                %li A description of the difference between being a carrier and having the condition
+                %li A description of the predicted course of the condition
+                %li Details of any complications of the condition
+          .cnt_text
+            .editForm
+              .form-group
+                %textarea#comment.form-control{:rows => "5"}
+                .multiple_btn
+                  %a.rs_btn.anchor{:href => "#"} Remove Section
+                  %a.cf_btn.anchor{"data-target" => "#myModal2", "data-toggle" => "modal", :href => "#"} Copy From Library
+                  #myModal2.modal.fade{:role => "dialog"}
+                    .modal-dialog
+                      .modal-content
+                        .modal-body
+                          .pop_up_box
+                            .pop_up_header
+                              .ph_left_col Select a Clinical Scenario
+                              .ph_right_col
+                                %input{:placeholder => "Library Search", :type => "text"}/
+                            .pop-up_body
+                              .border_box
+                                %a{:href => ""}
+                                  %h4 Warfarin Dosing in Poor Metabolizers
+                                  %p City Eye Care Research and Hospital
+                              .border_box
+                                %a{:href => "#"}
+                                  %h4 Clopidogrel Dosing in Intermediate Metabolizer
+                                  %p Institution: UmBiobank Research Center
+                              .btn_menu
+                                %a{:href => "#"} Preview
+                                %a{:href => "#"} View Content
+                                %a{:href => "#"} Cancel
+                                %a{:href => "#"} Import All
+                        .modal-footer
+                          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+            %a.cancel{:href => "#"} Save Section
+            %a.edit_btn.edit-link{:href => "#"}
+              %i.fa.fa-pencil>
+              Edit
+      .box_panel
+        .content_edit
+          .cnt_edit_tital
+            %input#cbxShowHide02.tital_chk{:type => "checkbox"}/
+            %label.chk_box_text{:for => "cbxShowHide02"} Section 3: Treatment and management choices for the condition
+            #block02.chk_hide_text
+              %ul
+                %li How the condition is treated
+                %li Any procedure for referral to a specialist
+                %li How symptoms can be reduced
+                %li How well the treatment works
+                %li A description of possible complications of treatment
+                %li Other interventions available e.g. prophylactic surgery reproductive decision making, medication changes
+          .cnt_text
+            .editForm
+              .form-group
+                %textarea#comment.form-control{:rows => "5"}
+                .multiple_btn
+                  %a.rs_btn.anchor{:href => "#"} Remove Section
+                  %a.cf_btn.anchor{"data-target" => "#myModal3", "data-toggle" => "modal", :href => "#"} Copy From Library
+                  #myModal3.modal.fade{:role => "dialog"}
+                    .modal-dialog
+                      .modal-content
+                        .modal-body
+                          .pop_up_box
+                            .pop_up_header
+                              .ph_left_col Select a Clinical Scenario
+                              .ph_right_col
+                                %input{:placeholder => "Library Search", :type => "text"}/
+                            .pop-up_body
+                              .border_box
+                                %a{:href => ""}
+                                  %h4 Warfarin Dosing in Poor Metabolizers
+                                  %p City Eye Care Research and Hospital
+                              .border_box
+                                %a{:href => "#"}
+                                  %h4 Clopidogrel Dosing in Intermediate Metabolizer
+                                  %p Institution: UmBiobank Research Center
+                              .btn_menu
+                                %a{:href => "#"} Preview
+                                %a{:href => "#"} View Content
+                                %a{:href => "#"} Cancel
+                                %a{:href => "#"} Import All
+                        .modal-footer
+                          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+            %a.cancel{:href => "#"} Save Section
+            %a.edit_btn.edit-link{:href => "#"}
+              %i.fa.fa-pencil>
+              Edit
+      .box_panel
+        .content_edit
+          .cnt_edit_tital
+            %input#cbxShowHide03.tital_chk{:type => "checkbox"}/
+            %label.chk_box_text{:for => "cbxShowHide03"} Section 4: Risk of developing, carrying or passing on the condition
+            #block03.chk_hide_text
+              %ul
+                %li A reason why patient might be at specific risk
+                %li Any implications for having children
+                %li A description of the risk of having the faulty gene compared with the risk of not having the faulty gene
+                %li An explanation of the chance that the condition will not develop
+                %li A comparison of the risk of developing the condition with the risk of getting other diseases or of other events occurring
+                %li An explanation of risk in alternative formats e.g., 1 in 2 or 50%
+          .cnt_text
+            .editForm
+              .form-group
+                %textarea#comment.form-control{:rows => "5"}
+                .multiple_btn
+                  %a.rs_btn.anchor{:href => "#"} Remove Section
+                  %a.cf_btn.anchor{"data-target" => "#myModal4", "data-toggle" => "modal", :href => "#"} Copy From Library
+                  #myModal4.modal.fade{:role => "dialog"}
+                    .modal-dialog
+                      .modal-content
+                        .modal-body
+                          .pop_up_box
+                            .pop_up_header
+                              .ph_left_col Select a Clinical Scenario
+                              .ph_right_col
+                                %input{:placeholder => "Library Search", :type => "text"}/
+                            .pop-up_body
+                              .border_box
+                                %a{:href => ""}
+                                  %h4 Warfarin Dosing in Poor Metabolizers
+                                  %p City Eye Care Research and Hospital
+                              .border_box
+                                %a{:href => "#"}
+                                  %h4 Clopidogrel Dosing in Intermediate Metabolizer
+                                  %p Institution: UmBiobank Research Center
+                              .btn_menu
+                                %a{:href => "#"} Preview
+                                %a{:href => "#"} View Content
+                                %a{:href => "#"} Cancel
+                                %a{:href => "#"} Import All
+                        .modal-footer
+                          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+            %a.cancel{:href => "#"} Save Section
+            %a.edit_btn.edit-link{:href => "#"}
+              %i.fa.fa-pencil>
+              Edit
+      .box_panel
+        .content_edit
+          .cnt_edit_tital
+            %input#cbxShowHide04.tital_chk{:type => "checkbox"}/
+            %label.chk_box_text{:for => "cbxShowHide04"} Section 5: Types of tests available or being offered
+            #block04.chk_hide_text
+              %ul
+                %li To confirm a diagnosis where symptoms already exist (diagnostic test)
+                %li To predict whether someone with a family history of a condition will develop the condition (pre-symptomatic test e.g., Huntington's disease) or is likely to develop the condition (predictive test e.g., familial breast cancer)
+                %li To check whether someone is a carrier for a recessive disorder (screening test)
+                %li To screen for genetic disorders during pregnancy (i.e., a test of the fetus)
+                %li To screen for genetic disorders in the newborn
+                %li To inform medication management (pharmacogenomics test)
+          .cnt_text
+            .editForm
+              .form-group
+                %textarea#comment.form-control{:rows => "5"}
+                .multiple_btn
+                  %a.rs_btn.anchor{:href => "#"} Remove Section
+                  %a.cf_btn.anchor{"data-target" => "#myModal5", "data-toggle" => "modal", :href => "#"} Copy From Library
+                  #myModal5.modal.fade{:role => "dialog"}
+                    .modal-dialog
+                      .modal-content
+                        .modal-body
+                          .pop_up_box
+                            .pop_up_header
+                              .ph_left_col Select a Clinical Scenario
+                              .ph_right_col
+                                %input{:placeholder => "Library Search", :type => "text"}/
+                            .pop-up_body
+                              .border_box
+                                %a{:href => ""}
+                                  %h4 Warfarin Dosing in Poor Metabolizers
+                                  %p City Eye Care Research and Hospital
+                              .border_box
+                                %a{:href => "#"}
+                                  %h4 Clopidogrel Dosing in Intermediate Metabolizer
+                                  %p Institution: UmBiobank Research Center
+                              .btn_menu
+                                %a{:href => "#"} Preview
+                                %a{:href => "#"} View Content
+                                %a{:href => "#"} Cancel
+                                %a{:href => "#"} Import All
+                        .modal-footer
+                          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+            %a.cancel{:href => "#"} Save Section
+            %a.edit_btn.edit-link{:href => "#"}
+              %i.fa.fa-pencil>
+              Edit
+      .box_panel
+        .content_edit
+          .cnt_edit_tital
+            %input#cbxShowHide05.tital_chk{:type => "checkbox"}/
+            %label.chk_box_text{:for => "cbxShowHide05"} Section 6: Testing procedure
+            #block05.chk_hide_text
+              %ul
+                %li How the test is performed
+                %li Where you go to have the test
+                %li If it hurts when you have the tes
+                %li The safety/risk of the procedure
+                %li The waiting time for results
+                %li Whether the test is a standard test, part of a research program, and if you have to pay for the test
+          .cnt_text
+            .editForm
+              .form-group
+                %textarea#comment.form-control{:rows => "5"}
+                .multiple_btn
+                  %a.rs_btn.anchor{:href => "#"} Remove Section
+                  %a.cf_btn.anchor{"data-target" => "#myModal6", "data-toggle" => "modal", :href => "#"} Copy From Library
+                  #myModal6.modal.fade{:role => "dialog"}
+                    .modal-dialog
+                      .modal-content
+                        .modal-body
+                          .pop_up_box
+                            .pop_up_header
+                              .ph_left_col Select a Clinical Scenario
+                              .ph_right_col
+                                %input{:placeholder => "Library Search", :type => "text"}/
+                            .pop-up_body
+                              .border_box
+                                %a{:href => ""}
+                                  %h4 Warfarin Dosing in Poor Metabolizers
+                                  %p City Eye Care Research and Hospital
+                              .border_box
+                                %a{:href => "#"}
+                                  %h4 Clopidogrel Dosing in Intermediate Metabolizer
+                                  %p Institution: UmBiobank Research Center
+                              .btn_menu
+                                %a{:href => "#"} Preview
+                                %a{:href => "#"} View Content
+                                %a{:href => "#"} Cancel
+                                %a{:href => "#"} Import All
+                        .modal-footer
+                          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+            %a.cancel{:href => "#"} Save Section
+            %a.edit_btn.edit-link{:href => "#"}
+              %i.fa.fa-pencil>
+              Edit
+      .box_panel
+        .content_edit
+          .cnt_edit_tital
+            %input#cbxShowHide06.tital_chk{:type => "checkbox"}/
+            %label.chk_box_text{:for => "cbxShowHide06"} Section 7: Test accuracy and reliability
+            #block06.chk_hide_text
+              %ul
+                %li A description of the meaning of false negative and false positive test result
+                %li Any evidence of local variations in laboratory results
+                %li An explanation if a repeat test may be needed, and why
+                %li An acknowledgment of any limitations of testing
+          .cnt_text
+            .editForm
+              .form-group
+                %textarea#comment.form-control{:rows => "5"}
+                .multiple_btn
+                  %a.rs_btn.anchor{:href => "#"} Remove Section
+                  %a.cf_btn.anchor{"data-target" => "#myModal7", "data-toggle" => "modal", :href => "#"} Copy From Library
+                  #myModal7.modal.fade{:role => "dialog"}
+                    .modal-dialog
+                      .modal-content
+                        .modal-body
+                          .pop_up_box
+                            .pop_up_header
+                              .ph_left_col Select a Clinical Scenario
+                              .ph_right_col
+                                %input{:placeholder => "Library Search", :type => "text"}/
+                            .pop-up_body
+                              .border_box
+                                %a{:href => ""}
+                                  %h4 Warfarin Dosing in Poor Metabolizers
+                                  %p City Eye Care Research and Hospital
+                              .border_box
+                                %a{:href => "#"}
+                                  %h4 Clopidogrel Dosing in Intermediate Metabolizer
+                                  %p Institution: UmBiobank Research Center
+                              .btn_menu
+                                %a{:href => "#"} Preview
+                                %a{:href => "#"} View Content
+                                %a{:href => "#"} Cancel
+                                %a{:href => "#"} Import All
+                        .modal-footer
+                          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+            %a.cancel{:href => "#"} Save Section
+            %a.edit_btn.edit-link{:href => "#"}
+              %i.fa.fa-pencil>
+              Edit
+      .box_panel
+        .content_edit
+          .cnt_edit_tital
+            %input#cbxShowHide07.tital_chk{:type => "checkbox"}/
+            %label.chk_box_text{:for => "cbxShowHide07"} Section 8: Shared decision making
+            #block07.chk_hide_text
+              %ul
+                %li Suggestions of things to discuss with family, friends, doctors, or other health professionals concerning testing and screening
+          .cnt_text
+            .editForm
+              .form-group
+                %textarea#comment.form-control{:rows => "5"}
+                .multiple_btn
+                  %a.rs_btn.anchor{:href => "#"} Remove Section
+                  %a.cf_btn.anchor{"data-target" => "#myModal8", "data-toggle" => "modal", :href => "#"} Copy From Library
+                  #myModal8.modal.fade{:role => "dialog"}
+                    .modal-dialog
+                      .modal-content
+                        .modal-body
+                          .pop_up_box
+                            .pop_up_header
+                              .ph_left_col Select a Clinical Scenario
+                              .ph_right_col
+                                %input{:placeholder => "Library Search", :type => "text"}/
+                            .pop-up_body
+                              .border_box
+                                %a{:href => ""}
+                                  %h4 Warfarin Dosing in Poor Metabolizers
+                                  %p City Eye Care Research and Hospital
+                              .border_box
+                                %a{:href => "#"}
+                                  %h4 Clopidogrel Dosing in Intermediate Metabolizer
+                                  %p Institution: UmBiobank Research Center
+                              .btn_menu
+                                %a{:href => "#"} Preview
+                                %a{:href => "#"} View Content
+                                %a{:href => "#"} Cancel
+                                %a{:href => "#"} Import All
+                        .modal-footer
+                          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+            %a.cancel{:href => "#"} Save Section
+            %a.edit_btn.edit-link{:href => "#"}
+              %i.fa.fa-pencil>
+              Edit
+      .box_panel
+        .content_edit
+          .cnt_edit_tital
+            %input#cbxShowHide08.tital_chk{:type => "checkbox"}/
+            %label.chk_box_text{:for => "cbxShowHide08"} Section 9: Potential risks (psychosocial consequences, implications of discrimination, potential risks for others)
+            #block08.chk_hide_text
+              %ul
+                %li
+                  Any
+                  emotional consequences
+                %li Any social consequences
+                %li Possible increase in anxiety
+                %li Statement that a range of reactions are possible and normal
+                %li Implications of discrimination arising from the test result, especially on insurance and employment issues
+                %li What being at increased risk might mean to the person being tested and their family
+                %li The emotional consequences for the family
+                %li The implication for relationship e.g., embarrassment, shame, anger, and strained relationships may all be normal outcomes
+                %li Statem ent that different people have different reactions
+                %li Statement that misattributed paternity may be discovered
+          .cnt_text
+            .editForm
+              .form-group
+                %textarea#comment.form-control{:rows => "5"}
+                .multiple_btn
+                  %a.rs_btn.anchor{:href => "#"} Remove Section
+                  %a.cf_btn.anchor{"data-target" => "#myModal9", "data-toggle" => "modal", :href => "#"} Copy From Library
+                  #myModal9.modal.fade{:role => "dialog"}
+                    .modal-dialog
+                      .modal-content
+                        .modal-body
+                          .pop_up_box
+                            .pop_up_header
+                              .ph_left_col Select a Clinical Scenario
+                              .ph_right_col
+                                %input{:placeholder => "Library Search", :type => "text"}/
+                            .pop-up_body
+                              .border_box
+                                %a{:href => ""}
+                                  %h4 Warfarin Dosing in Poor Metabolizers
+                                  %p City Eye Care Research and Hospital
+                              .border_box
+                                %a{:href => "#"}
+                                  %h4 Clopidogrel Dosing in Intermediate Metabolizer
+                                  %p Institution: UmBiobank Research Center
+                              .btn_menu
+                                %a{:href => "#"} Preview
+                                %a{:href => "#"} View Content
+                                %a{:href => "#"} Cancel
+                                %a{:href => "#"} Import All
+                        .modal-footer
+                          %button.btn.btn-default{"data-dismiss" => "myModal", :type => "button"} Close
+            %a.cancel{:href => "#"} Save Section
+            %a.edit_btn.edit-link{:href => "#"}
+              %i.fa.fa-pencil>
+              Edit
+      .box_panel
+        .content_edit
+          .cnt_edit_tital
+            %input#cbxShowHide09.tital_chk{:type => "checkbox"}/
+            %label.chk_box_text{:for => "cbxShowHide09"} Section 10: Local information
+            #block09.chk_hide_text
+              %ul
+                %li Any geographical differences in service provision outlined e.g., test availability
+                %li Does it have to be paid for privately or is it free
+          .cnt_text
+            .editForm
+              .form-group
+                %textarea#comment.form-control{:rows => "5"}
+                .multiple_btn
+                  %a.rs_btn.anchor{:href => "#"} Remove Section
+                  %a.cf_btn.anchor{"data-target" => "#myModal10", "data-toggle" => "modal", :href => "#"} Copy From Library
+                  #myModal10.modal.fade{:role => "dialog"}
+                    .modal-dialog
+                      .modal-content
+                        .modal-body
+                          .pop_up_box
+                            .pop_up_header
+                              .ph_left_col Select a Clinical Scenario
+                              .ph_right_col
+                                %input{:placeholder => "Library Search", :type => "text"}/
+                            .pop-up_body
+                              .border_box
+                                %a{:href => ""}
+                                  %h4 Warfarin Dosing in Poor Metabolizers
+                                  %p City Eye Care Research and Hospital
+                              .border_box
+                                %a{:href => "#"}
+                                  %h4 Clopidogrel Dosing in Intermediate Metabolizer
+                                  %p Institution: UmBiobank Research Center
+                              .btn_menu
+                                %a{:href => "#"} Preview
+                                %a{:href => "#"} View Content
+                                %a{:href => "#"} Cancel
+                                %a{:href => "#"} Import All
+                        .modal-footer
+                          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+            %a.cancel{:href => "#"} Save Section
+            %a.edit_btn.edit-link{:href => "#"}
+              %i.fa.fa-pencil>
+              Edit
+      .box_panel
+        .content_edit
+          .cnt_edit_tital
+            %input#cbxShowHide10.tital_chk{:type => "checkbox"}/
+            %label.chk_box_text{:for => "cbxShowHide10"} Section 11: Additional sources of support and information
+            #block10.chk_hide_text
+              %ul
+                %li e.g., references, websites, other literature, phone numbers, postal addresses, helplines, support groups, other health professionals
+          .cnt_text
+            .editForm
+              .form-group
+                %textarea#comment.form-control{:rows => "5"}
+                .multiple_btn
+                  %a.rs_btn.anchor{:href => "#"} Remove Section
+                  %a.cf_btn.anchor{"data-target" => "#myModal11", "data-toggle" => "modal", :href => "#"} Copy From Library
+                  #myModal11.modal.fade{:role => "dialog"}
+                    .modal-dialog
+                      .modal-content
+                        .modal-body
+                          .pop_up_box
+                            .pop_up_header
+                              .ph_left_col Select a Clinical Scenario
+                              .ph_right_col
+                                %input{:placeholder => "Library Search", :type => "text"}/
+                            .pop-up_body
+                              .border_box
+                                %a{:href => ""}
+                                  %h4 Warfarin Dosing in Poor Metabolizers
+                                  %p City Eye Care Research and Hospital
+                              .border_box
+                                %a{:href => "#"}
+                                  %h4 Clopidogrel Dosing in Intermediate Metabolizer
+                                  %p Institution: UmBiobank Research Center
+                              .btn_menu
+                                %a{:href => "#"} Preview
+                                %a{:href => "#"} View Content
+                                %a{:href => "#"} Cancel
+                                %a{:href => "#"} Import All
+                        .modal-footer
+                          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+            %a.cancel{:href => "#"} Save Section
+            %a.edit_btn.edit-link{:href => "#"}
+              %i.fa.fa-pencil>
+              Edit
+      .box_panel
+        .content_edit
+          .cnt_edit_tital
+            %input#cbxShowHide11.tital_chk{:type => "checkbox"}/
+            %label.chk_box_text{:for => "cbxShowHide11"} Section 12: Content contributors
+            #block11.chk_hide_text
+              %ul
+                %li Original source of content
+                %li Name, degree and institution affiliation of contributors
+          .cnt_text
+            .editForm
+              .form-group
+                %textarea#comment.form-control{:rows => "5"}
+                .multiple_btn
+                  %a.rs_btn.anchor{:href => "#"} Remove Section
+                  %a.cf_btn.anchor{"data-target" => "#myModal12", "data-toggle" => "modal", :href => "#"} Copy From Library
+                  #myModal12.modal.fade{:role => "dialog"}
+                    .modal-dialog
+                      .modal-content
+                        .modal-body
+                          .pop_up_box
+                            .pop_up_header
+                              .ph_left_col Select a Clinical Scenario
+                              .ph_right_col
+                                %input{:placeholder => "Library Search", :type => "text"}/
+                            .pop-up_body
+                              .border_box
+                                %a{:href => ""}
+                                  %h4 Warfarin Dosing in Poor Metabolizers
+                                  %p City Eye Care Research and Hospital
+                              .border_box
+                                %a{:href => "#"}
+                                  %h4 Clopidogrel Dosing in Intermediate Metabolizer
+                                  %p Institution: UmBiobank Research Center
+                              .btn_menu
+                                %a{:href => "#"} Preview
+                                %a{:href => "#"} View Content
+                                %a{:href => "#"} Cancel
+                                %a{:href => "#"} Import All
+                        .modal-footer
+                          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+            %a.cancel{:href => "#"} Save Section
+            %a.edit_btn.edit-link{:href => "#"}
+              %i.fa.fa-pencil>
+              Edit
+      .box_panel
+        .content_edit
+          .cnt_edit_tital
+            %input#cbxShowHide12.tital_chk{:type => "checkbox"}/
+            %label.chk_box_text{:for => "cbxShowHide12"} Section 13: Date of the information
+            #block12.chk_hide_text
+              %ul
+                %li Date of publication and any revisions
+                %li An updating policy
+          .cnt_text
+            .editForm
+              .form-group
+                %textarea#comment.form-control{:rows => "5"}
+                .multiple_btn
+                  %a.rs_btn.anchor{:href => "#"} Remove Section
+                  %a.cf_btn.anchor{"data-target" => "#myModal13", "data-toggle" => "modal", :href => "#"} Copy From Library
+                  #myModal13.modal.fade{:role => "dialog"}
+                    .modal-dialog
+                      .modal-content
+                        .modal-body
+                          .pop_up_box
+                            .pop_up_header
+                              .ph_left_col Select a Clinical Scenario
+                              .ph_right_col
+                                %input{:placeholder => "Library Search", :type => "text"}/
+                            .pop-up_body
+                              .border_box
+                                %a{:href => ""}
+                                  %h4 Warfarin Dosing in Poor Metabolizers
+                                  %p City Eye Care Research and Hospital
+                              .border_box
+                                %a{:href => "#"}
+                                  %h4 Clopidogrel Dosing in Intermediate Metabolizer
+                                  %p Institution: UmBiobank Research Center
+                              .btn_menu
+                                %a{:href => "#"} Preview
+                                %a{:href => "#"} View Content
+                                %a{:href => "#"} Cancel
+                                %a{:href => "#"} Import All
+                        .modal-footer
+                          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+            %a.cancel{:href => "#"} Save Section
+            %a.edit_btn.edit-link{:href => "#"}
+              %i.fa.fa-pencil>
+              Edit
+      .box_panel
+        .content_edit
+          %a.prv_doc.pub_doc{:href => "#"} Publish Document
+
+  
+:javascript
+  $(document).ready(function(){
+  $('a.edit-link').on('click', function(e){
+    e.preventDefault();
+    var $parent = $(this).closest('div'); 
+    $parent.find('.editForm').show();
+    $parent.find('a.cancel').show();
+    $(this).hide();
+  });
+  
+  
+  $('a.cancel').on('click', function(e){
+    e.preventDefault();
+    var $parent = $(this).closest('div'); 
+    $parent.find('.editForm').hide();
+    $parent.find('a.edit-link').show();
+    $(this).hide();
+  });
+  
+    
+  });
+:javascript
+  $(function () {
+    
+    var active = true;
+    
+    $('#collapse-init').click(function () {
+    if (active) {
+    active = false;
+    $('.panel-collapse').collapse('show');
+    $('.panel-title').attr('data-toggle', '');
+    $(this).text('Enable accordion behavior');
+    } else {
+    active = true;
+    $('.panel-collapse').collapse('hide');
+    $('.panel-title').attr('data-toggle', 'collapse');
+    $(this).text('Disable accordion behavior');
+    }
+    });
+    
+    $('#accordion').on('show.bs.collapse', function () {
+    if (active) $('#accordion .in').collapse('hide');
+    });
+    
+  });
+= javascript_include_tag "chek-box-text.js"
+:javascript
+  $(function(){
+      $(".edit").click(function(){
+          var $this = $(this);
+          var text = $this.text();
+          if(text=="Edit"){
+              $this.text("Save");
+
+          }
+                      else{
+                           $this.text("Edit");
+                      }
+          $(".editable").toggle();
+      });
+
+      $("input.editable").change(function(){
+          $(this).prev().text($(this).text());
+
+      });
+  });

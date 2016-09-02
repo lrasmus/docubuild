@@ -14,7 +14,7 @@
           %li
             %a{:href => "#partner"} Partners
           %li
-            %a.active_get{:href => "#"} Get Started Now
+            =link_to "Get Started Now", documents_path, :class=>"active_get"
       .hamburg_menu
         %button.hamburger ☰
         %button.cross ˟
@@ -29,7 +29,7 @@
             %li
               %a{:href => "#partner"} Partners
             %li
-              %a.active_get{:href => "#"} Get Started Now
+              =link_to "Get Started Now", documents_path, :class=>"active_get"
     .banner_wrap
       .b_right_col
         =image_tag("mac-dashboard.png")

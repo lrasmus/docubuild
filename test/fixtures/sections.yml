@@ -8,7 +8,7 @@ one:
   created_by: 1
   updated_by: 1
   deleted_by: 1
-  article_id: 
+  document_id: 
   order: 1
 
 two:
@@ -19,5 +19,5 @@ two:
   created_by: 1
   updated_by: 1
   deleted_by: 1
-  article_id: 
+  document_id: 
   order: 1

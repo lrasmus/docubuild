@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :users, :controllers => { registrations: 'registrations' }
   get 'home/index'
-  get 'home/dashboard'
-  match 'dashboard', :to => "home#dashboard", :via => "get"
 
   resources :sections
   resources :folders
   resources :visibilities
   resources :statuses
-  resources :articles
+  resources :documents
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

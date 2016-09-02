@@ -1,0 +1,34 @@
+- flash.each do |key, value|
+  = content_tag :div, value, :class => "flash #{key}" unless value.blank?
+
+%div.inside_header_bg
+  %header.inside_head_wrapper
+    %div.inside_header
+      %div.inside_logo
+        =link_to image_tag("logo01.png"), (user_signed_in? ? documents_path : root_path)
+      %div.dash_menu
+        %div.dropdown
+          = link_to "#", :class => "dropdown-toggle", :"data-toggle"=>"dropdown", :role=>"button", :"aria-haspopup"=>"true", :"aria-expanded"=>"false" do
+            %span.user_icon
+              =image_tag "user-sign.png"
+          %ul.dropdown-menu
+            - if user_signed_in?
+              %li.user_name
+                = "Welcome #{current_user.first_name}"
+              %li
+                = link_to edit_user_registration_path do
+                  %i.fa.fa-user.lft_space
+                  My Account
+              %li
+                = link_to destroy_user_session_path, :method => :delete do
+                  %i.fa.fa-sign-out.lft_space
+                  Logout
+            - else
+              %li
+                = link_to new_user_session_path do
+                  %i.fa.fa-sign-in.lft_space
+                  Login
+            %li.drop_arrow
+              =image_tag("drop-arrow.png")
+    .inside_page_name
+      = yield :inside_page_name

@@ -1,11 +1,11 @@
-= form_for(@article) do |f|
-  - if @article.errors.any?
+= form_for(@document) do |f|
+  - if @document.errors.any?
     #error_explanation
       %h2
-        = pluralize(@article.errors.count, "error")
-        prohibited this article from being saved:
+        = pluralize(@document.errors.count, "error")
+        prohibited this document from being saved:
       %ul
-        - @article.errors.full_messages.each do |message|
+        - @document.errors.full_messages.each do |message|
           %li= message
   .field
     = f.label :title
@@ -24,17 +24,17 @@
     %br/
     = f.text_field :visibility_id
   .field
-    = f.label :created_by_id
+    = f.label :created_by
     %br/
-    = f.text_field :created_by_id
+    = f.text_field :created_by
   .field
-    = f.label :updated_by_id
+    = f.label :updated_by
     %br/
-    = f.text_field :updated_by_id
+    = f.text_field :updated_by
   .field
-    = f.label :deleted_by_id
+    = f.label :deleted_by
     %br/
-    = f.text_field :deleted_by_id
+    = f.text_field :deleted_by
   .field
     = f.label :folder_id
     %br/

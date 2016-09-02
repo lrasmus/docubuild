@@ -1,0 +1,14 @@
+%section.section_wrapper
+  #tabcordion.tabcordion
+    = render partial: "tab", locals: {index: 1, name: "All Documents", documents: @documents}
+    = render partial: "tab", locals: {index: 2, name: "In Progress", documents: @documents.in_progress}
+    = render partial: "tab", locals: {index: 3, name: "Published", documents: @documents.published}
+    = render partial: "tab", locals: {index: 4, name: "Archived", documents: @documents.archived}
+
+    .create_doc_btn
+      = link_to 'Create New Document', new_document_path
+
+:javascript
+  $( function() {
+    $('#tabcordion').tabcordion();
+  } );

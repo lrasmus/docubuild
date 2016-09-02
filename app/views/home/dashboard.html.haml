@@ -1,32 +1,3 @@
-.inside_header_bg
-  %header.inside_head_wrapper
-    .inside_header
-      .inside_logo
-        =image_tag "logo01.png"
-        %span.d_name Dashboard
-      .dash_menu
-        .dropdown
-          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            %span.user_icon
-              =image_tag "user-sign.png"
-          %ul.dropdown-menu
-            %li.user_name Welcome Jonathan
-            %li
-              %a{:href => "#"}
-                %i.fa.fa-user.lft_space>
-                My Account
-            %li
-              %a{:href => "#"}
-                %i.fa.fa-cog.lft_space>
-                Account Setting
-            %li
-              %a{:href => "#"}
-                %i.fa.fa-sign-out.lft_space>
-                Logout
-            %li.drop_arrow
-              =image_tag "drop-arrow.png"
-    .inside_page_name
-      %h1 My Documents
 %section.section_wrapper
   #tabcordion.tabcordion
     %h3.tabcord-title.border_left_corner{"data-hname" => "tab1"} All Documents (10)
