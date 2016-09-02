@@ -1,0 +1,51 @@
+- content_for :inside_page_name do
+  %h1
+    %label Create a new document
+
+
+%section.section_wrapper
+  = form_for(@document) do |f|
+    - if @document.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@document.errors.count, "error")
+          prohibited this document from being saved:
+        %ul
+          - @document.errors.full_messages.each do |message|
+            %li= message
+    .field
+      = f.label :title, :class => "new_document_field"
+      = f.text_field :title, :class => "new_document_field", :autofocus => true
+    .field
+      = f.label :description, :class => "new_document_field"
+      = f.text_area :description, :class => "new_document_field"
+    .field
+      = f.label :institution, :class => "new_document_field"
+      = f.text_field :institution, :class => "new_document_field", :value => current_user.institution
+
+    = f.hidden_field :status_id, :value => default_document_status
+    = f.hidden_field :visibility_id, :value => default_document_visibility
+
+    .spacer{:style => "height: 30px"}
+
+    %h3 Select a document template
+    .template_list
+      #accordion.templates
+        - @templates.each do |template|
+          .box_panel
+            .content_edit
+              .cnt_edit_tital
+                =f.radio_button :template_id, template.id, :class => "tital_chk"
+                %label.chk_box_text=template.title
+              .template_details
+                .template_description=template.description
+                - if template.has_sections
+                  %ul
+                    - template.sections.each do |section|
+                      %li=format_order_and_title(section)
+                - else
+                  %ul
+                    %li (There are no sections in this template)
+    .actions
+      = button_tag "Cancel", type: "submit", name: "cancel", value: true, :class => "button"
+      = f.submit "Save and Continue", :class => "button"

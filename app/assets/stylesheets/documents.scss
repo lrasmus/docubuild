@@ -1,0 +1,61 @@
+// Place all the styles related to the documents controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.template_list {
+  display: table;
+  padding: -10px 10px 0px 0px;
+  width: 100%;
+}
+
+#accordion.templates{
+  background:#fff;
+  width:1000px;
+  border:1px solid #e1e1e1;
+  border-radius:5px;
+  box-shadow: 3px 3px 15px #ccc;
+  margin: 0 0;
+}
+
+.template_description {
+  font-style: italic;
+  padding-bottom: 5px;
+}
+
+.template_details {
+  padding-left: 29px;
+  padding-top: 0px;
+  width: 906px;
+  clear: both;
+}
+
+.actions {
+  padding-top: 15px;
+  .button {
+    background:#00b26c;
+    font-size:14.2px;
+    float:right;
+    text-transform:uppercase;
+    font-family:'Gotham-Medium';
+    padding:15px 20px;
+    text-align:center;
+    display:inline-block;
+    color:#fff;
+    border-radius:7px;
+  }
+}
+
+input.new_document_field, textarea.new_document_field {
+   border:1px solid #ccc;
+   font-size:14px;
+   color: #333;
+   padding: 4px;
+   display:inline-block;
+   width:75%;
+}
+
+label.new_document_field {
+  font-size: 14px;
+  width: 100px;
+  display:block; float:left;
+}

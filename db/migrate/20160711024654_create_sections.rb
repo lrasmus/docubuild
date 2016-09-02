@@ -8,7 +8,7 @@ class CreateSections < ActiveRecord::Migration
       t.integer :created_by
       t.integer :updated_by
       t.integer :deleted_by
-      t.references :article, index: true, foreign_key: true
+      t.references :document, index: true, foreign_key: true
       t.integer :order
 
       t.timestamps null: false

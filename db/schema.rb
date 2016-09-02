@@ -16,29 +16,32 @@ ActiveRecord::Schema.define(version: 20160817123114) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "articles", force: :cascade do |t|
+  create_table "documents", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "status_id"
-    t.integer  "visibility_id"
+    t.string   "institution"
+    t.boolean  "is_template",   default: false
+    t.integer  "status_id",                     null: false
+    t.integer  "visibility_id",                 null: false
     t.integer  "created_by"
     t.integer  "updated_by"
     t.integer  "deleted_by"
     t.integer  "folder_id"
-    t.integer  "template"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "template_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.datetime "deleted_at"
   end
 
-  add_index "articles", ["created_by"], name: "index_articles_on_created_by", using: :btree
-  add_index "articles", ["deleted_at"], name: "index_articles_on_deleted_at", using: :btree
-  add_index "articles", ["deleted_by"], name: "index_articles_on_deleted_by", using: :btree
-  add_index "articles", ["folder_id"], name: "index_articles_on_folder_id", using: :btree
-  add_index "articles", ["status_id"], name: "index_articles_on_status_id", using: :btree
-  add_index "articles", ["template"], name: "index_articles_on_template", using: :btree
-  add_index "articles", ["updated_by"], name: "index_articles_on_updated_by", using: :btree
-  add_index "articles", ["visibility_id"], name: "index_articles_on_visibility_id", using: :btree
+  add_index "documents", ["created_by"], name: "index_documents_on_created_by", using: :btree
+  add_index "documents", ["deleted_at"], name: "index_documents_on_deleted_at", using: :btree
+  add_index "documents", ["deleted_by"], name: "index_documents_on_deleted_by", using: :btree
+  add_index "documents", ["folder_id"], name: "index_documents_on_folder_id", using: :btree
+  add_index "documents", ["is_template"], name: "index_documents_on_is_template", using: :btree
+  add_index "documents", ["status_id"], name: "index_documents_on_status_id", using: :btree
+  add_index "documents", ["template_id"], name: "index_documents_on_template_id", using: :btree
+  add_index "documents", ["updated_by"], name: "index_documents_on_updated_by", using: :btree
+  add_index "documents", ["visibility_id"], name: "index_documents_on_visibility_id", using: :btree
 
   create_table "folders", force: :cascade do |t|
     t.string   "title"
@@ -67,15 +70,15 @@ ActiveRecord::Schema.define(version: 20160817123114) do
     t.integer  "created_by"
     t.integer  "updated_by"
     t.integer  "deleted_by"
-    t.integer  "article_id"
+    t.integer  "document_id"
     t.integer  "order"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.datetime "deleted_at"
   end
 
-  add_index "sections", ["article_id"], name: "index_sections_on_article_id", using: :btree
   add_index "sections", ["deleted_at"], name: "index_sections_on_deleted_at", using: :btree
+  add_index "sections", ["document_id"], name: "index_sections_on_document_id", using: :btree
   add_index "sections", ["status_id"], name: "index_sections_on_status_id", using: :btree
   add_index "sections", ["visibility_id"], name: "index_sections_on_visibility_id", using: :btree
 
@@ -128,12 +131,12 @@ ActiveRecord::Schema.define(version: 20160817123114) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "articles", "folders"
-  add_foreign_key "articles", "statuses"
-  add_foreign_key "articles", "visibilities"
+  add_foreign_key "documents", "folders"
+  add_foreign_key "documents", "statuses"
+  add_foreign_key "documents", "visibilities"
   add_foreign_key "folders", "statuses"
   add_foreign_key "folders", "visibilities"
-  add_foreign_key "sections", "articles"
+  add_foreign_key "sections", "documents"
   add_foreign_key "sections", "statuses"
   add_foreign_key "sections", "visibilities"
 end

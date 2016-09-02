@@ -18,7 +18,7 @@ class SectionsControllerTest < ActionController::TestCase
 
   test "should create section" do
     assert_difference('Section.count') do
-      post :create, section: { article_id: @section.article_id, content: @section.content, created_by: @section.created_by, deleted_by: @section.deleted_by, order: @section.order, status_id: @section.status_id, title: @section.title, updated_by: @section.updated_by, visibility_id: @section.visibility_id }
+      post :create, section: { document_id: @section.document_id, content: @section.content, created_by: @section.created_by, deleted_by: @section.deleted_by, order: @section.order, status_id: @section.status_id, title: @section.title, updated_by: @section.updated_by, visibility_id: @section.visibility_id }
     end
 
     assert_redirected_to section_path(assigns(:section))
@@ -35,7 +35,7 @@ class SectionsControllerTest < ActionController::TestCase
   end
 
   test "should update section" do
-    patch :update, id: @section, section: { article_id: @section.article_id, content: @section.content, created_by: @section.created_by, deleted_by: @section.deleted_by, order: @section.order, status_id: @section.status_id, title: @section.title, updated_by: @section.updated_by, visibility_id: @section.visibility_id }
+    patch :update, id: @section, section: { document_id: @section.document_id, content: @section.content, created_by: @section.created_by, deleted_by: @section.deleted_by, order: @section.order, status_id: @section.status_id, title: @section.title, updated_by: @section.updated_by, visibility_id: @section.visibility_id }
     assert_redirected_to section_path(assigns(:section))
   end
 

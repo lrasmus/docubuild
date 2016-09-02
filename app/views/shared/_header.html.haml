@@ -5,7 +5,7 @@
   %header.inside_head_wrapper
     %div.inside_header
       %div.inside_logo
-        =link_to image_tag("logo01.png"), (user_signed_in? ? dashboard_path : root_path)
+        =link_to image_tag("logo01.png"), (user_signed_in? ? documents_path : root_path)
       %div.dash_menu
         %div.dropdown
           = link_to "#", :class => "dropdown-toggle", :"data-toggle"=>"dropdown", :role=>"button", :"aria-haspopup"=>"true", :"aria-expanded"=>"false" do
@@ -30,3 +30,5 @@
                   Login
             %li.drop_arrow
               =image_tag("drop-arrow.png")
+    .inside_page_name
+      = yield :inside_page_name
