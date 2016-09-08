@@ -28,8 +28,19 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(document_params)
 
+    success = @document.save
+    if success and !@document.template_id.nil?
+      template = Document.find_by_id(@document.template_id)
+      # Copy all of the sections from the original template
+      template.sections.each do |section|
+        new_section = section.dup
+        new_section.document = @document
+        success = success and new_section.save
+      end
+    end
+
     respond_to do |format|
-      if @document.save
+      if success
         format.html { redirect_to edit_document_path(@document), notice: 'Document was successfully created.' }
         format.json { render :show, status: :created, location: @document }
       else

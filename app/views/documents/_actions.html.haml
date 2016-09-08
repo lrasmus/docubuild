@@ -1,0 +1,18 @@
+= form_for document, :html => {:id => "document_status_form"} do |f|
+  = f.hidden_field :status_id
+  - unless document.status_id == Status::Published
+    =link_to "Publish Document", "#", class: "prv_doc pub_doc", data: { value: Status::Published }
+  - unless document.status_id == Status::Archived
+    =link_to "Archive Document", "#", class: "prv_doc pub_doc", data: { value: Status::Archived }
+  - unless document.status_id == Status::InProgress
+    =link_to "Mark In Progress", "#", class: "prv_doc pub_doc", data: { value: Status::InProgress }
+
+:javascript
+  $(function(){
+    $("a.pub_doc").on("click", function(event) {
+      event.stopPropagation();
+      event.preventDefault();
+      $("#document_status_id").val($(this).attr('data-value'));
+      $("#document_status_form").submit();
+    });
+  });
