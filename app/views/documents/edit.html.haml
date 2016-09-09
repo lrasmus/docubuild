@@ -65,17 +65,15 @@
     e.preventDefault();
     var $parent = $(this).closest('div'); 
     $parent.find('.editForm').show();
-    $parent.find('a.cancel').show();
     $(this).hide();
   });
   
   
   $('a.cancel').on('click', function(e){
     e.preventDefault();
-    var $parent = $(this).closest('div'); 
+    var $parent = $(this).closest('.cnt_text'); 
     $parent.find('.editForm').hide();
     $parent.find('a.edit-link').show();
-    $(this).hide();
   });
   
     
@@ -132,5 +130,40 @@
           $(obj).prev().text($(obj).val());
         });
         $("#document_properties_form").submit();
+      });
+
+      $("a.save_section").on("click", function(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        var $form = $(this).closest("form");
+        if ($form) {
+          $form.submit();
+        }
+      });
+
+      $("a.cancel_section").on("click", function(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        var $form = $(this).closest("form");
+        if ($form) {
+          var element = $form.find("#section_content");
+          element.val(element.attr('data-original-text'));
+        }
+      });
+
+      $("a.delete_section").click(function(event){
+        event.stopPropagation();
+        event.preventDefault();
+        var $form = $(this).closest("form");
+        if ($form) {
+          $.ajax({
+              type: "DELETE",
+              url: $form.attr('action'),
+              dataType: "json",
+              complete: function(){
+                $form.closest(".box_panel").fadeOut(300, function(){ $(this).remove();});
+              }
+          });
+        }
       });
   });

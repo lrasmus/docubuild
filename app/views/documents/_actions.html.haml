@@ -1,11 +1,17 @@
 = form_for document, :html => {:id => "document_status_form"} do |f|
   = f.hidden_field :status_id
   - unless document.status_id == Status::Published
-    =link_to "Publish Document", "#", class: "prv_doc pub_doc", data: { value: Status::Published }
+    =link_to "#", class: "prv_doc pub_doc", data: { value: Status::Published } do
+      %i.fa.fa-share-alt{"aria-hidden" => "true"}
+      Publish Document
   - unless document.status_id == Status::Archived
-    =link_to "Archive Document", "#", class: "prv_doc pub_doc", data: { value: Status::Archived }
+    =link_to "#", class: "prv_doc pub_doc", data: { value: Status::Archived } do
+      %i.fa.fa-archive{"aria-hidden" => "true"}
+      Archive Document
   - unless document.status_id == Status::InProgress
-    =link_to "Mark In Progress", "#", class: "prv_doc pub_doc", data: { value: Status::InProgress }
+    =link_to "#", class: "prv_doc pub_doc", data: { value: Status::InProgress } do
+      %i.fa.fa-tasks{"aria-hidden" => "true"}
+      Mark In Progress
 
 :javascript
   $(function(){
