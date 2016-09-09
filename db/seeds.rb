@@ -6,6 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# We want control over statuses, so they are not editable from the application and only through the seeds
+# and/or migrations.  We replicate the values for these statuses in the Status model, so any changes here
+# should be reflected there as well.
 Status.create(:name => "In Progress")
 published = Status.create(:name => "Published")
 Status.create(:name => "Archived")
@@ -22,8 +25,12 @@ emerge_doc = Document.create(:title => "eMERGE Genomic Resource Template",
   :institution => "eMERGE",
   :is_template => true, :status => published, :visibility => public_vis)
 
-Section.create(:title => "Clinical scenario/Overview", :content => "", :status => published, :visibility => public_vis, :order => 1, :document => emerge_doc)
-Section.create(:title => "Background and effects of the condition", :content => "", :status => published, :visibility => public_vis, :order => 2, :document => emerge_doc)
+Section.create(:title => "Clinical scenario/Overview", 
+  :description => "<ul><li>What is it about</li><li>What it is meant to cover (and what topics are excluded)</li></ul>",
+  :content => "", :status => published, :visibility => public_vis, :order => 1, :document => emerge_doc)
+Section.create(:title => "Background and effects of the condition", :content => "", 
+  :description => "<ul><li>The problems it can cause</li><li>Who it affects</li><li>The symptoms</li><li>How common it is</li><li>How often it occurs in different populations</li><li>An explanation of how the condition runs in a famil</li><li>A description of the difference between being a carrier and having the condition</li><li>A description of the predicted course of the condition</li><li>Details of any complications of the condition</li></ul>",
+  :status => published, :visibility => public_vis, :order => 2, :document => emerge_doc)
 Section.create(:title => "Treatment and management choices for the condition", :content => "", :status => published, :visibility => public_vis, :order => 3, :document => emerge_doc)
 Section.create(:title => "Risk of developing, carrying or passing on the condition", :content => "", :status => published, :visibility => public_vis, :order => 4, :document => emerge_doc)
 Section.create(:title => "Types of tests available or being offered", :content => "", :status => published, :visibility => public_vis, :order => 5, :document => emerge_doc)

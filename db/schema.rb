@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20160817123114) do
 
   create_table "sections", force: :cascade do |t|
     t.string   "title"
+    t.text     "description"
     t.text     "content"
     t.integer  "status_id"
     t.integer  "visibility_id"

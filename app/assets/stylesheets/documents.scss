@@ -42,6 +42,7 @@
     display:inline-block;
     color:#fff;
     border-radius:7px;
+    margin: 0px 5px;
   }
 }
 
@@ -58,4 +59,26 @@ label.new_document_field {
   font-size: 14px;
   width: 100px;
   display:block; float:left;
+}
+
+a.tital_chk {
+  cursor: pointer;
+}
+
+.hidden_form_btn {
+  display: none;
+}
+
+.description {
+  hr {
+    margin: 5px 0px;
+  }
+}
+
+.status {
+  display: block;
+  margin-bottom: 10px;
+  .progres_btn {
+    float: none;
+  }
 }

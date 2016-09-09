@@ -5,4 +5,6 @@ class Section < ActiveRecord::Base
   belongs_to :status
   belongs_to :visibility
   belongs_to :document
+
+  default_scope { order('sections.order') }
 end
