@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :documents do
     member do
       get 'template_sections'
+      post 'add_sections_from_templates'
     end
   end
 
