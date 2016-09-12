@@ -50,7 +50,9 @@
         Configuration Options
       %a.prv_doc{:href => "#"} Preview Document
     #accordion.content_topics
-      .ct_tital Content Topics
+      .ct_tital
+        %span Content Topics
+        %a.add_section{:href => "#"} Add Section
       - @document.sections.each do |section|
         = render partial: "sections/edit_panel", locals: {section: section}
 
@@ -58,6 +60,8 @@
         .content_edit.actions
           = render :partial => "actions", :locals => {:document => @document}
 
+%div#dialog{title: "DocUBuild"}
+  #content
   
 :javascript
   $(document).ready(function(){
@@ -166,4 +170,34 @@
           });
         }
       });
+
+      $("a.add_section").on("click", function(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        $.get( "#{template_sections_document_path(@document, :missing_only => true)}")
+          .done(function( data ) {
+            $("#dialog").dialog({ 
+              width: 600,
+              title: 'Add Sections',
+              buttons: [
+                {
+                  text: 'OK', class: 'acceptButton',
+                  click: function() {}
+                },
+                {
+                  text: 'Cancel',
+                  click: function() { $(this).dialog("close"); }
+                }
+              ]});
+            $("#dialog #content").html( data );
+          })
+          .fail(function(err) {
+            alert("Error");
+          });
+      });
   });
+
+:javascript
+  function addSection(data) {
+
+  }

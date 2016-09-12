@@ -11,6 +11,7 @@ class CreateSections < ActiveRecord::Migration
       t.integer :deleted_by
       t.references :document, index: true, foreign_key: true
       t.integer :order
+      t.integer :template_id, index: true, foreign_key: true
 
       t.timestamps null: false
     end

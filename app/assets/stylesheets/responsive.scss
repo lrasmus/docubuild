@@ -407,7 +407,7 @@ h2.resp-accordion {
 .doc_info_text {
   width: 100%;
 }
-.doc_detail:hover{background: url(../images/white-erase-bg.png) repeat-y top center;}
+.doc_detail:hover{background: asset-url("images/white-erase-bg.png") no-repeat top center;}
 
 
 /*dooument-page-css*/
@@ -781,7 +781,7 @@ h2.resp-accordion {
 .doc_info_text {
   width: 100%;
 }
-.doc_detail:hover{background: url(../images/white-erase-bg.png) repeat-y top center;}
+.doc_detail:hover{background: asset-url("images/white-erase-bg.png") no-repeat top center;}
 
 
 /*dooument-page-css*/

@@ -1,12 +1,6 @@
 class SectionsController < ApplicationController
   before_action :set_section, only: [:show, :edit, :update, :destroy]
 
-  # GET /sections
-  # GET /sections.json
-  def index
-    @sections = Section.all
-  end
-
   # GET /sections/1
   # GET /sections/1.json
   def show
@@ -25,6 +19,13 @@ class SectionsController < ApplicationController
   # POST /sections.json
   def create
     @section = Section.new(section_params)
+    @section.title = @section.title || ""
+
+    document = @section.document
+    @section.order = 1
+    unless document.sections.blank?
+      @section.order = document.sections.last.order + 1
+    end
 
     respond_to do |format|
       if @section.save
@@ -69,6 +70,6 @@ class SectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def section_params
-      params.require(:section).permit(:title, :content, :status_id, :visibility_id, :created_by, :updated_by, :deleted_by, :document_id, :order)
+      params.require(:section).permit(:title, :content, :description, :status_id, :visibility_id, :created_by, :updated_by, :deleted_by, :document_id, :order)
     end
 end

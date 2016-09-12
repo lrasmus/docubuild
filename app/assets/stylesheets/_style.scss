@@ -249,7 +249,7 @@ a{outline:none !important;}
 .d_name{font-size:30px; line-height:37px; color:#000; font-family:'Gotham Extra';}
 
 .doc_detail{width:1000px; display:table; border-bottom:1px solid #d1d1d1; padding:37px 0; clear:both;}
-.doc_detail:hover{background: asset-url("../images/white-erase-bg.png") no-repeat top center;}
+.doc_detail:hover{background: image-url('white-erase-bg.png') no-repeat top center;}
 
 .doc_avtar{width:55px; float:left; height:55px; text-align:center; line-height:55px; border-radius:50%; font-family:'Gotham-Medium'; font-size:25px; color:#fff;}
 .doc_info{width:929px; float:right;}

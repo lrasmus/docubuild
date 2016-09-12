@@ -1,11 +1,54 @@
 class DocumentsController < ApplicationController
-  before_action :set_document, only: [:show, :edit, :update, :destroy]
+  before_action :set_document, only: [:show, :edit, :update, :destroy, :template_sections, :add_sections_from_templates]
   before_filter :check_for_cancel, :only => [:create, :update]
 
   # GET /documents
   # GET /documents.json
   def index
     @documents = Document.not_templates
+  end
+
+  # GET /documents/1/template_sections[?missing_only]
+  def template_sections
+    @templated = !@document.template.blank?
+    @sections = []
+    if @templated
+      @open_template = @document.template.sections.blank?
+
+      allowed_sections = @document.template.sections
+      if params.has_key?(:missing_only)
+        @sections = allowed_sections.select { |as| !@document.sections.any? { |ds| ds.template_id == as.id } }
+      else
+        @sections = allowed_sections
+      end
+    end
+
+    respond_to do |format|
+      format.html { render "template_sections", layout: false }
+    end
+  end
+
+  # POST /documents/1/add_sections_from_templates
+  def add_sections_from_templates
+    # TODO verify the template sections are in the document template
+
+    section_ids = params[:sections]
+    unless section_ids.empty?
+      section_ids.each do |id|
+        section = Section.find_by_id(id)
+        puts "#{section}"
+        if (section)
+          new_section = section.dup
+          new_section.document = @document
+          new_section.template = section
+          new_section.save
+        end
+      end
+    end
+
+    respond_to do |format|
+      format.json { render json: @document.sections, status: :created }
+    end
   end
 
   # GET /documents/1
@@ -35,6 +78,7 @@ class DocumentsController < ApplicationController
       template.sections.each do |section|
         new_section = section.dup
         new_section.document = @document
+        new_section.template = section
         success = success and new_section.save
       end
     end

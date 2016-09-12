@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20160817123114) do
     t.integer  "deleted_by"
     t.integer  "document_id"
     t.integer  "order"
+    t.integer  "template_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.datetime "deleted_at"
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 20160817123114) do
   add_index "sections", ["deleted_at"], name: "index_sections_on_deleted_at", using: :btree
   add_index "sections", ["document_id"], name: "index_sections_on_document_id", using: :btree
   add_index "sections", ["status_id"], name: "index_sections_on_status_id", using: :btree
+  add_index "sections", ["template_id"], name: "index_sections_on_template_id", using: :btree
   add_index "sections", ["visibility_id"], name: "index_sections_on_visibility_id", using: :btree
 
   create_table "statuses", force: :cascade do |t|
