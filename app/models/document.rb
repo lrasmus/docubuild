@@ -8,7 +8,7 @@ class Document < ActiveRecord::Base
   belongs_to :updated_by
   belongs_to :deleted_by
   belongs_to :folder
-  belongs_to :template
+  belongs_to :template, :class_name => "Document", :foreign_key => "template_id"
   has_many :sections
 
   scope :templates, -> { where(is_template: true) }

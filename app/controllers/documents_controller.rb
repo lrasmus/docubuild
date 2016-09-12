@@ -1,11 +1,31 @@
 class DocumentsController < ApplicationController
-  before_action :set_document, only: [:show, :edit, :update, :destroy]
+  before_action :set_document, only: [:show, :edit, :update, :destroy, :template_sections]
   before_filter :check_for_cancel, :only => [:create, :update]
 
   # GET /documents
   # GET /documents.json
   def index
     @documents = Document.not_templates
+  end
+
+  # GET /documents/1/template_sections[?missing_only]
+  def template_sections
+    @templated = !@document.template.blank?
+    @sections = []
+    if @templated
+      @open_template = @document.template.sections.blank?
+
+      allowed_sections = @document.template.sections
+      if params.has_key?(:missing_only)
+        @sections = allowed_sections.select { |as| !@document.sections.any? { |ds| ds.template_id == as.id } }
+      else
+        @sections = allowed_sections
+      end
+    end
+
+    respond_to do |format|
+      format.html { render "template_sections", layout: false }
+    end
   end
 
   # GET /documents/1
@@ -35,6 +55,7 @@ class DocumentsController < ApplicationController
       template.sections.each do |section|
         new_section = section.dup
         new_section.document = @document
+        new_section.template = section
         success = success and new_section.save
       end
     end

@@ -1,0 +1,27 @@
+- if @templated and !@open_template
+  %b Please select the template(s) to add
+  %ul
+    - @sections.each do |section|
+      %li
+        %input{ :type=>"checkbox" }
+        %div=section.title
+- else
+  = form_for(Section.new) do |f|
+    .field
+      = f.label :title, :class => "new_document_field"
+      = f.text_field :title, :class => "new_document_field", :autofocus => true
+    .field
+      = f.label :description, :class => "new_document_field"
+      = f.text_area :description, :class => "new_document_field"
+    = f.hidden_field :document_id, :value => @document.id
+
+  :javascript
+    $(function(){
+      $(".acceptButton").unbind("click").on("click", function(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        var $form = $("#dialog #content form");
+        if ($form) { $form.submit(); }
+        $("#dialog").dialog("close");
+      });
+    });
