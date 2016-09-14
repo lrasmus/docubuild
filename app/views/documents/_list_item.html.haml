@@ -1,5 +1,5 @@
 .doc_detail
-  .doc_avtar{:class=>"color_cod0#{(index % 7) + 1}"}=document.title[0]
+  .doc_avtar{:class=>"color_cod0#{(index % 7) + 1}"}=doc_avatar_title(document)
   .doc_info
     %h3.heading03=document.title
     %p.doc_info_text=document.description

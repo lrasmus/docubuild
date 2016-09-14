@@ -83,7 +83,7 @@ a.tital_chk {
   }
 }
 
-.add_section {
+#add_section, #import_sections {
   background: #008acb;
   font-size: 14.2px;
   float: right;
@@ -105,5 +105,25 @@ a.tital_chk {
       display: table-cell;
       padding-left: 7px;
     }
+  }
+}
+
+.import_header {
+  display: inline-block;
+  margin-bottom: 15px;
+  .ph_left_col {
+    color: #000;
+  }
+  .ph_right_col input[type=text] {
+    border: solid 1px black;
+    background: none;
+  }
+}
+
+.import_body {
+  .border_box {
+    width: 75%;
+    margin: 5px 5px 15px 5px;
+    padding: 10px;
   }
 }

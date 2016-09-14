@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy, :template_sections, :add_sections_from_templates]
-  before_filter :check_for_cancel, :only => [:create, :update]
+  before_filter :check_for_cancel, :only => [:create, :update, :create_import]
 
   # GET /documents
   # GET /documents.json
@@ -51,6 +51,44 @@ class DocumentsController < ApplicationController
     end
   end
 
+  # GET /documents/import
+  def import
+    @document = Document.new
+    @documents = Document.all
+  end
+
+  # POST /documents/create_import
+  def create_import
+    template_id = params[:document][:template_id]
+    if template_id
+      template = Document.find_by_id(template_id)
+      @document = template.dup
+      @document.template_id = (template.template_id.blank? ? template.id : template.template_id)
+      success = @document.save && duplicate_sections_from_template(@document, template)
+    else
+      @document = Document.new
+      @document.status_id = Status::InProgress
+      @document.visibility_id = 1
+      success = @document.save
+    end
+
+    respond_to do |format|
+      if success
+        format.html { redirect_to edit_document_path(@document), notice: 'Document was successfully created.' }
+        format.json { render :show, status: :created, location: @document }
+      else
+        format.html { render :import }
+        format.json { render json: @document.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # GET /documents/1/import_sections
+  def import_sections
+    @documents = Document.all
+    render :partial => "import_sections"
+  end
+
   # GET /documents/1
   # GET /documents/1.json
   def show
@@ -74,13 +112,7 @@ class DocumentsController < ApplicationController
     success = @document.save
     if success and !@document.template_id.nil?
       template = Document.find_by_id(@document.template_id)
-      # Copy all of the sections from the original template
-      template.sections.each do |section|
-        new_section = section.dup
-        new_section.document = @document
-        new_section.template = section
-        success = success and new_section.save
-      end
+      success = duplicate_sections_from_template(@document, template)
     end
 
     respond_to do |format|
@@ -135,4 +167,16 @@ class DocumentsController < ApplicationController
       end
     end
 
+    def duplicate_sections_from_template document, template
+      success = true
+      is_true_template = template.template_id.blank?
+      template.sections.each do |section|
+        new_section = section.dup
+        new_section.document = document
+        new_section.template = (is_true_template ? section : section.template)
+        success = success and new_section.save
+      end
+
+      success
+    end
 end

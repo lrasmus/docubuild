@@ -10,4 +10,8 @@ module DocumentsHelper
   def default_document_visibility
     Visibility.first.id
   end
+
+  def doc_avatar_title document
+    (document.nil? || document.title.blank?) ? 'D' : document.title[0]
+  end
 end
