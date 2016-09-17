@@ -1,0 +1,23 @@
+- document = document || Document.new
+- show_actions = show_actions.nil? ? true : show_actions
+.import_header
+  -# .ph_left_col Select a document to copy:
+    .ph_right_col
+      %input{:placeholder => "Library Search", :type => "text"}
+
+= form_for document, :url => create_import_documents_path do |f|
+  .template_list
+    #accordion.templates
+      - documents.each do |document|
+        .box_panel
+          .content_edit
+            .cnt_edit_tital
+              =f.radio_button :template_id, document.id, :class => "tital_chk"
+              %label.chk_box_text=document.title
+              %i.fa.fa-search{"aria-hidden" => "true"}
+            .template_details
+              .template_description=document.description
+  - if show_actions
+    .actions
+      = button_tag "Cancel", type: "submit", name: "cancel", value: true, :class => "button"
+      = f.submit "Save and Continue", :class => "button"

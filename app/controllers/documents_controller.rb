@@ -1,6 +1,7 @@
 class DocumentsController < ApplicationController
-  before_action :set_document, only: [:show, :edit, :update, :destroy, :template_sections, :add_sections_from_templates]
+  before_action :set_document, only: [:show, :edit, :update, :destroy, :template_sections, :add_sections_from_templates, :import_sections]
   before_filter :check_for_cancel, :only => [:create, :update, :create_import]
+  before_filter :clean_view_param, :only => [:template_sections]
 
   # GET /documents
   # GET /documents.json
@@ -8,7 +9,7 @@ class DocumentsController < ApplicationController
     @documents = Document.not_templates
   end
 
-  # GET /documents/1/template_sections[?missing_only]
+  # GET /documents/1/template_sections[?missing_only=true|false][view=default|preview|select]
   def template_sections
     @templated = !@document.template.blank?
     @sections = []
@@ -24,19 +25,18 @@ class DocumentsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render "template_sections", layout: false }
+      format.html { render (params[:view] == "preview") ? "_preview_template_sections" : "_select_template_sections", layout: false }
+      format.json { render json: @sections }
     end
   end
 
   # POST /documents/1/add_sections_from_templates
   def add_sections_from_templates
     # TODO verify the template sections are in the document template
-
     section_ids = params[:sections]
     unless section_ids.empty?
       section_ids.each do |id|
         section = Section.find_by_id(id)
-        puts "#{section}"
         if (section)
           new_section = section.dup
           new_section.document = @document
@@ -63,6 +63,8 @@ class DocumentsController < ApplicationController
     if template_id
       template = Document.find_by_id(template_id)
       @document = template.dup
+      @document.status_id = Status::InProgress
+      @document.is_template = false   # Even if we're importing from a template, we're creating a new document, not a template
       @document.template_id = (template.template_id.blank? ? template.id : template.template_id)
       success = @document.save && duplicate_sections_from_template(@document, template)
     else
@@ -85,7 +87,7 @@ class DocumentsController < ApplicationController
 
   # GET /documents/1/import_sections
   def import_sections
-    @documents = Document.all
+    @documents = Document.not_templates
     render :partial => "import_sections"
   end
 
@@ -159,6 +161,12 @@ class DocumentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
       params.require(:document).permit(:title, :description, :institution, :status_id, :visibility_id, :created_by, :updated_by, :deleted_by, :folder_id, :template_id)
+    end
+
+    def clean_view_param
+      params[:view] = "default" unless params.has_key?(:view)
+      return if params[:view] == "preview" or params[:view] == "select" or params[:view] == "default"
+      params[:view] = "default"
     end
 
     def check_for_cancel

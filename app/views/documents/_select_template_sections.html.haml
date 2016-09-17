@@ -5,7 +5,7 @@
     - else
       Please select the section(s) to add
 
-  %ul
+  %ul.section_list
     - @sections.each do |section|
       %li
         =check_box_tag :section, section.id

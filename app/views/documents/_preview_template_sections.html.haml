@@ -1,0 +1,36 @@
+.verticle_tabs
+  #verticalTab
+    %ul.resp-tabs-list
+      - @sections.each do |section|
+        %li=section.title
+
+    .resp-tabs-container
+      - @sections.each do |section|
+        .tab_data
+          .prv_box
+            %h4 Preview
+            .prv_border_box
+              %p.section_content
+                =section.content
+          .prv_ci_btn
+            %a{:href => "#", :class => "import_cancel"} Cancel
+            %a{:href => "#", :class => "import", :data => {:section_id => section.id, :section_action => "replace"}} Import and Replace
+            %a{:href => "#", :class => "import", :data => {:section_id => section.id, :section_action => "copy"}} Import and Copy
+        
+
+:javascript
+  $(document).ready(function () {
+    $('#verticalTab').easyResponsiveTabs({
+      type: 'vertical',
+      width: 'auto',
+      fit: true
+    });
+
+    $("a.import").on('click', function(e) {
+      e.preventDefault();
+      $("#dialog").attr("data-section-id", $(this).attr("data-section-id"));
+      $("#dialog").attr("data-section-action", $(this).attr("data-section-action"));
+      $("#dialog").attr("data-section-content", $(this).closest(".tab_data").find(".section_content").html().trim());
+      $("#dialog").dialog("close");
+    });
+  });
