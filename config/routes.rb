@@ -10,6 +10,11 @@ Rails.application.routes.draw do
     member do
       get 'template_sections'
       post 'add_sections_from_templates'
+      get 'import_sections'
+    end
+    collection do
+      get 'import'
+      post 'create_import'
     end
   end
 

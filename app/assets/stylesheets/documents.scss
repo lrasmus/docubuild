@@ -83,7 +83,7 @@ a.tital_chk {
   }
 }
 
-.add_section {
+#add_section, #import_sections {
   background: #008acb;
   font-size: 14.2px;
   float: right;
@@ -99,11 +99,64 @@ a.tital_chk {
 
 #dialog #content {
   margin: 20px;
-  li {
+  ul.section_list li {
     display: table-row;
     div {
       display: table-cell;
       padding-left: 7px;
+    }
+  }
+}
+
+.import_header {
+  display: inline-block;
+  margin-bottom: 15px;
+  .ph_left_col {
+    color: #000;
+  }
+  .ph_right_col input[type=text] {
+    border: solid 1px black;
+    background: none;
+  }
+}
+
+.import_body {
+  .border_box {
+    width: 75%;
+    margin: 5px 5px 15px 5px;
+    padding: 10px;
+  }
+}
+
+.document_list_short {
+  .box_panel, .template_list, .templates, #accordion.templates {
+    width: 930px;
+  }
+
+  .box_panel {
+    font-size: 0.8em;
+    padding: 15px;
+  }
+
+  .template list, .templates {
+    display: block;
+  }
+
+  .content_edit, .template_details {
+    width: 900px;
+  }
+}
+
+.section_details .header {
+  .pop_up_header {
+    padding: 25px;
+    .section_nav, .section_details {
+      display: table-cell;
+    }
+
+    .section_nav {
+      font-size: 0.8em;
+      padding-right: 25px;
     }
   }
 }
