@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :visibilities
   resources :statuses
   resources :documents do
+    resources :document_files
     member do
       get 'template_sections'
       post 'add_sections_from_templates'

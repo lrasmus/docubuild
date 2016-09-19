@@ -34,37 +34,52 @@
 
 %section.section_wrapper
   .doc_features
-    %a.active{:href => "#"}
+    %a.active{:href => "#", :id => "document_sections"}
       %i.fa.fa-file>
       Document
-    %a{:href => "#"}
-      %i.fa.fa-share-alt{"aria-hidden" => "true"}>
-      Share Document
-    %a{:href => "#"}
+    %a{:href => "#", :id => "look_feel_tab"}
       %i.fa.fa-heart>
       Look &amp; Feel
+    %a{:href => "#", :id => "preview_document"}
+      %i.fa.fa-search{"aria-hidden" => "true"}
+      Preview Document
   .document_detail
-    .doc_row
-      %a.cng_option{:href => "#"}
-        %i.fa.fa-cog.lft_space>
-        Configuration Options
-      %a.prv_doc{:href => "#"} Preview Document
-    #accordion.content_topics
+    .accordion.content_topics.document_sections
       .ct_tital
         %span Content Topics
         %a#add_section{:href => "#"} Add Section
       - @document.sections.each do |section|
         = render partial: "sections/edit_panel", locals: {section: section}
-
       .box_panel
         .content_edit.actions
           = render :partial => "actions", :locals => {:document => @document}
+    .accordion.content_topics.look_feel_tab
+      = render partial: "look_and_feel", locals: {document: @document}
+    .accordion.content_topics.preview_document
+
 
 %div#dialog{title: "DocUBuild"}
   #content
 
 :javascript
   $(function(){
+    $('#tabcordion').tabcordion();
+
+    $("#look_feel_tab, #document_sections, #preview_document").on("click", function(event) {
+      event.stopPropagation();
+      event.preventDefault();
+
+      $(".document_sections").hide();
+      $(".look_feel_tab").hide();
+      $(".preview_document").hide();
+      $("#document_sections").removeClass("active");
+      $("#look_feel_tab").removeClass("active");
+      $("#preview_document").removeClass("active");
+
+      $(event.target).addClass("active");
+      $("." + event.target.id).show();
+    });
+
     $("a#add_section").on("click", function(event) {
       event.stopPropagation();
       event.preventDefault();

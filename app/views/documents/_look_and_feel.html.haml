@@ -1,0 +1,137 @@
+#tabcordion.tabcordion
+  %h3.tabcord-title{"data-hname" => "tab1"} Logo
+  .tabcord-disp
+    .uplod_logo
+      = form_for document do |f|
+        %h5 Upload Logo
+        .uplod_border_box
+          %input#browse{:name => "fileupload", :onchange => "Handlechange();", :style => "display: none", :type => "file"}
+          %input#filename{:readonly => "true", :type => "text", :value => "No Files Chosen"}
+          %input#fakeBrowse{:onclick => "HandleBrowseClick();", :type => "button", :value => "choose file"}
+  %h3.tabcord-title{"data-hname" => "tab2"} Fonts
+  .tabcord-disp
+    .fonts_tab
+      .font_type
+        %select
+          %option Open Sans Seriff
+          %option Gotham
+          %option Giorgio
+          %option Gondola SD
+          %option Forte
+      .font_size
+        %select
+          %option Font Size(110%)
+          %option Font Size(100%)
+          %option Font Size(90%)
+          %option Font Size(80%)
+          %option Font Size(50%)
+          %option Font Size(30%)
+          %option Font Size(10%)
+    .change_content
+      .content_chked
+        %input{:type => "checkbox", :value => "text"}/
+        Change Content Topic Header text
+      .cnt_change_box
+        .choice_checked
+          %input{:type => "checkbox", :value => "text"}/
+          Change Content Topic text
+        .font_select
+          %select
+            %option Open Sans Seriff
+            %option Gotham
+            %option Giorgio
+            %option Gondola SD
+            %option Forte
+            %option FOOD!
+        .font_size_selct
+          %select
+            %option 14 pt
+            %option 16 pt
+            %option 18 pt
+            %option 20 pt
+            %option 16 pt
+            %option 28 pt
+        .font_style
+          %ul
+            %li.bod_text B
+            %li.text_underline U
+            %li.text_italic I
+  %h3.tabcord-title{"data-hname" => "tab3"} Color
+  .tabcord-disp
+    .colour_box
+      %ul
+        %li
+          %input.jscolor/
+          %label Text
+        %li
+          %input.jscolor/
+          %label Content Header
+        %li
+          %input.jscolor/
+          %label Content Topic
+        %li
+          %input.jscolor/
+          %label
+            %i.fa.fa-times.cross_radius>
+            Document Border
+        %li
+          %input.jscolor/
+          %label
+            %i.fa.fa-times.cross_radius
+            Content Topic Separator
+        %li
+          %input.jscolor/
+          %label Content Section Border
+        %li
+          %input.jscolor/
+          %label Footer
+      .rest_color
+        %a{:href => "#"} Reset Colors
+  %h3.tabcord-title{"data-hname" => "tab4"} Advanced
+  .tabcord-disp
+    .advanced_tab
+      .ad_left_col
+        .head_text
+          .form-group
+            %label
+              Header
+              %span.edit_tag.edit_css
+                %input{:type => "file"}>/
+                Edit
+            %textarea#comment.form-control{:rows => "5"}
+        .external_css
+          .form-group
+            %label External CSS
+            %input#email.form-control{:type => "text"}/
+      .ad_right_col
+        .head_text
+          .form-group
+            %label
+              Footer
+              %span.edit_tag.edit_css
+                %input{:type => "file"}>/
+                Edit
+            %textarea#comment.form-control{:rows => "5"}
+        .add_css
+          %label.custom-file-upload
+            %input{:type => "file"}>/
+            +Add Custom css
+.lool_feel_cs_btn
+  %a{:href => "#"} Cancel
+  %a{:href => "#"} Save Setting
+
+:javascript
+  function HandleBrowseClick() {
+    var fileinput = document.getElementById("browse");
+    fileinput.click();
+  }
+  
+  function Handlechange() {
+    var fileinput = document.getElementById("browse");
+    var textinput = document.getElementById("filename");
+    textinput.value = fileinput.value;
+  }
+
+  function setTextColor(picker) {
+    document.getElementsByTagName('body')[0].style.color = '#' + picker.toString()
+  }
