@@ -16,10 +16,23 @@ Status.create(:name => "Archived")
 public_vis = Visibility.create(:name => "Public")
 Visibility.create(:name => "Private")
 
+DocumentFileType.create(:name => "Logo (PNG)", :category => "Logo", :mime_type => "image/png", :extension => "png")
+DocumentFileType.create(:name => "Logo (JPEG)", :category => "Logo", :mime_type => "image/jpeg", :extension => "jpeg")
+DocumentFileType.create(:name => "Logo (JPEG)", :category => "Logo", :mime_type => "image/jpeg", :extension => "jpg")
+DocumentFileType.create(:name => "Logo (GIF)", :category => "Logo", :mime_type => "image/gif", :extension => "gif")
+DocumentFileType.create(:name => "Stylesheet", :category => "Style", :mime_type => "text/css", :extension => "css")
+
+
+##########################################################################
+# DEFINE TEMPLATES
+##########################################################################
+
+# Empty template
 Document.create(:title => "Empty Document",
   :description => "A basic document to get you started.",
   :is_template => true, :status => published, :visibility => public_vis)
 
+# eMERGE Genomic Resource template
 emerge_doc = Document.create(:title => "eMERGE Genomic Resource Template",
   :description => "Developed by the eMERGE network, this template contains sections targeted to genomic resources",
   :institution => "eMERGE",

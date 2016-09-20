@@ -11,10 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160817123114) do
+ActiveRecord::Schema.define(version: 20160920015646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "document_file_types", force: :cascade do |t|
+    t.string   "name"
+    t.string   "category"
+    t.string   "mime_type"
+    t.string   "extension"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "document_files", force: :cascade do |t|
+    t.integer  "document_id"
+    t.string   "name"
+    t.integer  "document_file_type_id"
+    t.binary   "content"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.datetime "deleted_at"
+  end
+
+  add_index "document_files", ["deleted_at"], name: "index_document_files_on_deleted_at", using: :btree
+  add_index "document_files", ["document_file_type_id"], name: "index_document_files_on_document_file_type_id", using: :btree
+  add_index "document_files", ["document_id"], name: "index_document_files_on_document_id", using: :btree
 
   create_table "documents", force: :cascade do |t|
     t.string   "title"
@@ -31,6 +54,7 @@ ActiveRecord::Schema.define(version: 20160817123114) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.datetime "deleted_at"
+    t.json     "style"
   end
 
   add_index "documents", ["created_by"], name: "index_documents_on_created_by", using: :btree
@@ -134,6 +158,8 @@ ActiveRecord::Schema.define(version: 20160817123114) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "document_files", "document_file_types"
+  add_foreign_key "document_files", "documents"
   add_foreign_key "documents", "folders"
   add_foreign_key "documents", "statuses"
   add_foreign_key "documents", "visibilities"

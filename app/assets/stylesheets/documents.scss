@@ -160,3 +160,65 @@ a.tital_chk {
     }
   }
 }
+
+.font_name_select {
+  ul {
+    width: 50%;
+    min-width: 10em;
+    font-size: 1em;
+  }
+
+  ul li {
+    display: none;
+    padding: 0.2em;
+    border: 1px solid #ccc;
+  }
+
+  ul li.selected,
+  ul:hover li {
+    display: list-item;
+  }
+
+  li:hover {
+    background-color: #f90;
+  }
+
+  #calibri {
+    font-family: Calibri;
+  }
+  #arial {
+    font-family: "Arial";
+  }
+}
+
+.font_details {
+  display: table;
+  margin-bottom: 40px;
+  .font_name_select, .font_size_select {
+    display: table-cell;
+  }
+}
+
+.font_preview {
+  display: block;
+  padding: 15px;
+  border: solid 1px #444;
+  margin: auto auto 20px auto;
+  width: 75%;
+  background: #fff;
+}
+
+.font_color_select {
+  display: table-cell;
+}
+
+
+.document_style_btn {
+  background: #4dbbee none repeat scroll 0 0;
+  border-radius: 7px;
+  color: #fff;
+  font-family: "Gotham-Medium";
+  padding: 17px 21px;
+  text-align: center;
+  text-transform: uppercase;
+}

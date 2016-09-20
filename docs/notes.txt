@@ -41,7 +41,12 @@ Pundit
 https://github.com/elabs/pundit
 
 
-
+How data is stored in DocUBuild
+----------------------------------------------
+Documents have 0...* Sections
+Documents have 0...* DocumentFiles
+   DocumentFiles have 1 FileType
+   When you try to create a DocumentFile, you specify the category it's being created for.
 
 
 From paranoia

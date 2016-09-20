@@ -1,0 +1,32 @@
+= form.fields_for :style do |style_form|
+  .font_details
+    .font_name_select
+      = style_form.select(:font_name, options_for_select(font_list(), document.style["font_name"]))
+    .font_size_select
+      = style_form.select(:font_size, options_for_select(font_size_list(), document.style["font_size"]))
+    .font_color_select
+      = style_form.color_field :font_color, :value => document.style["font_color"]
+
+.font_preview
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+:javascript
+  function updatePreview() {
+    $(".font_preview").css("font-family", $(".font_name_select select option:selected").val());
+    $(".font_preview").css("font-size", $(".font_size_select select option:selected").val() + "pt");
+    $(".font_preview").css("color", $(".font_color_select input").val());
+  }
+
+  $(function() {
+    $('.font_name_select select').change(function(){
+      updatePreview();
+    });
+    $('.font_size_select select').change(function(){
+      updatePreview();
+    });
+    $('.font_color_select input').change(function(){
+      updatePreview();
+    });
+
+    updatePreview();
+  });

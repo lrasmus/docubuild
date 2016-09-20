@@ -14,4 +14,12 @@ module DocumentsHelper
   def doc_avatar_title document
     (document.nil? || document.title.blank?) ? 'D' : document.title[0]
   end
+
+  def font_list
+    ["Arial", "Calibri", "Helvetica"]
+  end
+
+  def font_size_list
+    [10, 11, 12, 14, 16]
+  end
 end

@@ -404,14 +404,14 @@ a{outline:none !important;}
   right: 0;
 }
 
-.uplod_border_box {
+.upload_border_box {
   background: #fff none repeat scroll 0 0;
   border: 1px solid #d5d5d5;
-  margin: 30px auto 0;
+  margin: 30px auto 20px;
   padding: 18px 20px;
   width: 836px; display:table;
 }
-.uplod_border_box input[type=button]{
+.upload_border_box input[type=button]{
 float:right;
 border:1px solid #ccc; 
 border-radius:28px;
@@ -424,7 +424,7 @@ background-image:-webkit-linear-gradient(top, #ffffff 0%, #f0f0f0 0%,#c4c4c4 100
 background-image:-o-linear-gradient(top, #ffffff 0%, #f0f0f0 0%,#c4c4c4 100%);
 background-image:-ms-linear-gradient(top, #ffffff 0%, #f0f0f0 0%,#c4c4c4 100%);
 background-image:-webkit-gradient(linear, right top, right bottom, color-stop(0%,#ffffff), color-stop(0%,#f0f0f0),color-stop(100%,#c4c4c4));}
-.uplod_border_box input[type=text]{border:0px; background:#fff; color:#cfcfcf; font-size:15px; width:300px; float:left; margin-top:10px;}
+.upload_border_box input[type=text]{border:0px; background:#fff; color:#cfcfcf; font-size:15px; width:300px; float:left; margin-top:10px;}
 
 .lool_feel_cs_btn{width:907px; margin:0 auto; padding:40px 0 0; text-align:right;}
 .lool_feel_cs_btn a {
@@ -477,10 +477,10 @@ background-image:-webkit-gradient(linear, right top, right bottom, color-stop(0%
 
 .colour_box{width:100%;}
 .fonts_tab{width:100%; display:table;}
-.font_type{width:391px; float:left;}
+.font_name_select{width:391px; float:left;}
 .font_size{width:391px; float:right;}
-.font_type select{width:100%; padding:15px 5px; border:1px solid #ccc;}
-.font_type select option{padding:5px;}
+.font_name_select select{width:100%; padding:15px 5px; border:1px solid #ccc;}
+.font_name_select select option{padding:5px;}
 
 .font_size select{width:100%; padding:15px 5px; border:1px solid #ccc;}
 .font_size select option{padding:5px;}
@@ -499,9 +499,9 @@ background-image:-webkit-gradient(linear, right top, right bottom, color-stop(0%
 .font_select select{padding:10px 5px; border:1px solid #ccc; border-radius:5px; width:100%;}
 .font_select select option{padding:5px;}
 
-.font_size_selct{width:168px; float:left; margin-right:10px;}
-.font_size_selct select{padding:10px 5px; border:1px solid #ccc; border-radius:5px; width:100%;}
-.font_size_selct select option{padding:5px;}
+.font_size_select{width:168px; float:left; margin-right:10px;}
+.font_size_select select{padding:10px 5px; border:1px solid #ccc; border-radius:5px; width:100%;}
+.font_size_select select option{padding:5px;}
 .font_style{width:114px; float:right; text-align:right;}
 .font_style ul {margin-top:12px;}
 .font_style ul li{float:left; border:1px solid #d5d5d5; border-radius:5px; width:29px; height:29px; text-align:center; line-height:29px; margin-right:5px;}

@@ -160,7 +160,7 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:title, :description, :institution, :status_id, :visibility_id, :created_by, :updated_by, :deleted_by, :folder_id, :template_id)
+      params.require(:document).permit(:title, :description, :institution, :status_id, :visibility_id, :created_by, :updated_by, :deleted_by, :folder_id, :template_id, style:[:font_name, :font_size, :font_color])
     end
 
     def clean_view_param
