@@ -2,7 +2,7 @@
   %h3.tabcord-title{"data-hname" => "tab1"} Logo
   .tabcord-disp
     .upload_logo
-      = form_for([document, document.logo_file], :remote => true, :authenticity_token => true) do |f|
+      = form_for [document, document.logo_file] do |f|
         %h5 Upload Logo
         .upload_border_box
           = f.file_field :content, :style => "display:none", :onchange => "Handlechange();"
@@ -12,70 +12,15 @@
   %h3.tabcord-title{"data-hname" => "tab2"} Fonts
   .tabcord-disp
     .fonts_tab
-      .font_type
-        %select{:style=>"display:hidden"}
-          %option{:value=>"Arial"} Arial
-          %option{:value=>"Calibri"} Calibri
-        %ul#fontList
-          %li{:id=>"Arial"} Arial
-          %li{:id=>"calibri"} Calibri
-      .font_size
-        %select
-          %option Font Size(110%)
-          %option Font Size(100%)
-          %option Font Size(90%)
-          %option Font Size(80%)
-          %option Font Size(50%)
-          %option Font Size(30%)
-          %option Font Size(10%)
-  %h3.tabcord-title{"data-hname" => "tab3"} Color
-  .tabcord-disp
-    .colour_box
-      %ul
-        %li
-          %input.jscolor/
-          %label Text
-        %li
-          %input.jscolor/
-          %label Content Header
-        %li
-          %input.jscolor/
-          %label Content Topic
-        %li
-          %input.jscolor/
-          %label
-            %i.fa.fa-times.cross_radius>
-            Document Border
-        %li
-          %input.jscolor/
-          %label
-            %i.fa.fa-times.cross_radius
-            Content Topic Separator
-        %li
-          %input.jscolor/
-          %label Content Section Border
-        %li
-          %input.jscolor/
-          %label Footer
-      .rest_color
-        %a{:href => "#"} Reset Colors
+      = form_for document do |f|
+        = render :partial => "font_selector", :locals => {form: f, document: document}
+        = f.submit
+
 .lool_feel_cs_btn
   %a{:href => "#"} Cancel
   %a{:href => "#"} Save Setting
 
 :javascript
-  $('#fontList li').click(function(){
-    var chosen = $(this).index();
-    $('#fontSelector option:selected')
-        .removeAttr('selected');
-    $('#fontSelector option')
-        .eq(chosen)
-        .attr('selected',true);
-    $('.selected').removeClass('selected');
-    $(this).addClass('selected');
-  });
-
-
   function HandleBrowseClick() {
     var fileinput = document.getElementById("document_file_content");
     fileinput.click();

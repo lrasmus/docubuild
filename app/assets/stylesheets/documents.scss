@@ -161,7 +161,7 @@ a.tital_chk {
   }
 }
 
-.font_type {
+.font_name_select {
   ul {
     width: 50%;
     min-width: 10em;
@@ -189,4 +189,25 @@ a.tital_chk {
   #arial {
     font-family: "Arial";
   }
+}
+
+.font_details {
+  display: table;
+  margin-bottom: 40px;
+  .font_name_select, .font_size_select {
+    display: table-cell;
+  }
+}
+
+.font_preview {
+  display: block;
+  padding: 15px;
+  border: solid 1px #444;
+  margin: auto auto 20px auto;
+  width: 75%;
+  background: #fff;
+}
+
+.font_color_select {
+  display: table-cell;
 }
