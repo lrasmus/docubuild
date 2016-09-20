@@ -22,4 +22,9 @@ class Document < ActiveRecord::Base
   def has_sections
     sections.count > 0
   end
+
+  def logo_file
+    logos = document_files.logos
+    (logos.blank?) ? DocumentFile.new() : logos.first
+  end
 end

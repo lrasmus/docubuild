@@ -1,23 +1,24 @@
 #tabcordion.tabcordion
   %h3.tabcord-title{"data-hname" => "tab1"} Logo
   .tabcord-disp
-    .uplod_logo
-      = form_for document do |f|
+    .upload_logo
+      = form_for([document, document.logo_file], :remote => true, :authenticity_token => true) do |f|
         %h5 Upload Logo
-        .uplod_border_box
-          %input#browse{:name => "fileupload", :onchange => "Handlechange();", :style => "display: none", :type => "file"}
-          %input#filename{:readonly => "true", :type => "text", :value => "No Files Chosen"}
+        .upload_border_box
+          = f.file_field :content, :style => "display:none", :onchange => "Handlechange();"
+          %input#filename{:readonly => "true", :type => "text", :value => document_file_label(document.logo_file)}
           %input#fakeBrowse{:onclick => "HandleBrowseClick();", :type => "button", :value => "choose file"}
+        =f.submit
   %h3.tabcord-title{"data-hname" => "tab2"} Fonts
   .tabcord-disp
     .fonts_tab
       .font_type
-        %select
-          %option Open Sans Seriff
-          %option Gotham
-          %option Giorgio
-          %option Gondola SD
-          %option Forte
+        %select{:style=>"display:hidden"}
+          %option{:value=>"Arial"} Arial
+          %option{:value=>"Calibri"} Calibri
+        %ul#fontList
+          %li{:id=>"Arial"} Arial
+          %li{:id=>"calibri"} Calibri
       .font_size
         %select
           %option Font Size(110%)
@@ -27,35 +28,6 @@
           %option Font Size(50%)
           %option Font Size(30%)
           %option Font Size(10%)
-    .change_content
-      .content_chked
-        %input{:type => "checkbox", :value => "text"}/
-        Change Content Topic Header text
-      .cnt_change_box
-        .choice_checked
-          %input{:type => "checkbox", :value => "text"}/
-          Change Content Topic text
-        .font_select
-          %select
-            %option Open Sans Seriff
-            %option Gotham
-            %option Giorgio
-            %option Gondola SD
-            %option Forte
-            %option FOOD!
-        .font_size_selct
-          %select
-            %option 14 pt
-            %option 16 pt
-            %option 18 pt
-            %option 20 pt
-            %option 16 pt
-            %option 28 pt
-        .font_style
-          %ul
-            %li.bod_text B
-            %li.text_underline U
-            %li.text_italic I
   %h3.tabcord-title{"data-hname" => "tab3"} Color
   .tabcord-disp
     .colour_box
@@ -87,49 +59,33 @@
           %label Footer
       .rest_color
         %a{:href => "#"} Reset Colors
-  %h3.tabcord-title{"data-hname" => "tab4"} Advanced
-  .tabcord-disp
-    .advanced_tab
-      .ad_left_col
-        .head_text
-          .form-group
-            %label
-              Header
-              %span.edit_tag.edit_css
-                %input{:type => "file"}>/
-                Edit
-            %textarea#comment.form-control{:rows => "5"}
-        .external_css
-          .form-group
-            %label External CSS
-            %input#email.form-control{:type => "text"}/
-      .ad_right_col
-        .head_text
-          .form-group
-            %label
-              Footer
-              %span.edit_tag.edit_css
-                %input{:type => "file"}>/
-                Edit
-            %textarea#comment.form-control{:rows => "5"}
-        .add_css
-          %label.custom-file-upload
-            %input{:type => "file"}>/
-            +Add Custom css
 .lool_feel_cs_btn
   %a{:href => "#"} Cancel
   %a{:href => "#"} Save Setting
 
 :javascript
+  $('#fontList li').click(function(){
+    var chosen = $(this).index();
+    $('#fontSelector option:selected')
+        .removeAttr('selected');
+    $('#fontSelector option')
+        .eq(chosen)
+        .attr('selected',true);
+    $('.selected').removeClass('selected');
+    $(this).addClass('selected');
+  });
+
+
   function HandleBrowseClick() {
-    var fileinput = document.getElementById("browse");
+    var fileinput = document.getElementById("document_file_content");
     fileinput.click();
   }
   
   function Handlechange() {
-    var fileinput = document.getElementById("browse");
+    var fileinput = document.getElementById("document_file_content");
     var textinput = document.getElementById("filename");
-    textinput.value = fileinput.value;
+    var filename = $(fileinput).val().split('\\').pop();
+    textinput.value = filename;
   }
 
   function setTextColor(picker) {
