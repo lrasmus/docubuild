@@ -65,8 +65,25 @@
 %div#dialog{title: "DocUBuild"}
   #content
 
+
 :javascript
   $(function(){
+    // Instead of using the tinymce-rails include, we provide a custom initialization of TinyMCE so we can
+    // specify an editor change event handler.  This keeps changes in TinyMCE consistent with the form
+    // field that is submitted.
+    tinymce.init({
+      selector: "textarea.tinymce",
+      toolbar: ["styleselect | bold italic underline link | undo redo"],
+      plugins: "link,table",
+      menubar: "edit format table",
+      setup: function (editor) {
+        editor.on('change', function () {
+            editor.save();
+        });
+      }
+    });
+
+
     $('#tabcordion').tabcordion();
 
     $("#look_feel_tab, #document_sections, #preview_document").on("click", function(event) {

@@ -9,7 +9,7 @@
       .editForm
         .form-group
           =form_for section, remote: true do |f|
-            = f.text_area :content, :class => "form-control", :rows => "5", :data => {:original_text => section.content}
+            = f.text_area :content, :class => "form-control tinymce", :rows => "5", :data => {:original_text => section.content}
             .multiple_btn
               %a.cancel.save_section{:href => "#"} Save Section
               %a.cancel.cancel_section{:href => "#"} Cancel

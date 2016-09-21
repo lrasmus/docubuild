@@ -36,6 +36,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # See https://github.com/rails/execjs#readme for more supported runtimes
 #gem 'therubyracer', platforms: :ruby
 gem "twitter-bootstrap-rails"
+gem 'tinymce-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
