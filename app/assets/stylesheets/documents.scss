@@ -222,3 +222,19 @@ a.tital_chk {
   text-align: center;
   text-transform: uppercase;
 }
+
+.preview_document {
+  .loading {
+    text-align: center;
+    margin: auto;
+    padding: 50px;
+    .spinner {
+      margin: auto;
+      text-align: center;
+      font-size: 5em;
+    }
+  }
+  .content {
+    padding: 40px;
+  }
+}

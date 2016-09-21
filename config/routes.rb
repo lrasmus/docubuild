@@ -6,12 +6,14 @@ Rails.application.routes.draw do
   resources :folders
   resources :visibilities
   resources :statuses
+  resources :document_files
   resources :documents do
     resources :document_files
     member do
       get 'template_sections'
       post 'add_sections_from_templates'
       get 'import_sections'
+      get 'preview'
     end
     collection do
       get 'import'

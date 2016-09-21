@@ -1,0 +1,17 @@
+:css
+  .dub-document-content {
+    font-family: "#{@document.style['font_name']}";
+    color: #{@document.style['font_color']};
+  }
+
+  .dub-section-content {
+    font-size: #{@document.style['font_size']}pt;
+  }
+
+.dub-document-content
+  =image_tag(document_file_path(@document.logo_file)) if @document.logo_file.persisted?
+  %h1.dub-document-title=@document.title
+  - @document.sections.each do |section|
+    .dub-section
+      %h2.dub-section-title=section.title
+      .dub-section-content=section.content

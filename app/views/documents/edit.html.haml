@@ -56,6 +56,10 @@
     .accordion.content_topics.look_feel_tab
       = render partial: "look_and_feel", locals: {document: @document}
     .accordion.content_topics.preview_document
+      .loading
+        %span.spinner
+          %i.fa.fa-spinner.fa-spin{"aria-hidden" => true}
+      .content
 
 
 %div#dialog{title: "DocUBuild"}
@@ -78,6 +82,13 @@
 
       $(event.target).addClass("active");
       $("." + event.target.id).show();
+    });
+
+    $("#preview_document").on("click", function(e) {
+      $.get("#{preview_document_path(@document)}", function(data) {
+        $(".preview_document .loading").hide();
+        $(".preview_document .content").html(data).show();
+      });
     });
 
     $("#document_sections").click();
@@ -135,8 +146,3 @@
         });
     });
   });
-
-:javascript
-  function addSection(data) {
-
-  }

@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-  before_action :set_document, only: [:show, :edit, :update, :destroy, :template_sections, :add_sections_from_templates, :import_sections]
+  before_action :set_document, only: [:show, :edit, :update, :destroy, :template_sections, :add_sections_from_templates, :import_sections, :preview]
   before_filter :check_for_cancel, :only => [:create, :update, :create_import]
   before_filter :clean_view_param, :only => [:template_sections]
 
@@ -96,6 +96,11 @@ class DocumentsController < ApplicationController
   def show
   end
 
+  # GET /documents/1
+  def preview
+    render :partial => "preview"
+  end
+
   # GET /documents/new
   def new
     @document = Document.new
@@ -110,6 +115,7 @@ class DocumentsController < ApplicationController
   # POST /documents.json
   def create
     @document = Document.new(document_params)
+    @document.style = default_style if @document.style.nil?
 
     success = @document.save
     if success and !@document.template_id.nil?
@@ -186,5 +192,9 @@ class DocumentsController < ApplicationController
       end
 
       success
+    end
+
+    def default_style
+      {"font_name" => "Arial", "font_size" => "11", "font_color" => "#000000"}
     end
 end
