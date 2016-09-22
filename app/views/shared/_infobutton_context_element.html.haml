@@ -1,0 +1,73 @@
+.contextItemContainer
+  %select.contextElement
+    %option
+    %option{:value => "mainSearchCriteria"} Main concept
+    %option{:value => "administrativeGenderCode"} Gender
+    %option{:value => "ageGroup"} Age Group
+    %option{:value => "taskContext"} Task Context
+    %option{:value => "encounter"} Encounter Type
+    %option{:value => "performer.languageCode"} Performer Language
+    %option{:value => "informationRecipient.languageCode"} Recipient Language
+    %option{:value => "performer.healthCareProvider"} Performer Health Care Provider Type
+    %option{:value => "informationRecipient.healthCareProvider"} Recipient Health Care Provider Type
+    %option{:value => "severityObservation"} Observation Severity
+    %option{:value => "subTopic"} Sub-Topic
+    %option{:value => "locationOfInterest"} Location of Interest (Country)
+
+  %select.contextDetails.administrativeGenderCode{:style => "display: none"}
+    %option
+    %option{:value => "F"} Female
+    %option{:value => "M"} Male
+    %option{:value => "UN"} Undifferentiated
+
+  %select.contextDetails.ageGroup{:style => "display: none", :multiple => true}
+    %option
+    %option{:value => "D007231"} Birth to 1 month (infant, newborn)
+    %option{:value => "D007223"} 1 to 23 months (infant)
+    %option{:value => "D002675"} 2 to 5 years (child, preschool)
+    %option{:value => "D002648"} 6 to 12 years (child)
+    %option{:value => "D000293"} 13‐18 years (adolescent)
+    %option{:value => "D055815"} 19‐24 years (young adult)
+    %option{:value => "D000328"} 19‐44 years (adult)
+    %option{:value => "D008875"} 45‐64 years (middle aged)
+    %option{:value => "D000368"} 56‐79 years (aged)
+    %option{:value => "D000369"} 80 and older (aged)
+
+  %select.contextDetails.taskContext{:style => "display: none", :multiple => true}
+    %option
+    %option{:value => "OE"} Order entry
+    %option{:value => "LABOE"} &nbsp; -- Laboratory test order entry
+    %option{:value => "MEDOE"} &nbsp; -- Medication order entry
+    %option{:value => "PATDOC"} Patient documentation
+    %option{:value => "ALLERLREV"} &nbsp; -- Allergy list review
+    %option{:value => "CLINNOTEE"} &nbsp; -- Clinical note entry
+    %option{:value => "DIAGLISTE"} &nbsp; -- Diagnosis list entry
+    %option{:value => "DISCHSUME"} &nbsp; -- Discharge summary entry
+    %option{:value => "PATREPE"} &nbsp; -- Pathology report entry
+    %option{:value => "PROBLISTE"} &nbsp; -- Problem list entry
+    %option{:value => "RADREPE"} &nbsp; -- Radiology report entry
+    %option{:value => "IMMLREV"} &nbsp; -- Immunization list review
+    %option{:value => "REMLREV"} &nbsp; -- Reminder list review
+    %option{:value => "WELLREMLREV"} &nbsp;  &nbsp; -- Wellness reminder list review
+    %option{:value => "PATINFO"} Patient information review
+    %option{:value => "ALLERLE"} &nbsp; -- Allergy list entry
+    %option{:value => "CLINNOTEREV"} &nbsp; -- Clinical note review
+    %option{:value => "DISCHSUMREV"} &nbsp; &nbsp; -- Discharge summary review
+    %option{:value => "DIAGLISTREV"} &nbsp; -- Diagnosis list review
+    %option{:value => "IMMLE"} &nbsp; -- Immunization list entry
+    %option{:value => "LABRREV"} &nbsp; -- Laboratory results review
+    %option{:value => "MICRORREV"} &nbsp; -- Microbiology results review
+    %option{:value => "MICROORGRREV"} &nbsp; &nbsp; -- Microbiology organisms results review
+    %option{:value => "MICROSENSRREV"} &nbsp; &nbsp; -- Microbiology sensitivity test results review
+    %option{:value => "MLREV"} &nbsp; -- Medication list review
+    %option{:value => "MARWLREV"} &nbsp; &nbsp; -- Medication administration record work list review
+    %option{:value => "OREV"} &nbsp; -- Orders review
+    %option{:value => "PATREPREV"} &nbsp; -- Pathology report review
+    %option{:value => "PROBLISTREV"} &nbsp; -- Problem list review
+    %option{:value => "RADREPREV"} &nbsp; -- Radiology report review
+    %option{:value => "REMLE"} &nbsp; -- Reminder list entry
+    %option{:value => "WELLREMLE"} &nbsp; &nbsp; -- Wellness reminder list entry
+    %option{:value => "RISKASSESS"} &nbsp; -- Risk assessment instrument
+    %option{:value => "FALLRISK"} &nbsp; &nbsp; -- Falls risk assessment instrument
+
+  %select.contextDetails.encounter{:style => "display: none"}

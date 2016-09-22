@@ -94,4 +94,10 @@ $(function(){
       });
     }
   });
+
+  $(".contextElement").on("change", function() {
+    $(this).closest(".contextItemContainer").find(".contextDetails").hide();
+    var element = $(this).val();
+    $("." + element).show();
+  });
 });
