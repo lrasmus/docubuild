@@ -11,6 +11,7 @@ class Document < ActiveRecord::Base
   belongs_to :template, :class_name => "Document", :foreign_key => "template_id"
   has_many :sections
   has_many :document_files
+  has_many :contexts, as: :item
 
   scope :templates, -> { where(is_template: true) }
   scope :not_templates, -> { where(is_template: false) }

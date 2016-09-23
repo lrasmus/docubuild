@@ -95,9 +95,10 @@ $(function(){
     }
   });
 
-  $(".contextElement").on("change", function() {
-    $(this).closest(".contextItemContainer").find(".contextDetails").hide();
+  $("body").on("change", ".contextElement", function() {
+    var container = $(this).closest(".contextItemContainer");
+    container.find(".contextDetails").hide();
     var element = $(this).val();
-    $("." + element).show();
+    container.find("." + element).show();
   });
 });
