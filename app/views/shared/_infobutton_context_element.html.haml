@@ -1,0 +1,422 @@
+.contextItemContainer
+  %select.contextElement
+    %option
+    %option{:value => "mainSearchCriteria"} Main concept
+    %option{:value => "administrativeGenderCode"} Gender
+    %option{:value => "ageGroup"} Age Group
+    %option{:value => "taskContext"} Task Context
+    %option{:value => "encounter"} Encounter Type
+    %option{:value => "performer_languageCode"} Performer Language
+    %option{:value => "informationRecipient_languageCode"} Recipient Language
+    %option{:value => "performer_healthCareProvider"} Performer Health Care Provider Type
+    %option{:value => "informationRecipient_healthCareProvider"} Recipient Health Care Provider Type
+    %option{:value => "severityObservation"} Observation Severity
+    %option{:value => "subTopic"} Sub-Topic
+    %option{:value => "locationOfInterest"} Location of Interest (Country)
+
+  %div.contextDetails.mainSearchCriteria{:style => "display: none"}
+    %div.term
+      %select.termCodeSystem
+        %option
+        %option{:value => "2.16.840.1.113883.6.103"} ICD9‐CM
+        %option{:value => "2.16.840.1.113883.6.90"} ICD10‐CM
+        %option{:value => "2.16.840.1.113883.6.3"} ICD10
+        %option{:value => "2.16.840.1.113883.6.96"} SNOMED‐CT
+        %option{:value => "2.16.840.1.113883.6.88"} RxNorm
+        %option{:value => "2.16.840.1.113883.6.177"} MeSH
+        %option{:value => "2.16.840.1.113883.6.69"} NDC
+        %option{:value => "2.16.840.1.113883.6.1"} LOINC
+      %input.termCodeValue{:type => "text"}
+      %span.actions
+        %a.removeTerm{:href=>"#"}
+          %i.fa.fa-trash-o{"aria-hidden" => true}
+    .termTemplate
+      %select.termCodeSystem
+        %option
+        %option{:value => "2.16.840.1.113883.6.103"} ICD9‐CM
+        %option{:value => "2.16.840.1.113883.6.90"} ICD10‐CM
+        %option{:value => "2.16.840.1.113883.6.3"} ICD10
+        %option{:value => "2.16.840.1.113883.6.96"} SNOMED‐CT
+        %option{:value => "2.16.840.1.113883.6.88"} RxNorm
+        %option{:value => "2.16.840.1.113883.6.177"} MeSH
+        %option{:value => "2.16.840.1.113883.6.69"} NDC
+        %option{:value => "2.16.840.1.113883.6.1"} LOINC
+      %input.termCodeValue{:type => "text"}
+      %span.actions
+        %a.removeTerm{:href=>"#"}
+          %i.fa.fa-trash-o{"aria-hidden" => true}
+    %div.actions
+      %a.addTerm{:href=>"#"}
+        %i.fa.fa-plus-square-o{"aria-hidden" => true}
+        Add
+
+
+
+  %ul.contextDetails.administrativeGenderCode{:style => "display: none"}
+    %li
+      %label
+        %input{:type => "checkbox", :name => "administrativeGenderCode", :value => "F"}
+        Female
+    %li
+      %label
+        %input{:type => "checkbox", :name => "administrativeGenderCode", :value => "M"}
+        Male
+    %li
+      %label
+        %input{:type => "checkbox", :name => "administrativeGenderCode", :value => "UN"}
+        Undifferentiated
+
+  %ul.contextDetails.ageGroup{:style => "display: none"}
+    %li
+      %label
+        %input{:type => "checkbox", :name => "ageGroup", :value => "D007231"}
+        Birth to 1 month (infant, newborn)
+    %li
+      %label
+        %input{:type => "checkbox", :name => "ageGroup", :value => "D007223"}
+        1 to 23 months (infant)
+    %li
+      %label
+        %input{:type => "checkbox", :name => "ageGroup", :value => "D002675"}
+        2 to 5 years (child, preschool)
+    %li
+      %label
+        %input{:type => "checkbox", :name => "ageGroup", :value => "D002648"}
+        6 to 12 years (child)
+    %li
+      %label
+        %input{:type => "checkbox", :name => "ageGroup", :value => "D000293"}
+        13‐18 years (adolescent)
+    %li
+      %label
+        %input{:type => "checkbox", :name => "ageGroup", :value => "D055815"}
+        19‐24 years (young adult)
+    %li
+      %label
+        %input{:type => "checkbox", :name => "ageGroup", :value => "D000328"}
+        19‐44 years (adult)
+    %li
+      %label
+        %input{:type => "checkbox", :name => "ageGroup", :value => "D008875"}
+        45‐64 years (middle aged)
+    %li
+      %label
+        %input{:type => "checkbox", :name => "ageGroup", :value => "D000368"}
+        56‐79 years (aged)
+    %li
+      %label
+        %input{:type => "checkbox", :name => "ageGroup", :value => "D000369"}
+        80 and older (aged)
+
+  %ul.contextDetails.taskContext{:style => "display: none", :multiple => true}
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "OE"}
+        Order entry
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "LABOE"}
+        &nbsp; -- Laboratory test order entry
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "MEDOE"}
+        &nbsp; -- Medication order entry
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "PATDOC"}
+        Patient documentation
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "ALLERLREV"}
+        &nbsp; -- Allergy list review
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "CLINNOTEE"}
+        &nbsp; -- Clinical note entry
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "DIAGLISTE"}
+        &nbsp; -- Diagnosis list entry
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "DISCHSUME"}
+        &nbsp; -- Discharge summary entry
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "PATREPE"}
+        &nbsp; -- Pathology report entry
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "PROBLISTE"}
+        &nbsp; -- Problem list entry
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "RADREPE"}
+        &nbsp; -- Radiology report entry
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "IMMLREV"}
+        &nbsp; -- Immunization list review
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "REMLREV"}
+        &nbsp; -- Reminder list review
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "WELLREMLREV"}
+        &nbsp;  &nbsp; -- Wellness reminder list review
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "PATINFO"}
+        Patient information review
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "ALLERLE"}
+        &nbsp; -- Allergy list entry
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "CLINNOTEREV"}
+        &nbsp; -- Clinical note review
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "DISCHSUMREV"}
+        &nbsp; &nbsp; -- Discharge summary review
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "DIAGLISTREV"}
+        &nbsp; -- Diagnosis list review
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "IMMLE"}
+        &nbsp; -- Immunization list entry
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "LABRREV"}
+        &nbsp; -- Laboratory results review
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "MICRORREV"}
+        &nbsp; -- Microbiology results review
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "MICROORGRREV"}
+        &nbsp; &nbsp; -- Microbiology organisms results review
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "MICROSENSRREV"}
+        &nbsp; &nbsp; -- Microbiology sensitivity test results review
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "MLREV"}
+        &nbsp; -- Medication list review
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "MARWLREV"}
+        &nbsp; &nbsp; -- Medication administration record work list review
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "OREV"}
+        &nbsp; -- Orders review
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "PATREPREV"}
+        &nbsp; -- Pathology report review
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "PROBLISTREV"}
+        &nbsp; -- Problem list review
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "RADREPREV"}
+        &nbsp; -- Radiology report review
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "REMLE"}
+        &nbsp; -- Reminder list entry
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "WELLREMLE"}
+        &nbsp; &nbsp; -- Wellness reminder list entry
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "RISKASSESS"}
+        &nbsp; -- Risk assessment instrument
+    %li
+      %label
+        %input{:type => "checkbox", :name => "taskContext", :value => "FALLRISK"}
+        &nbsp; &nbsp; -- Falls risk assessment instrument
+
+  %ul.contextDetails.encounter{:style => "display: none"}
+    %li
+      %label
+        %input{:type => "checkbox", :name => "encounter", :value => "AMB"}
+        Ambulatory
+    %li
+      %label
+        %input{:type => "checkbox", :name => "encounter", :value => "EMER"}
+        Emergency
+    %li
+      %label
+        %input{:type => "checkbox", :name => "encounter", :value => "FLD"}
+        Field
+    %li
+      %label
+        %input{:type => "checkbox", :name => "encounter", :value => "HH"}
+        Home health
+    %li
+      %label
+        %input{:type => "checkbox", :name => "encounter", :value => "IMP"}
+        Inpatient encounter
+    %li
+      %label
+        %input{:type => "checkbox", :name => "encounter", :value => "ACUTE"}
+        &nbsp; -- Inpatient acute
+    %li
+      %label
+        %input{:type => "checkbox", :name => "encounter", :value => "NONAC"}
+        &nbsp; -- Inpatient non‐acute
+    %li
+      %label
+        %input{:type => "checkbox", :name => "encounter", :value => "SS"}
+        Short stay
+    %li
+      %label
+        %input{:type => "checkbox", :name => "encounter", :value => "VR"}
+        Virtual
+
+  %ul.contextDetails.performer_languageCode{:style => "display: none"}
+    %li
+      %label
+        %input{:type => "checkbox", :name => "performer_languageCode", :value => "en"}
+        English
+    %li
+      %label
+        %input{:type => "checkbox", :name => "performer_languageCode", :value => "es"}
+        Spanish
+
+  %ul.contextDetails.informationRecipient_languageCode{:style => "display: none"}
+    %li
+      %label
+        %input{:type => "checkbox", :name => "informationRecipient_languageCode", :value => "en"}
+        English
+    %li
+      %label
+        %input{:type => "checkbox", :name => "informationRecipient_languageCode", :value => "es"}
+        Spanish
+
+
+  %ul.contextDetails.performer_healthCareProvider{:style => "display: none"}
+
+  %ul.contextDetails.informationRecipient_healthCareProvider{:style => "display: none"}
+  
+  %ul.contextDetails.severityObservation{:style => "display: none"}
+    %li
+      %label
+        %input{:type => "checkbox", :name => "severityObservation", :value => "A"}
+        Abnormal
+    %li
+      %label
+        %input{:type => "checkbox", :name => "severityObservation", :value => "AA"}
+        Abnormal alert
+    %li
+      %label
+        %input{:type => "checkbox", :name => "severityObservation", :value => "H"}
+        High
+    %li
+      %label
+        %input{:type => "checkbox", :name => "severityObservation", :value => "HH"}
+        High alert
+    %li
+      %label
+        %input{:type => "checkbox", :name => "severityObservation", :value => "L"}
+        Low
+    %li
+      %label
+        %input{:type => "checkbox", :name => "severityObservation", :value => "LL"}
+        Low alert
+    %li
+      %label
+        %input{:type => "checkbox", :name => "severityObservation", :value => "N"}
+        Normal
+  
+  %ul.contextDetails.subTopic{:style => "display: none"}
+    %li
+      %label
+        %input{:type => "checkbox", :name => "subTopic", :value => "Q000008"}
+        Administration & dosage
+    %li
+      %label
+        %input{:type => "checkbox", :name => "subTopic", :value => "Q000744"}
+        Contraindications
+    %li
+      %label
+        %input{:type => "checkbox", :name => "subTopic", :value => "Q000009"}
+        Adverse effects
+    %li
+      %label
+        %input{:type => "checkbox", :name => "subTopic", :value => "D004347"}
+        Drug interaction
+    %li
+      %label
+        %input{:type => "checkbox", :name => "subTopic", :value => "Q000145"}
+        Classification
+    %li
+      %label
+        %input{:type => "checkbox", :name => "subTopic", :value => "Q000209"}
+        Etiology
+    %li
+      %label
+        %input{:type => "checkbox", :name => "subTopic", :value => "Q000175"}
+        Diagnosis
+    %li
+      %label
+        %input{:type => "checkbox", :name => "subTopic", :value => "Q000628"}
+        Therapy
+    %li
+      %label
+        %input{:type => "checkbox", :name => "subTopic", :value => "D011379"}
+        Prognosis
+    %li
+      %label
+        %input{:type => "checkbox", :name => "subTopic", :value => "Q000627"}
+        Therapeutic use
+    %li
+      %label
+        %input{:type => "checkbox", :name => "subTopic", :value => "Q000493"}
+        Pharmacokinetics
+    %li
+      %label
+        %input{:type => "checkbox", :name => "subTopic", :value => "Q000494"}
+        Pharmacology
+    %li
+      %label
+        %input{:type => "checkbox", :name => "subTopic", :value => "Q000633"}
+        Toxicity
+    %li
+      %label
+        %input{:type => "checkbox", :name => "subTopic", :value => "Q000506"}
+        Poisoning
+    %li
+      %label
+        %input{:type => "checkbox", :name => "subTopic", :value => "79899007"}
+        Drug interaction
+    %li
+      %label
+        %input{:type => "checkbox", :name => "subTopic", :value => "47965005"}
+        Differential diagnosis
+    %li
+      %label
+        %input{:type => "checkbox", :name => "subTopic", :value => "404204005"}
+        Drug interaction with drug
+    %li
+      %label
+        %input{:type => "checkbox", :name => "subTopic", :value => "95907004"}
+        Drug interaction with food
+    %li
+      %label
+        %input{:type => "checkbox", :name => "subTopic", :value => "95906008"}
+        Drug interaction with alcohol
+
+
+  %ul.contextDetails.locationOfInterest{:style => "display: none"}
+

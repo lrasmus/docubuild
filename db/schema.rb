@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920015646) do
+ActiveRecord::Schema.define(version: 20160922215640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contexts", force: :cascade do |t|
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.string   "code"
+    t.string   "code_system"
+    t.string   "term"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "contexts", ["item_id"], name: "index_contexts_on_item_id", using: :btree
+  add_index "contexts", ["item_type"], name: "index_contexts_on_item_type", using: :btree
 
   create_table "document_file_types", force: :cascade do |t|
     t.string   "name"

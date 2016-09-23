@@ -94,4 +94,11 @@ $(function(){
       });
     }
   });
+
+  $("body").on("change", ".contextElement", function() {
+    var container = $(this).closest(".contextItemContainer");
+    container.find(".contextDetails").hide();
+    var element = $(this).val();
+    container.find("." + element).show();
+  });
 });

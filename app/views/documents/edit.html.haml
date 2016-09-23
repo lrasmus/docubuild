@@ -40,6 +40,9 @@
     %a{:href => "#", :id => "look_feel_tab"}
       %i.fa.fa-heart>
       Look &amp; Feel
+    %a{:href => "#", :id => "infobutton_context"}
+      %i.fa.fa-info-circle{"aria-hidden" => "true"}
+      Infobutton Context
     %a{:href => "#", :id => "preview_document"}
       %i.fa.fa-search{"aria-hidden" => "true"}
       Preview Document
@@ -55,6 +58,8 @@
           = render :partial => "actions", :locals => {:document => @document}
     .accordion.content_topics.look_feel_tab
       = render partial: "look_and_feel", locals: {document: @document}
+    .accordion.content_topics.infobutton_context
+      = render partial: "infobutton_context", locals: {document: @document}
     .accordion.content_topics.preview_document
       .loading
         %span.spinner
@@ -86,15 +91,17 @@
 
     $('#tabcordion').tabcordion();
 
-    $("#look_feel_tab, #document_sections, #preview_document").on("click", function(event) {
+    $("#look_feel_tab, #document_sections, #infobutton_context, #preview_document").on("click", function(event) {
       event.stopPropagation();
       event.preventDefault();
 
       $(".document_sections").hide();
       $(".look_feel_tab").hide();
+      $(".infobutton_context").hide();
       $(".preview_document").hide();
       $("#document_sections").removeClass("active");
       $("#look_feel_tab").removeClass("active");
+      $("#infobutton_context").removeClass("active");
       $("#preview_document").removeClass("active");
 
       $(event.target).addClass("active");

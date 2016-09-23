@@ -238,3 +238,56 @@ a.tital_chk {
     padding: 40px;
   }
 }
+
+.context_form {
+  margin: 30px;
+  .context_link {
+    background: #008acb;
+    font-size: 14.2px;
+    text-transform: uppercase;
+    font-family: 'Gotham-Medium';
+    padding: 10px;
+    text-align: center;
+    display: block;
+    color: #fff;
+    border-radius: 7px;
+    margin: 3px;
+    width: 150px;
+    margin-bottom: 15px;
+  }
+}
+
+.contextItemContainer {
+  border-bottom: 1px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5;
+  padding: 10px;
+  .contextDetails {
+    display: inline-table;
+    margin-left: 50px;
+    label {
+      font-weight: normal;
+    }
+  }  
+}
+
+.termTemplate {
+  display: none;
+  .actions {
+    i {
+      font-size: 12pt;
+    }
+  }
+}
+
+div.actions {
+  display: inline-block;
+}
+.addTerm {
+  border: 2px solid #008acb;
+  color: #fff;
+  background: #008acb;
+  font-size: 12px;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 7px;
+}
