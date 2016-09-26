@@ -13,7 +13,9 @@ class DocumentsController < ApplicationController
   def template_sections
     @templated = !@document.template.blank?
     @sections = []
-    if @templated
+    if (params[:view] == "preview")
+      @sections = @document.sections
+    elsif @templated
       @open_template = @document.template.sections.blank?
 
       allowed_sections = @document.template.sections

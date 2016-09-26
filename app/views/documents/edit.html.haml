@@ -147,7 +147,7 @@
       event.stopPropagation();
       event.preventDefault();
 
-      var docSection = $(this).closest(".form-group").find("textarea");
+      var editor = tinymce.get($(this).closest(".form-group").find("textarea").attr('id'));
       $.get( "#{import_sections_document_path(@document)}")
         .done(function( data ) {
           $("#dialog").dialog({ 
@@ -156,10 +156,10 @@
             title: 'Import Sections',
             beforeClose: function(event, ui) {
               if ($(this).attr('data-section-action') === "copy") {
-                docSection.text(docSection.text() + "\r\n" + $(this).attr('data-section-content'));
+                editor.setContent(editor.getContent() + "\r\n" + $(this).attr('data-section-content'));
               }
               else if ($(this).attr('data-section-action') === "replace") {
-                docSection.text($(this).attr('data-section-content'));
+                editor.setContent($(this).attr('data-section-content'));
               }
             } 
           });

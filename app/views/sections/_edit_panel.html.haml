@@ -1,7 +1,7 @@
 .box_panel
   .content_edit
     .cnt_edit_tital
-      %label.chk_box_text{:for => "cbxShowHide#{section.id}"}=format_order_and_title(section)
+      %label.chk_box_text{:for => "cbxShowHide#{section.id}"}=section.title
       %a{:id => "cbxShowHide#{section.id}", :class => "tital_chk fa fa-info-circle", :data => {:checked => false}} &nbsp;Details
       .chk_hide_text{:id => "block#{section.id}", :class => "hidden_block"}
         =section.description.html_safe unless section.description.blank?
@@ -9,7 +9,7 @@
       .editForm
         .form-group
           =form_for section, remote: true do |f|
-            = f.text_area :content, :class => "form-control tinymce", :rows => "5", :data => {:original_text => section.content}
+            = f.text_area :content, :class => "form-control tinymce", :rows => "5", :data => {:original_text => section.content}, :id => "section_content_#{section.id}"
             .multiple_btn
               %a.cancel.save_section{:href => "#"} Save Section
               %a.cancel.cancel_section{:href => "#"} Cancel
