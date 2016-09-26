@@ -1,7 +1,7 @@
 - if @templated and !@open_template
   %div{:style => "padding-bottom: 20px;"}
     - if @sections.blank?
-      This document currently contains all of the sections in its template.
+      This document currently contains all of the sections from its template (#{@document.template.title}).
     - else
       Please select the section(s) to add
 

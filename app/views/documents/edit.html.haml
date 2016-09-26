@@ -20,11 +20,13 @@
       .col-lg-6
         %span.status
           .progres_btn=@document.status.name
-        %span.description
-          About
-          %hr
+        %div.description
+          %span.title Description: 
           %label.editable=@document.description
           =f.text_area :description, class: "editable editable_name"
+        %div.template
+          %span.title Template:
+          =@document.template.title
     .row
       .col-lg-12
         %a.edit_tag.edit.editable{:href => "#"} Edit

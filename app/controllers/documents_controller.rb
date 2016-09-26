@@ -56,7 +56,7 @@ class DocumentsController < ApplicationController
   # GET /documents/import
   def import
     @document = Document.new
-    @documents = Document.all
+    @documents = Document.not_templates
   end
 
   # POST /documents/create_import

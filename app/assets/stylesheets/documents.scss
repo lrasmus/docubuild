@@ -69,9 +69,13 @@ a.tital_chk {
   display: none;
 }
 
-.description {
+.description, .template {
+  margin-top: 20px;
   hr {
     margin: 5px 0px;
+  }
+  .title {
+    font-family: Gotham-Medium;
   }
 }
 
@@ -290,4 +294,9 @@ div.actions {
   display: inline-block;
   padding: 5px 10px;
   border-radius: 7px;
+}
+
+.help_text {
+  font-size: 0.8em;
+  font-style: italic;
 }
