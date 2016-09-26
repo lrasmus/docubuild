@@ -268,8 +268,8 @@ a{outline:none !important;}
 .edit_doc a{color:#fff; background:#008acb; border-radius:5px; display:block; padding:10px 0; text-align:center; font-size:12.5px;}
 .heading03{font-family:'Gotham-Medium'; font-size:25px; color:#344349;}
 .doc_info_text{ font-size:15px; color:#445259; padding:15px 0; width:80%;}
-.create_doc_btn{position:absolute; top:0px; right:0px;}
-.create_doc_btn a{background:#00b26c; border-radius:7px; color:#fff; padding:18px 15px; text-transform:uppercase; font-size:14px; font-family:'Gotham-Medium'; display:block;}
+.create_doc_btn{position:absolute; top:17px; right:0px;}
+.create_doc_btn a{background:#00b26c; border-radius:7px; color:#fff; padding:18px 15px; text-transform:uppercase; font-size:14px; font-family:'Gotham-Medium'; margin-right: 10px;}
 .edit_tag{font-size:11px; color:#4e5b61; text-transform:uppercase; display:block; border:1px solid #4e5b61; width:54px; padding:3px 0; text-align:center; margin-top:5px;}
 
 .doc_features{width:1000px;}
@@ -548,3 +548,4 @@ background-image:-webkit-gradient(linear, right top, right bottom, color-stop(0%
 .editable_name{border:1px solid #ccc; font-size:14px; color: #333; padding:12px 8px; display:none; width:60%;}
 
 
+.fa { padding-right: 5px; }

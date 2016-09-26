@@ -6,8 +6,12 @@
     = render partial: "tab", locals: {index: 4, name: "Archived", documents: @documents.archived}
 
     .create_doc_btn
-      = link_to 'Create New Document', new_document_path
-      = link_to 'Clone Document', import_documents_path
+      = link_to new_document_path do
+        %i.fa.fa-plus>
+        New
+      = link_to import_documents_path do
+        %i.fa.fa-files-o>
+        Clone
 
 :javascript
   $( function() {
