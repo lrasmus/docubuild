@@ -44,10 +44,13 @@
       Look &amp; Feel
     %a{:href => "#", :id => "infobutton_context"}
       %i.fa.fa-info-circle{"aria-hidden" => "true"}
-      Infobutton Context
+      Global Context
     %a{:href => "#", :id => "preview_document"}
       %i.fa.fa-search{"aria-hidden" => "true"}
       Preview Document
+    %a{:href => "#", :id => "deploy_document"}
+      %i.fa.fa-download{"aria-hidden" => "true"}
+      Deploy
   .document_detail
     .accordion.content_topics.document_sections
       .ct_tital
@@ -67,6 +70,7 @@
         %span.spinner
           %i.fa.fa-spinner.fa-spin{"aria-hidden" => true}
       .content
+    .accordion.content_topics.deploy_document
 
 
 %div#dialog{title: "DocUBuild"}
@@ -93,7 +97,7 @@
 
     $('#tabcordion').tabcordion();
 
-    $("#look_feel_tab, #document_sections, #infobutton_context, #preview_document").on("click", function(event) {
+    $("#look_feel_tab, #document_sections, #infobutton_context, #preview_document, #deploy_document").on("click", function(event) {
       event.stopPropagation();
       event.preventDefault();
 
@@ -101,10 +105,12 @@
       $(".look_feel_tab").hide();
       $(".infobutton_context").hide();
       $(".preview_document").hide();
+      $(".deploy_document").hide();
       $("#document_sections").removeClass("active");
       $("#look_feel_tab").removeClass("active");
       $("#infobutton_context").removeClass("active");
       $("#preview_document").removeClass("active");
+      $("#deploy_document").removeClass("active");
 
       $(event.target).addClass("active");
       $("." + event.target.id).show();
