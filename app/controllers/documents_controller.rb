@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-  before_action :set_document, only: [:show, :edit, :update, :destroy, :template_sections, :add_sections_from_templates, :import_sections, :preview]
+  before_action :set_document, only: [:show, :edit, :update, :destroy, :template_sections, :add_sections_from_templates, :import_sections, :preview, :set_context]
   before_filter :check_for_cancel, :only => [:create, :update, :create_import]
   before_filter :clean_view_param, :only => [:template_sections]
 
@@ -160,6 +160,15 @@ class DocumentsController < ApplicationController
     end
   end
 
+  # POST /documents/1/set_context
+  def set_context
+    Context.transaction do
+      @document.contexts.destroy_all
+      process_context_items(params[:context], @document)
+    end
+    render json: {result: 'OK'}, status: :ok
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_document
@@ -198,5 +207,18 @@ class DocumentsController < ApplicationController
 
     def default_style
       {"font_name" => "Arial", "font_size" => "11", "font_color" => "#000000"}
+    end
+
+    def process_context_items context_params, document
+      return nil if context_params.blank?
+      context_params.each do |context|
+        context[1]["values"].each do |value|
+          puts value[1]["code"]
+          document.contexts << Context.new(category: context[1]["category"],
+            code: value[1]["code"],
+            code_system_oid: value[1]["codeSystem"],
+            code_system_name: value[1]["codeSystemName"])
+        end
+      end
     end
 end

@@ -19,11 +19,13 @@ ActiveRecord::Schema.define(version: 20160922215640) do
   create_table "contexts", force: :cascade do |t|
     t.integer  "item_id"
     t.string   "item_type"
+    t.string   "category"
     t.string   "code"
-    t.string   "code_system"
+    t.string   "code_system_oid"
+    t.string   "code_system_name"
     t.string   "term"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   add_index "contexts", ["item_id"], name: "index_contexts_on_item_id", using: :btree

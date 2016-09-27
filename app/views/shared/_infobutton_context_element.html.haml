@@ -6,10 +6,8 @@
     %option{:value => "ageGroup"} Age Group
     %option{:value => "taskContext"} Task Context
     %option{:value => "encounter"} Encounter Type
-    %option{:value => "performer_languageCode"} Performer Language
-    %option{:value => "informationRecipient_languageCode"} Recipient Language
-    %option{:value => "performer_healthCareProvider"} Performer Health Care Provider Type
-    %option{:value => "informationRecipient_healthCareProvider"} Recipient Health Care Provider Type
+    %option{:value => "languageCode"} Language
+    %option{:value => "healthCareProvider"} Health Care Provider Type
     %option{:value => "severityObservation"} Observation Severity
     %option{:value => "subTopic"} Sub-Topic
     %option{:value => "locationOfInterest"} Location of Interest (Country)
@@ -52,7 +50,7 @@
 
 
 
-  %ul.contextDetails.administrativeGenderCode{:style => "display: none"}
+  %ul.contextDetails.administrativeGenderCode{:style => "display: none", :data => {"code_system_oid" => "2.16.840.1.113883.5.1", "code_system_name" => "HL7 Adminstrative Gender"}}
     %li
       %label
         %input{:type => "checkbox", :name => "administrativeGenderCode", :value => "F"}
@@ -66,7 +64,7 @@
         %input{:type => "checkbox", :name => "administrativeGenderCode", :value => "UN"}
         Undifferentiated
 
-  %ul.contextDetails.ageGroup{:style => "display: none"}
+  %ul.contextDetails.ageGroup{:style => "display: none", :data => {"code_system_oid" => "2.16.840.1.113883.6.177", "code_system_name" => "MeSH"}}
     %li
       %label
         %input{:type => "checkbox", :name => "ageGroup", :value => "D007231"}
@@ -108,7 +106,7 @@
         %input{:type => "checkbox", :name => "ageGroup", :value => "D000369"}
         80 and older (aged)
 
-  %ul.contextDetails.taskContext{:style => "display: none", :multiple => true}
+  %ul.contextDetails.taskContext{:style => "display: none", :data => {"code_system_oid" => "2.16.840.1.113883.5.4", "code_system_name" => "HL7 Act Code"}}
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "OE"}
@@ -116,11 +114,11 @@
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "LABOE"}
-        &nbsp; -- Laboratory test order entry
+        &nbsp; &nbsp; &nbsp; Laboratory test order entry
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "MEDOE"}
-        &nbsp; -- Medication order entry
+        &nbsp; &nbsp; &nbsp; Medication order entry
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "PATDOC"}
@@ -128,43 +126,43 @@
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "ALLERLREV"}
-        &nbsp; -- Allergy list review
+        &nbsp; &nbsp; &nbsp; Allergy list review
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "CLINNOTEE"}
-        &nbsp; -- Clinical note entry
+        &nbsp; &nbsp; &nbsp; Clinical note entry
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "DIAGLISTE"}
-        &nbsp; -- Diagnosis list entry
+        &nbsp; &nbsp; &nbsp; Diagnosis list entry
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "DISCHSUME"}
-        &nbsp; -- Discharge summary entry
+        &nbsp; &nbsp; &nbsp; Discharge summary entry
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "PATREPE"}
-        &nbsp; -- Pathology report entry
+        &nbsp; &nbsp; &nbsp; Pathology report entry
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "PROBLISTE"}
-        &nbsp; -- Problem list entry
+        &nbsp; &nbsp; &nbsp; Problem list entry
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "RADREPE"}
-        &nbsp; -- Radiology report entry
+        &nbsp; &nbsp; &nbsp; Radiology report entry
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "IMMLREV"}
-        &nbsp; -- Immunization list review
+        &nbsp; &nbsp; &nbsp; Immunization list review
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "REMLREV"}
-        &nbsp; -- Reminder list review
+        &nbsp; &nbsp; &nbsp; Reminder list review
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "WELLREMLREV"}
-        &nbsp;  &nbsp; -- Wellness reminder list review
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Wellness reminder list review
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "PATINFO"}
@@ -172,81 +170,81 @@
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "ALLERLE"}
-        &nbsp; -- Allergy list entry
+        &nbsp; &nbsp; &nbsp; Allergy list entry
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "CLINNOTEREV"}
-        &nbsp; -- Clinical note review
+        &nbsp; &nbsp; &nbsp; Clinical note review
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "DISCHSUMREV"}
-        &nbsp; &nbsp; -- Discharge summary review
+        &nbsp; &nbsp; &nbsp; &nbsp; Discharge summary review
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "DIAGLISTREV"}
-        &nbsp; -- Diagnosis list review
+        &nbsp; &nbsp; &nbsp; Diagnosis list review
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "IMMLE"}
-        &nbsp; -- Immunization list entry
+        &nbsp; &nbsp; &nbsp; Immunization list entry
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "LABRREV"}
-        &nbsp; -- Laboratory results review
+        &nbsp; &nbsp; &nbsp; Laboratory results review
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "MICRORREV"}
-        &nbsp; -- Microbiology results review
+        &nbsp; &nbsp; &nbsp; Microbiology results review
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "MICROORGRREV"}
-        &nbsp; &nbsp; -- Microbiology organisms results review
+        &nbsp; &nbsp; &nbsp; &nbsp; Microbiology organisms results review
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "MICROSENSRREV"}
-        &nbsp; &nbsp; -- Microbiology sensitivity test results review
+        &nbsp; &nbsp; &nbsp; &nbsp; Microbiology sensitivity test results review
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "MLREV"}
-        &nbsp; -- Medication list review
+        &nbsp; &nbsp; &nbsp; Medication list review
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "MARWLREV"}
-        &nbsp; &nbsp; -- Medication administration record work list review
+        &nbsp; &nbsp; &nbsp; &nbsp; Medication administration record work list review
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "OREV"}
-        &nbsp; -- Orders review
+        &nbsp; &nbsp; &nbsp; Orders review
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "PATREPREV"}
-        &nbsp; -- Pathology report review
+        &nbsp; &nbsp; &nbsp; Pathology report review
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "PROBLISTREV"}
-        &nbsp; -- Problem list review
+        &nbsp; &nbsp; &nbsp; Problem list review
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "RADREPREV"}
-        &nbsp; -- Radiology report review
+        &nbsp; &nbsp; &nbsp; Radiology report review
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "REMLE"}
-        &nbsp; -- Reminder list entry
+        &nbsp; &nbsp; &nbsp; Reminder list entry
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "WELLREMLE"}
-        &nbsp; &nbsp; -- Wellness reminder list entry
+        &nbsp; &nbsp; &nbsp; &nbsp; Wellness reminder list entry
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "RISKASSESS"}
-        &nbsp; -- Risk assessment instrument
+        &nbsp; &nbsp; &nbsp; Risk assessment instrument
     %li
       %label
         %input{:type => "checkbox", :name => "taskContext", :value => "FALLRISK"}
-        &nbsp; &nbsp; -- Falls risk assessment instrument
+        &nbsp; &nbsp; &nbsp; &nbsp; Falls risk assessment instrument
 
-  %ul.contextDetails.encounter{:style => "display: none"}
+  %ul.contextDetails.encounter{:style => "display: none", :data => {"code_system_oid" => "2.16.840.1.113883.5.4", "code_system_name" => "HL7 Act Code"}}
     %li
       %label
         %input{:type => "checkbox", :name => "encounter", :value => "AMB"}
@@ -270,11 +268,11 @@
     %li
       %label
         %input{:type => "checkbox", :name => "encounter", :value => "ACUTE"}
-        &nbsp; -- Inpatient acute
+        &nbsp; &nbsp; &nbsp; Inpatient acute
     %li
       %label
         %input{:type => "checkbox", :name => "encounter", :value => "NONAC"}
-        &nbsp; -- Inpatient non‐acute
+        &nbsp; &nbsp; &nbsp; Inpatient non‐acute
     %li
       %label
         %input{:type => "checkbox", :name => "encounter", :value => "SS"}
@@ -284,7 +282,7 @@
         %input{:type => "checkbox", :name => "encounter", :value => "VR"}
         Virtual
 
-  %ul.contextDetails.performer_languageCode{:style => "display: none"}
+  %ul.contextDetails.languageCode{:style => "display: none", :data => {"code_system_oid" => "2.16.840.1.113883.6.121", "code_system_name" => "Tags for the identification of languages"}}
     %li
       %label
         %input{:type => "checkbox", :name => "performer_languageCode", :value => "en"}
@@ -294,22 +292,9 @@
         %input{:type => "checkbox", :name => "performer_languageCode", :value => "es"}
         Spanish
 
-  %ul.contextDetails.informationRecipient_languageCode{:style => "display: none"}
-    %li
-      %label
-        %input{:type => "checkbox", :name => "informationRecipient_languageCode", :value => "en"}
-        English
-    %li
-      %label
-        %input{:type => "checkbox", :name => "informationRecipient_languageCode", :value => "es"}
-        Spanish
-
-
-  %ul.contextDetails.performer_healthCareProvider{:style => "display: none"}
-
-  %ul.contextDetails.informationRecipient_healthCareProvider{:style => "display: none"}
+  %ul.contextDetails.healthCareProvider{:style => "display: none", :data => {"code_system_oid" => "2.16.840.1.113883.6.101", "code_system_name" => "NUCC Health Care provider taxonomy"}}
   
-  %ul.contextDetails.severityObservation{:style => "display: none"}
+  %ul.contextDetails.severityObservation{:style => "display: none", :data => {"code_system_oid" => "2.16.840.1.113883.5.83", "code_system_name" => "Observation Interpretation"}}
     %li
       %label
         %input{:type => "checkbox", :name => "severityObservation", :value => "A"}
@@ -339,7 +324,7 @@
         %input{:type => "checkbox", :name => "severityObservation", :value => "N"}
         Normal
   
-  %ul.contextDetails.subTopic{:style => "display: none"}
+  %ul.contextDetails.subTopic{:style => "display: none", :data => {"code_system_oid" => "2.16.840.1.113883.6.177", "code_system_name" => "MeSH"}}
     %li
       %label
         %input{:type => "checkbox", :name => "subTopic", :value => "Q000008"}
@@ -418,5 +403,5 @@
         Drug interaction with alcohol
 
 
-  %ul.contextDetails.locationOfInterest{:style => "display: none"}
+  %ul.contextDetails.locationOfInterest{:style => "display: none", :data => {"code_system_oid" => "1.0.3166.1.2.3", "code_system_name" => "Country codes"}}
 

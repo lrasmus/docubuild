@@ -1,5 +1,6 @@
 .context_form
   %a{:href=>"#",:class=>"context_link"}Add Context
+  %a{:href=>"#",:class=>"save_context"} Save
 
 
 :javascript
@@ -9,6 +10,15 @@
       var button = $(this);
       $.get("#{context_new_path}", function(data) {
         $(data).insertBefore(button);
+      });
+    });
+
+    $(".save_context").on("click", function(e) {
+      e.preventDefault();
+      var form = $(this).closest(".context_form");
+      var context = getInfobuttonContext(form);
+      $.post("#{set_context_document_path(@document)}", context, function(data) {
+        debugger;
       });
     });
 
