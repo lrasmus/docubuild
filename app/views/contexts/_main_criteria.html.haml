@@ -1,14 +1,14 @@
-%select.termCodeSystem
-  %option
-  %option{:value => "2.16.840.1.113883.6.103"} ICD9‐CM
-  %option{:value => "2.16.840.1.113883.6.90"} ICD10‐CM
-  %option{:value => "2.16.840.1.113883.6.3"} ICD10
-  %option{:value => "2.16.840.1.113883.6.96"} SNOMED‐CT
-  %option{:value => "2.16.840.1.113883.6.88"} RxNorm
-  %option{:value => "2.16.840.1.113883.6.177"} MeSH
-  %option{:value => "2.16.840.1.113883.6.69"} NDC
-  %option{:value => "2.16.840.1.113883.6.1"} LOINC
-%input.termCodeValue{:type => "text"}
-%span.actions
-  %a.removeTerm{:href=>"#"}
-    %i.fa.fa-trash-o{"aria-hidden" => true}
+%div.contextDetails.mainSearchCriteria{:style => context_item_visibility("mainSearchCriteria", selected_category)}
+  - if context_group.nil?
+    %div.term
+      = render partial: "contexts/main_criteria_item"
+  - else
+    - context_group[1].each do |context|
+      %div.term
+        = render partial: "contexts/main_criteria_item", locals: {context: context}
+  .termTemplate
+    = render partial: "contexts/main_criteria_item"
+  %div.actions
+    %a.addTerm{:href=>"#"}
+      %i.fa.fa-plus-square-o{"aria-hidden" => true}
+      Add

@@ -1,31 +1,29 @@
 - context_group ||= nil
 - selected_category = context_group.nil? ? "" : context_group[0]
-= context_group.inspect
+- selected_values = context_group.nil? ? [] : context_group[1].map{ |c| c.code }
 .contextItemContainer
-  = select_tag("contextElement", options_for_select(context_categories.collect {|c| [ c[:name], c[:value] ] }, selected_category), include_blank: true)
+  %span.actions
+    %a.removeTerm{:href=>"#"}
+      %i.fa.fa-trash-o{"aria-hidden" => true}
+  = select_tag("contextElement", options_for_select(context_categories.collect {|c| [ c[:name], c[:value] ] }, selected_category), {include_blank: true, :class => "contextElement"})
 
-  %div.contextDetails.mainSearchCriteria{:style => "display: none"}
-    %div.term
-      = render partial: "contexts/main_criteria"
-    .termTemplate
-      = render partial: "contexts/main_criteria"
+  = render partial: "contexts/main_criteria", :locals => {context_group: context_group, selected_category: selected_category}
 
+  = render partial: "contexts/infobutton_context_list", :locals => {category: "administrativeGenderCode", codeSystem: "2.16.840.1.113883.5.1", codeSystemName: "HL7 Adminstrative Gender", values: gender_context_values, selected_category: selected_category, selected_values: selected_values}
 
-  = render partial: "contexts/infobutton_context_list", :locals => {category: "administrativeGenderCode", codeSystem: "2.16.840.1.113883.5.1", codeSystemName: "HL7 Adminstrative Gender", values: gender_context_values, item_visibility: context_item_visibility}
+  = render partial: "contexts/infobutton_context_list", :locals => {category: "ageGroup", codeSystem: "2.16.840.1.113883.6.177", codeSystemName: "MeSH", values: age_group_context_values, selected_category: selected_category, selected_values: selected_values}
 
-  = render partial: "contexts/infobutton_context_list", :locals => {category: "ageGroup", codeSystem: "2.16.840.1.113883.6.177", codeSystemName: "MeSH", values: age_group_context_values, item_visibility: context_item_visibility}
+  = render partial: "contexts/infobutton_context_list", :locals => {category: "taskContext", codeSystem: "2.16.840.1.113883.5.4", codeSystemName: "HL7 Act Code", values: task_context_values, selected_category: selected_category, selected_values: selected_values}
 
-  = render partial: "contexts/infobutton_context_list", :locals => {category: "taskContext", codeSystem: "2.16.840.1.113883.5.4", codeSystemName: "HL7 Act Code", values: task_context_values, item_visibility: context_item_visibility}
+  = render partial: "contexts/infobutton_context_list", :locals => {category: "encounter", codeSystem: "2.16.840.1.113883.5.4", codeSystemName: "HL7 Act Code", values: encounter_context_values, selected_category: selected_category, selected_values: selected_values}
 
-  = render partial: "contexts/infobutton_context_list", :locals => {category: "encounter", codeSystem: "2.16.840.1.113883.5.4", codeSystemName: "HL7 Act Code", values: encounter_context_values, item_visibility: context_item_visibility}
-
-  = render partial: "contexts/infobutton_context_list", :locals => {category: "languageCode", codeSystem: "2.16.840.1.113883.6.121", codeSystemName: "Tags for the identification of languages", values: language_code_context_values, item_visibility: context_item_visibility}
+  = render partial: "contexts/infobutton_context_list", :locals => {category: "languageCode", codeSystem: "2.16.840.1.113883.6.121", codeSystemName: "Tags for the identification of languages", values: language_code_context_values, selected_category: selected_category, selected_values: selected_values}
 
   %ul.contextDetails.healthCareProvider{:style => "display: none", :data => {"code_system_oid" => "2.16.840.1.113883.6.101", "code_system_name" => "NUCC Health Care provider taxonomy"}}
 
-  = render partial: "contexts/infobutton_context_list", :locals => {category: "severityObservation", codeSystem: "2.16.840.1.113883.5.83", codeSystemName: "Observation Interpretation", values: severity_observation_context_values, item_visibility: context_item_visibility}
+  = render partial: "contexts/infobutton_context_list", :locals => {category: "severityObservation", codeSystem: "2.16.840.1.113883.5.83", codeSystemName: "Observation Interpretation", values: severity_observation_context_values, selected_category: selected_category, selected_values: selected_values}
 
-  = render partial: "contexts/infobutton_context_list", :locals => {category: "subTopic", codeSystem: "2.16.840.1.113883.6.177", codeSystemName: "MeSH", values: sub_topic_context_values, item_visibility: context_item_visibility}
+  = render partial: "contexts/infobutton_context_list", :locals => {category: "subTopic", codeSystem: "2.16.840.1.113883.6.177", codeSystemName: "MeSH", values: sub_topic_context_values, selected_category: selected_category, selected_values: selected_values}
   
   %ul.contextDetails.locationOfInterest{:style => "display: none", :data => {"code_system_oid" => "1.0.3166.1.2.3", "code_system_name" => "Country codes"}}
 

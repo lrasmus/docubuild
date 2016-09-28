@@ -1,0 +1,6 @@
+- context ||= ::Context.new
+= select_tag("termCodeSystem", options_for_select(main_criteria_context_values.collect {|c| [ c[:name], c[:value] ] }, context.code_system_oid), {include_blank: true, :class => "termCodeSystem"})
+%input.termCodeValue{:type => "text", :value => context.code}
+%span.actions
+  %a.removeTerm{:href=>"#"}
+    %i.fa.fa-trash-o{"aria-hidden" => true}

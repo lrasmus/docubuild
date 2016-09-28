@@ -2,13 +2,13 @@
 .context_form
   - context_groups.each do |group|
     = render :partial => "contexts/infobutton_context_element", locals: {context_group: group}
-  %a{:href=>"#",:class=>"context_link"}Add Context
-  %a{:href=>"#",:class=>"save_context"} Save
+  %a{:href=>"#",:class=>"context_link add_context_link"}Add Context
+  %a{:href=>"#",:class=>"context_link save_context_link"} Save
 
 
 :javascript
   $(function() {
-    $(".context_link").on("click", function(e) {
+    $(".add_context_link").on("click", function(e) {
       e.preventDefault();
       var button = $(this);
       $.get("#{context_new_path}", function(data) {
@@ -16,7 +16,7 @@
       });
     });
 
-    $(".save_context").on("click", function(e) {
+    $(".save_context_link").on("click", function(e) {
       e.preventDefault();
       var form = $(this).closest(".context_form");
       var context = getInfobuttonContext(form);
@@ -33,6 +33,6 @@
 
     $("body").on("click", ".removeTerm", function(e) {
       e.preventDefault();
-      $(this).closest(".term").remove();
+      $(this).closest(".term, .contextItemContainer").remove();
     });
   });

@@ -58,7 +58,8 @@ input.new_document_field, textarea.new_document_field {
 label.new_document_field {
   font-size: 14px;
   width: 100px;
-  display:block; float:left;
+  display: block;
+  float: left;
 }
 
 a.tital_chk {
@@ -299,4 +300,8 @@ div.actions {
 .help_text {
   font-size: 0.8em;
   font-style: italic;
+}
+
+.contextItemContainer > .actions {
+  float: right;
 }

@@ -14,6 +14,19 @@ module ContextsHelper
     ]
   end
 
+  def main_criteria_context_values
+    [
+      {:value => "2.16.840.1.113883.6.103", name: "ICD9‐CM"},
+      {:value => "2.16.840.1.113883.6.90", name: "ICD10‐CM"},
+      {:value => "2.16.840.1.113883.6.3", name: "ICD10"},
+      {:value => "2.16.840.1.113883.6.96", name: "SNOMED‐CT"},
+      {:value => "2.16.840.1.113883.6.88", name: "RxNorm"},
+      {:value => "2.16.840.1.113883.6.177", name: "MeSH"},
+      {:value => "2.16.840.1.113883.6.69", name: "NDC"},
+      {:value => "2.16.840.1.113883.6.1", name: "LOINC"}
+    ]
+  end
+
   def gender_context_values
     [
       {value: "F", name: "Female"},
@@ -133,7 +146,11 @@ module ContextsHelper
     ]        
   end
 
-  def context_item_visibility
-    "display: none"
+  def context_item_visibility category, selected_category
+    (selected_category == category) ? "" : "display: none"
+  end
+
+  def context_value_checked value, selected_values
+    selected_values.include?(value) ? true : false
   end
 end

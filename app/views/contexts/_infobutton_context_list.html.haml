@@ -1,6 +1,6 @@
-%ul.contextDetails{:class => category, :style => item_visibility, :data => {"code_system_oid" => codeSystem, "code_system_name" => codeSystemName}}
+%ul.contextDetails{:class => category, :style => context_item_visibility(category, selected_category), :data => {"code_system_oid" => codeSystem, "code_system_name" => codeSystemName}}
   - values.each do |value|
     %li
       %label
-        %input{:type => "checkbox", :name => category, :value => value[:value]}
+        %input{:type => "checkbox", :name => category, :value => value[:value], :checked => context_value_checked(value[:value], selected_values)}
         =value[:name].html_safe
