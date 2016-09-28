@@ -1,0 +1,14 @@
+%div.contextDetails.mainSearchCriteria{:style => context_item_visibility("mainSearchCriteria", selected_category)}
+  - if context_group.nil?
+    %div.term
+      = render partial: "contexts/main_criteria_item"
+  - else
+    - context_group[1].each do |context|
+      %div.term
+        = render partial: "contexts/main_criteria_item", locals: {context: context}
+  .termTemplate
+    = render partial: "contexts/main_criteria_item"
+  %div.actions
+    %a.addTerm{:href=>"#"}
+      %i.fa.fa-plus-square-o{"aria-hidden" => true}
+      Add

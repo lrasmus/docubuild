@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       post 'add_sections_from_templates'
       get 'import_sections'
       get 'preview'
+      post 'set_context'
     end
     collection do
       get 'import'

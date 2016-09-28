@@ -1,14 +1,27 @@
+- context_groups = document.contexts.blank? ? {} : document.contexts.group_by{|c| c.category}
 .context_form
-  %a{:href=>"#",:class=>"context_link"}Add Context
+  - context_groups.each do |group|
+    = render :partial => "contexts/infobutton_context_element", locals: {context_group: group}
+  %a{:href=>"#",:class=>"context_link add_context_link"}Add Context
+  %a{:href=>"#",:class=>"context_link save_context_link"} Save
 
 
 :javascript
   $(function() {
-    $(".context_link").on("click", function(e) {
+    $(".add_context_link").on("click", function(e) {
       e.preventDefault();
       var button = $(this);
       $.get("#{context_new_path}", function(data) {
         $(data).insertBefore(button);
+      });
+    });
+
+    $(".save_context_link").on("click", function(e) {
+      e.preventDefault();
+      var form = $(this).closest(".context_form");
+      var context = getInfobuttonContext(form);
+      $.post("#{set_context_document_path(@document)}", context, function(data) {
+        debugger;
       });
     });
 
@@ -20,6 +33,6 @@
 
     $("body").on("click", ".removeTerm", function(e) {
       e.preventDefault();
-      $(this).closest(".term").remove();
+      $(this).closest(".term, .contextItemContainer").remove();
     });
   });
