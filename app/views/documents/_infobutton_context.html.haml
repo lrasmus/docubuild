@@ -1,4 +1,7 @@
+- context_groups = document.contexts.blank? ? {} : document.contexts.group_by{|c| c.category}
 .context_form
+  - context_groups.each do |group|
+    = render :partial => "contexts/infobutton_context_element", locals: {context_group: group}
   %a{:href=>"#",:class=>"context_link"}Add Context
   %a{:href=>"#",:class=>"save_context"} Save
 
