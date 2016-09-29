@@ -1,7 +1,8 @@
 module ContextsHelper
   def context_categories
     [
-      {value: "mainSearchCriteria", name: "Main concept"},
+      {value: "informationRecipient", name: "Information Recipient"},
+      {value: "mainSearchCriteria", name: "Main Concept"},
       {value: "administrativeGenderCode", name: "Gender"},
       {value: "ageGroup", name: "Age Group"},
       {value: "taskContext", name: "Task Context"},
@@ -11,6 +12,14 @@ module ContextsHelper
       {value: "severityObservation", name: "Observation Severity"},
       {value: "subTopic", name: "Sub-Topic"},
       {value: "locationOfInterest", name: "Location of Interest (Country)"}
+    ]
+  end
+
+  def information_recipient_context_values
+    [
+      {value: "PAT", name: "Patient"},
+      {value: "PROV", name: "Provider"},
+      {value: "PAYOR", name: "Payor"}
     ]
   end
 
