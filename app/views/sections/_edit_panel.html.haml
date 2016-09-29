@@ -1,10 +1,10 @@
 .box_panel
   .content_edit
     .cnt_edit_tital
-      %label.chk_box_text{:for => "cbxShowHide#{section.id}"}=section.title
-      %a{:id => "cbxShowHide#{section.id}", :class => "tital_chk fa fa-info-circle", :data => {:checked => false}} &nbsp;Details
-      .chk_hide_text{:id => "block#{section.id}", :class => "hidden_block"}
-        =section.description.html_safe unless section.description.blank?
+      %label.chk_box_text=section.title
+      - unless section.description.blank?
+        %a.section_description{:title => section.description}
+          %i.fa.fa-question>
     .cnt_text
       .section_display
         =section.content.html_safe

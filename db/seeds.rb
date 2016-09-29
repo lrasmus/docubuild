@@ -39,10 +39,10 @@ emerge_doc = Document.create(:title => "eMERGE Genomic Resource Template",
   :is_template => true, :status => published, :visibility => public_vis)
 
 Section.create(:title => "Clinical scenario/Overview", 
-  :description => "<ul><li>What is it about</li><li>What it is meant to cover (and what topics are excluded)</li></ul>",
+  :description => "- What is it about\r\n- What it is meant to cover (and what topics are excluded)",
   :content => "", :status => published, :visibility => public_vis, :order => 1, :document => emerge_doc)
 Section.create(:title => "Background and effects of the condition", :content => "", 
-  :description => "<ul><li>The problems it can cause</li><li>Who it affects</li><li>The symptoms</li><li>How common it is</li><li>How often it occurs in different populations</li><li>An explanation of how the condition runs in a famil</li><li>A description of the difference between being a carrier and having the condition</li><li>A description of the predicted course of the condition</li><li>Details of any complications of the condition</li></ul>",
+  :description => "- The problems it can cause\r\n- Who it affects\r\n- The symptoms\r\n- How common it is\r\n- How often it occurs in different populations\r\n- An explanation of how the condition runs in a famil\r\n- A description of the difference between being a carrier and having the condition\r\n- A description of the predicted course of the condition\r\n- Details of any complications of the condition",
   :status => published, :visibility => public_vis, :order => 2, :document => emerge_doc)
 Section.create(:title => "Treatment and management choices for the condition", :content => "", :status => published, :visibility => public_vis, :order => 3, :document => emerge_doc)
 Section.create(:title => "Risk of developing, carrying or passing on the condition", :content => "", :status => published, :visibility => public_vis, :order => 4, :document => emerge_doc)
