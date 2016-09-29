@@ -84,8 +84,8 @@
     // field that is submitted.
     tinymce.init({
       selector: "textarea.tinymce",
-      toolbar: ["styleselect | bold italic underline link | undo redo"],
-      plugins: "link,table",
+      toolbar: ["styleselect | bold italic underline link | bullist numlist | undo redo"],
+      plugins: "link,table,lists",
       menubar: "edit format table",
       setup: function (editor) {
         editor.on('change', function () {

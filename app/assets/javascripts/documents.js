@@ -20,15 +20,17 @@ $(function () {
 
   $('a.edit-link').on('click', function(e){
     e.preventDefault();
-    var $parent = $(this).closest('div'); 
+    var $parent = $(this).closest('.cnt_text'); 
     $parent.find('.editForm').show();
+    $parent.find('.section_display').hide();
     $(this).hide();
   });
   
   $('a.cancel').on('click', function(e){
     e.preventDefault();
-    var $parent = $(this).closest('.cnt_text'); 
+    var $parent = $(this).closest('.cnt_text');
     $parent.find('.editForm').hide();
+    $parent.find('.section_display').show();
     $parent.find('a.edit-link').show();
   });
 });

@@ -43,10 +43,10 @@ class SectionsController < ApplicationController
   def update
     respond_to do |format|
       if @section.update(section_params)
-        format.html { redirect_to @section, notice: 'Section was successfully updated.' }
+        format.html { redirect_to edit_document_path(@section.document), notice: 'Section was successfully updated.' }
         format.json { render :show, status: :ok, location: @section }
       else
-        format.html { render :edit }
+        format.html { redirect_to edit_document_path(@section.document), notice: 'Failed to update section.' }
         format.json { render json: @section.errors, status: :unprocessable_entity }
       end
     end
