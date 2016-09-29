@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy, :template_sections, :add_sections_from_templates, :import_sections, :preview, :set_context]
-  before_filter :check_for_cancel, :only => [:create, :update, :create_import]
+  before_filter :check_for_cancel, :only => [:create, :update, :clone]
   before_filter :clean_view_param, :only => [:template_sections]
 
   # GET /documents
@@ -53,22 +53,17 @@ class DocumentsController < ApplicationController
     end
   end
 
-  # GET /documents/import
-  def import
+  # GET /documents/select_clone
+  def select_clone
     @document = Document.new
     @documents = Document.not_templates
   end
 
-  # POST /documents/create_import
-  def create_import
-    template_id = params[:document][:template_id]
-    if template_id
-      template = Document.find_by_id(template_id)
-      @document = template.dup
-      @document.status_id = Status::InProgress
-      @document.is_template = false   # Even if we're importing from a template, we're creating a new document, not a template
-      @document.template_id = (template.template_id.blank? ? template.id : template.template_id)
-      success = @document.save && duplicate_sections_from_template(@document, template)
+  # POST /documents/clone
+  def clone
+    clone_source_id = params[:document][:clone_source_id]
+    if clone_source_id
+      success = clone_document(clone_source_id)
     else
       @document = Document.new
       @document.status_id = Status::InProgress
@@ -122,7 +117,9 @@ class DocumentsController < ApplicationController
     success = @document.save
     if success and !@document.template_id.nil?
       template = Document.find_by_id(@document.template_id)
-      success = duplicate_sections_from_template(@document, template)
+      success = duplicate_sections_from_document(@document, template) &&
+        duplicate_contexts_from_document(@document, template) &&
+        duplicate_document_files_from_document(@document, template)
     end
 
     respond_to do |format|
@@ -192,7 +189,23 @@ class DocumentsController < ApplicationController
       end
     end
 
-    def duplicate_sections_from_template document, template
+    # Cloning may be a true clone of an existing document, or it may be a clone of a template.  When
+    # a clone action is taken for a template, we create a new instance of the document from that
+    # template but do not set the clone source.
+    def clone_document clone_source_id
+      clone_doc = Document.find_by_id(clone_source_id)
+      @document = clone_doc.dup
+      @document.status_id = Status::InProgress
+      @document.is_template = false   # Even if we're cloning from a template, we're creating a new document, not a template
+      @document.template_id = (clone_doc.is_template? ? clone_doc.id : clone_doc.template_id)
+      @document.clone_source = (clone_doc.is_template ? nil : clone_doc)
+      success = @document.save &&
+        duplicate_sections_from_document(@document, clone_doc) &&
+        duplicate_document_files_from_document(@document, clone_doc) &&
+        duplicate_contexts_from_document(@document, clone_doc)
+    end
+
+    def duplicate_sections_from_document document, template
       success = true
       is_true_template = template.template_id.blank?
       template.sections.each do |section|
@@ -202,6 +215,26 @@ class DocumentsController < ApplicationController
         success = success and new_section.save
       end
 
+      success
+    end
+
+    def duplicate_document_files_from_document document, template
+      success = true
+      template.document_files.each do |file|
+        new_file = file.dup
+        new_file.document = document
+        success = success and new_file.save
+      end
+      success
+    end
+
+    def duplicate_contexts_from_document document, template
+      success = true
+      template.contexts.each do |context|
+        new_context = context.dup
+        new_context.item = document
+        success = success and new_context.save
+      end
       success
     end
 

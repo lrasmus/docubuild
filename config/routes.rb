@@ -18,8 +18,8 @@ Rails.application.routes.draw do
       post 'set_context'
     end
     collection do
-      get 'import'
-      post 'create_import'
+      get 'select_clone'
+      post 'clone'
     end
   end
 

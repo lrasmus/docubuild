@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160922215640) do
+ActiveRecord::Schema.define(version: 20160929023411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,20 +58,22 @@ ActiveRecord::Schema.define(version: 20160922215640) do
     t.string   "title"
     t.text     "description"
     t.string   "institution"
-    t.boolean  "is_template",   default: false
-    t.integer  "status_id",                     null: false
-    t.integer  "visibility_id",                 null: false
+    t.boolean  "is_template",     default: false
+    t.integer  "status_id",                       null: false
+    t.integer  "visibility_id",                   null: false
     t.integer  "created_by"
     t.integer  "updated_by"
     t.integer  "deleted_by"
     t.integer  "folder_id"
     t.integer  "template_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.datetime "deleted_at"
     t.json     "style"
+    t.integer  "clone_source_id"
   end
 
+  add_index "documents", ["clone_source_id"], name: "index_documents_on_clone_source_id", using: :btree
   add_index "documents", ["created_by"], name: "index_documents_on_created_by", using: :btree
   add_index "documents", ["deleted_at"], name: "index_documents_on_deleted_at", using: :btree
   add_index "documents", ["deleted_by"], name: "index_documents_on_deleted_by", using: :btree

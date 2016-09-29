@@ -9,6 +9,7 @@ class Document < ActiveRecord::Base
   belongs_to :deleted_by
   belongs_to :folder
   belongs_to :template, :class_name => "Document", :foreign_key => "template_id"
+  belongs_to :clone_source, :class_name => "Document", :foreign_key => "clone_source_id"
   has_many :sections
   has_many :document_files
   has_many :contexts, as: :item
