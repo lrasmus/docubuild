@@ -1,5 +1,7 @@
 class SectionsController < ApplicationController
-  before_action :set_section, only: [:show, :edit, :update, :destroy]
+  include ContextsHelper
+  
+  before_action :set_section, only: [:show, :edit, :update, :destroy, :set_context]
 
   # GET /sections/1
   # GET /sections/1.json
@@ -60,6 +62,12 @@ class SectionsController < ApplicationController
       format.html { redirect_to sections_url, notice: 'Section was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # POST /sections/1/set_context
+  def set_context
+    set_contexts_for_item @section
+    render json: {result: 'OK'}, status: :ok
   end
 
   private

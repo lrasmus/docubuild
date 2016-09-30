@@ -64,7 +64,7 @@
     .accordion.content_topics.look_feel_tab
       = render partial: "look_and_feel", locals: {document: @document}
     .accordion.content_topics.infobutton_context
-      = render partial: "infobutton_context", locals: {document: @document}
+      = render partial: "infobutton_context", locals: {item: @document}
     .accordion.content_topics.preview_document
       .loading
         %span.spinner
@@ -84,6 +84,7 @@
     // field that is submitted.
     tinymce.init({
       selector: "textarea.tinymce",
+      height: 400,
       toolbar: ["styleselect | bold italic underline link | bullist numlist | undo redo"],
       plugins: "link,table,lists",
       menubar: "edit format table",
@@ -97,6 +98,7 @@
     $(".section_description").tooltip();
 
     $('#tabcordion').tabcordion();
+    $('.section_tabs').tabcordion();
 
     $("#look_feel_tab, #document_sections, #infobutton_context, #preview_document, #deploy_document").on("click", function(event) {
       event.stopPropagation();

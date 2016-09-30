@@ -47,3 +47,33 @@ function getInfobuttonContext(formElement) {
 
   return {context: itemContexts};
 }
+
+$(function() {
+  $(".add_context_link").on("click", function(e) {
+    e.preventDefault();
+    var button = $(this);
+    $.get(button.attr('href'), function(data) {
+      $(data).insertBefore(button);
+    });
+  });
+
+  $(".save_context_link").on("click", function(e) {
+    e.preventDefault();
+    var form = $(this).closest(".context_form");
+    var context = getInfobuttonContext(form);
+    $.post($(this).attr('href'), context, function(data) {
+      debugger;
+    });
+  });
+
+  $("body").on("click", ".addTerm", function(e) {
+    e.preventDefault();
+    var template = $(this).closest(".mainSearchCriteria").find(".termTemplate").clone().removeClass("termTemplate").addClass("term");
+    template.insertBefore($(this).closest(".mainSearchCriteria").find("div.actions"));
+  });
+
+  $("body").on("click", ".removeTerm", function(e) {
+    e.preventDefault();
+    $(this).closest(".term, .contextItemContainer").remove();
+  });
+});

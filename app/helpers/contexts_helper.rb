@@ -162,4 +162,23 @@ module ContextsHelper
   def context_value_checked value, selected_values
     selected_values.include?(value) ? true : false
   end
+
+  def set_contexts_for_item item
+    Context.transaction do
+      item.contexts.destroy_all
+      process_context_items(params[:context], item)
+    end
+  end
+
+  def process_context_items context_params, item
+    return nil if context_params.blank?
+    context_params.each do |context|
+      context[1]["values"].each do |value|
+        item.contexts << Context.new(category: context[1]["category"],
+          code: value[1]["code"],
+          code_system_oid: value[1]["codeSystem"],
+          code_system_name: value[1]["codeSystemName"])
+      end
+    end
+  end
 end

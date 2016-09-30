@@ -22,4 +22,12 @@ module DocumentsHelper
   def font_size_list
     [10, 11, 12, 14, 16]
   end
+
+  def set_item_context_path item
+    if item.is_a?(Document)
+      set_context_document_path(item)
+    elsif item.is_a?(Section)
+      set_context_section_path(item)
+    end
+  end
 end

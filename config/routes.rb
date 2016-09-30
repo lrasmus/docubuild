@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'context/new' => 'contexts#new'
 
-  resources :sections
+  resources :sections do
+    member do
+      post 'set_context'
+    end
+  end
   resources :folders
   resources :visibilities
   resources :statuses
