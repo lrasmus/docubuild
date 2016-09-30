@@ -2,9 +2,8 @@ require 'docubuild/html_exporter'
 
 class DocumentsController < ApplicationController
   include ContextsHelper
-  include 
 
-  before_action :set_document, only: [:show, :edit, :update, :destroy, :template_sections, :add_sections_from_templates, :import_sections, :preview, :set_context, :export]
+  before_action :set_document, only: [:show, :edit, :update, :destroy, :template_sections, :add_sections_from_templates, :import_sections, :preview, :set_context, :export_html, :export_joomla]
   before_filter :check_for_cancel, :only => [:create, :update, :clone]
   before_filter :clean_view_param, :only => [:template_sections]
 
@@ -169,9 +168,19 @@ class DocumentsController < ApplicationController
   end
 
   # GET /documents/1/deploy
-  def export
+  def export_html
     exporter = DocUBuild::HtmlExporter.new
-    temp_file = exporter.export_document(@document, (render_to_string :partial => "export"))
+    temp_file = exporter.export_document(@document, (render_to_string :partial => "export_html"), "html")
+    unless temp_file.nil?
+      temp_file.open
+      send_data temp_file.read, filename: "#{exporter.document_export_name(@document)}.zip"
+      temp_file.unlink
+    end
+  end
+
+  def export_joomla
+    exporter = DocUBuild::HtmlExporter.new
+    temp_file = exporter.export_document(@document, (render_to_string :partial => "export_joomla"), "txt")
     unless temp_file.nil?
       temp_file.open
       send_data temp_file.read, filename: "#{exporter.document_export_name(@document)}.zip"

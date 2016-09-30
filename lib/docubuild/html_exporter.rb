@@ -13,10 +13,11 @@ module DocUBuild
     end
 
     # http://thinkingeek.com/2013/11/15/create-temporary-zip-file-send-response-rails/
-    def export_document document, content
+    def export_document document, content, export_as
+      export_as ||= 'html'
       logo_file_name, logo_file = create_logo_file(document)
       document_file_name_base = document_export_name(document)
-      document_file_name = "#{document_file_name_base}.html"
+      document_file_name = "#{document_file_name_base}.#{export_as}"
       html_file = create_html_file(content, document_file_name)
       filename = document_file_name_base + '.zip'
       temp_file = Tempfile.new(filename)
