@@ -34,7 +34,7 @@ gem 'jquery-ui-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
-#gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 gem "twitter-bootstrap-rails"
 gem 'tinymce-rails'
 
@@ -70,5 +70,16 @@ group :development do
   # Used for local SMTP needs (for Devise)
   gem 'mailcatcher'
 end
+
+gem 'figaro'
+gem 'puma'
+group :development do
+  gem 'capistrano'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rvm'
+end
+
 
 gem 'tzinfo-data'
