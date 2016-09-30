@@ -1,12 +1,22 @@
 :css
-  .dub-document-content {
+  .dub-section-content {
     font-family: "#{@document.style['font_name']}";
     color: #{@document.style['font_color']};
-  }
-
-  .dub-section-content {
     font-size: #{@document.style['font_size']}pt;
   }
+
+  .dub-document-title {
+    font-family: "#{@document.style['document_font_name']}";
+    color: #{@document.style['document_font_color']};
+    font-size: #{@document.style['document_font_size']}pt;
+  }
+
+  .dub-section-title {
+    font-family: "#{@document.style['section_font_name']}";
+    color: #{@document.style['section_font_color']};
+    font-size: #{@document.style['section_font_size']}pt;
+  }
+
 
 .dub-document-content
   =image_tag(document_file_path(@document.logo_file)) if @document.logo_file.persisted?

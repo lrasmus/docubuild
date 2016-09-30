@@ -20,7 +20,7 @@ module DocumentsHelper
   end
 
   def font_size_list
-    [10, 11, 12, 14, 16]
+    [10, 11, 12, 14, 16, 18, 20, 22]
   end
 
   def set_item_context_path item

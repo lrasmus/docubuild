@@ -198,7 +198,7 @@ a.tital_chk {
 
 .font_details {
   display: table;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   .font_name_select, .font_size_select {
     display: table-cell;
   }
@@ -208,13 +208,13 @@ a.tital_chk {
   display: block;
   padding: 15px;
   border: solid 1px #444;
-  margin: auto auto 20px auto;
+  margin: 20px auto 20px auto;
   width: 75%;
   background: #fff;
 }
 
 .font_color_select {
-  display: table-cell;
+  float: right;
 }
 
 
@@ -272,7 +272,10 @@ a.tital_chk {
     label {
       font-weight: normal;
     }
-  }  
+  }
+  ul.contextDetails {
+    list-style-type: none;
+  }
 }
 
 .termTemplate {
