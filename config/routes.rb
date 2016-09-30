@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get 'import_sections'
       get 'preview'
       post 'set_context'
+      get 'deploy'
     end
     collection do
       get 'select_clone'
