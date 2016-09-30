@@ -3,7 +3,12 @@ function _getContextListItems(contextItem) {
   var codeSystemOid = contextItem.attr('data-code-system-oid');
   var codeSystemName = contextItem.attr('data-code-system-name');
   contextItem.find("input:checkbox:checked").each(function() {
-    values.push( {code: $(this).val(), codeSystem: codeSystemOid, codeSystemName: codeSystemName } );
+    values.push({
+      code: $(this).val(),
+      codeSystem: codeSystemOid,
+      codeSystemName: codeSystemName,
+      term: $(this).closest("label").text().trim()
+    });
   });
   return (values.length == 0) ? null : values;
 }
@@ -15,6 +20,7 @@ function _getMainSearchCriteriaItems(contextItem) {
     item.code = $(this).find(".termCodeValue").val();
     item.codeSystem = $(this).find(".termCodeSystem option:selected").val();
     item.codeSystemName = $(this).find(".termCodeSystem option:selected").text();
+    item.term = $(this).find(".termCodeText").val();
     if (item.codeSystem && item.code) {
       values.push(item);
     }
@@ -62,7 +68,6 @@ $(function() {
     var form = $(this).closest(".context_form");
     var context = getInfobuttonContext(form);
     $.post($(this).attr('href'), context, function(data) {
-      debugger;
     });
   });
 

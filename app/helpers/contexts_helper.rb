@@ -176,6 +176,7 @@ module ContextsHelper
       context[1]["values"].each do |value|
         item.contexts << Context.new(category: context[1]["category"],
           code: value[1]["code"],
+          term: value[1]["term"],
           code_system_oid: value[1]["codeSystem"],
           code_system_name: value[1]["codeSystemName"])
       end
