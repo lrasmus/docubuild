@@ -71,6 +71,7 @@
           %i.fa.fa-spinner.fa-spin{"aria-hidden" => true}
       .content
     .accordion.content_topics.deploy_document
+      = render partial: "deploy", locals: {document: @document}
 
 
 %div#dialog{title: "DocUBuild"}

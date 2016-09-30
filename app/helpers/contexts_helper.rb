@@ -181,4 +181,21 @@ module ContextsHelper
       end
     end
   end
+
+  def render_joomla_context_list contexts
+    return "" if contexts.blank?
+    contexts.map{|c| "#{c.code}|#{c.code_system_oid}|#{c.term}" }.join('~')
+  end
+
+  def joomla_document_context document
+    "{ib-article #{render_joomla_context_list(document.contexts)}}{/ib-article}" unless document.contexts.blank?
+  end
+
+  def joomla_section_context_start section
+    "{ib-section #{render_joomla_context_list(section.contexts)}}" unless section.contexts.blank?
+  end
+
+  def joomla_section_context_end section
+    "{/ib-section}" unless section.contexts.blank?
+  end
 end

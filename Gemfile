@@ -38,6 +38,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "twitter-bootstrap-rails"
 gem 'tinymce-rails'
 
+gem 'rubyzip',  "~> 1.1", require: 'zip'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
