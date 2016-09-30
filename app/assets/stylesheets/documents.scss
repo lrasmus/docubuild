@@ -319,3 +319,24 @@ div.actions {
 .tooltip.in {
   opacity: 1;  
 }
+
+.export_type {
+  padding: 0px 20px;
+  .export_title {
+    font-size: 20px;
+    color: #323f45;
+    line-height: 20px;
+    padding-bottom: 10px;
+  }
+  .export_description {
+    font-size: 14px;
+    color: #777777;
+    div {
+      padding-bottom: 10px;
+      padding-left: 10px;
+    }
+  }
+  .edit_btn {
+    float: right;
+  }
+}

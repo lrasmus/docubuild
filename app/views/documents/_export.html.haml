@@ -1,0 +1,19 @@
+- exporter = DocUBuild::HtmlExporter.new
+:css
+  .dub-document-content {
+    font-family: "#{@document.style['font_name']}";
+    color: #{@document.style['font_color']};
+  }
+
+  .dub-section-content {
+    font-size: #{@document.style['font_size']}pt;
+  }
+
+.dub-document-content
+  - if @document.logo_file.persisted?
+    %img{src: "images/#{exporter.logo_file_export_name(@document.logo_file)}"}
+  %h1.dub-document-title=@document.title
+  - @document.sections.each do |section|
+    .dub-section
+      %h2.dub-section-title=section.title
+      .dub-section-content=section.content.html_safe

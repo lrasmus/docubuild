@@ -1,0 +1,15 @@
+.accordion
+  .ct_tital
+    Deployment Options
+  .box_panel
+    .export_type
+      .export_title
+        Export as standalone HTML
+        %a.edit_btn{href: export_document_path(document)}
+          Export
+      .export_description
+        %div
+          This will take the document content and render it into a single HTML file, and will include a copy of the
+          header (if defined) as an image file.  All files will be delivered as a zip file.
+        %div
+          The zip file contents may be served from any website or intranet file share.
