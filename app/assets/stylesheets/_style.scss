@@ -67,6 +67,7 @@ a{outline:none !important;}
 .header_nav{width:1000px; display:table; padding:50px 0 0;}
 .logo{width:226px; float:left; margin-top:-10px;}
 .menu_item{width:725px; float:right; text-align:right;}
+.menu_item ul, .partner_list, .footer_link ul, .social_media ul, .hiw_wrap ul { list-style-type: none; margin: 0; padding: 0; }
 .menu_item ul li{float:left; padding-right:50px;}
 .menu_item ul li:last-child{padding-right:0px;}
 .menu_item ul li a{ font-family:'Gotham-Medium'; font-size:14.7px; color:#445259; text-transform:uppercase; letter-spacing:0.5px;}
@@ -94,7 +95,14 @@ a{outline:none !important;}
 .hiw_bg{background: image-url("hiw-bg.jpg") no-repeat top center; background-size: cover; height: calc(100% - 1px);}
 .title_holder{width:100%; text-align:center;}
 .title_holder .heading02{padding-bottom:15px;}
+.title_holder, .who_we_are {
+  p {
+    font-size: 16px;
+  }
+}
 .hiw_wrap{width:100%; margin:0 auto;}
+
+.social_media ul li a { padding: 0; }
 
 .get_bg{background:#008acb; width:100%;}
 .get_started{color:#fff; text-align:center;}
