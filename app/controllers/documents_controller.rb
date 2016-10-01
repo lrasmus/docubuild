@@ -262,6 +262,8 @@ class DocumentsController < ApplicationController
     end
 
     def default_style
-      {"font_name" => "Arial", "font_size" => "11", "font_color" => "#000000"}
+      {"font_name" => "Arial", "font_size" => "11", "font_color" => "#000000",
+        "section_font_name" => "Arial", "section_font_size" => "18", "section_font_color" => "#000000",
+        "document_font_name" => "Arial", "document_font_size" => "22", "document_font_color" => "#000000"}
     end
 end

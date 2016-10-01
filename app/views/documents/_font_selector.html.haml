@@ -1,6 +1,6 @@
 = form.fields_for :style do |style_form|
   .document_font_details.font_details
-    .font_type Document
+    .font_type Document Title
     .font_name_select
       = style_form.select(:document_font_name, options_for_select(font_list(), document.style["document_font_name"]))
     .font_size_select
@@ -8,7 +8,7 @@
     .font_color_select
       = style_form.color_field :document_font_color, :value => document.style["document_font_color"]
   .section_font_details.font_details
-    .font_type Section
+    .font_type Section Title
     .font_name_select
       = style_form.select(:section_font_name, options_for_select(font_list(), document.style["section_font_name"]))
     .font_size_select
@@ -38,9 +38,9 @@
     $(".font_preview h2").css("font-family", $(".section_font_details .font_name_select select option:selected").val());
     $(".font_preview h2").css("font-size", $(".section_font_details .font_size_select select option:selected").val() + "pt");
     $(".font_preview h2").css("color", $(".section_font_details .font_color_select input").val());
-    $(".font_preview.text").css("font-family", $(".text_font_details .font_name_select select option:selected").val());
-    $(".font_preview.text").css("font-size", $(".text_font_details .font_size_select select option:selected").val() + "pt");
-    $(".font_preview.text").css("color", $(".text_font_details .font_color_select input").val());
+    $(".font_preview .text").css("font-family", $(".text_font_details .font_name_select select option:selected").val());
+    $(".font_preview .text").css("font-size", $(".text_font_details .font_size_select select option:selected").val() + "pt");
+    $(".font_preview .text").css("color", $(".text_font_details .font_color_select input").val());
   }
 
   $(function() {
