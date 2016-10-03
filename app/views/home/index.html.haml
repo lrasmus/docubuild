@@ -34,22 +34,26 @@
       .b_right_col
         =image_tag("mac-dashboard.png")
       .b_left_col
-        %h1.heading01 Doc-U-Build
-        %p.sub_tital01 Doc-U-Build for librarians to create and share documents. Documents built using this Web App can be accessed electronically from Electronic Medical Record systems
-        %a.red_btn{:href => "#"} Learn More
+        %h1.heading01 DocUBuild
+        %p.sub_tital01 DocUBuild is a web application for creating and sharing documents that can be accessed electronically from Electronic Health Record (EHR) systems.
+        %a.red_btn{:href => "#about"} Learn More
 %section.section_wrapper.space_sdjust{:name => "about"}
   .abt_col_lft
     =image_tag("doc-graphic.jpg")
   .abt_col_rgt
-    %h2.heading02 About Doc-U-Build
-    %p.sub_tital02 The eMERGE Network is exploring use of infobuttons[1-3] as a decision support tool to provide contextspecific links within the electronic health record (EHR) to relevant genomic medicine content
-    %p.sub_tital02 Among organizations implementing the HL7 Infobutton standard, it was a common requirement for knowledge publishers to fine tune their products in order to support clinical decision-making more effectively.
-    %a.blue_btn{:href => "#"} Learn More
+    %h2.heading02 About DocUBuild
+    %p.sub_tital02
+      The
+      %a{:href => "https://emerge.mc.vanderbilt.edu/"}Electronic Medical Records and Genomics (eMERGE) Network
+      is exploring the use of
+      %a{:href => "http://www.openinfobutton.org/hl7-infobutton-standard"}infobuttons
+      as a decision support tool to provide context-specific links within EHR systems to relevant genomic medicine content. 
+    %p.sub_tital02 DocUBuild provides infrastructure to support sharing genomic medicine content in a way that is compliant with the HL7 infobutton standard [add link]. It can be used create sharable genomic medicine documents that can be exported for use in your local EHR environment.  
+    %a.blue_btn{:href => "#how-it-works"} Learn More
 .hiw_bg
-  %section.section_wrapper
+  %section.section_wrapper{:name =>"how-it-works"}
     .title_holder
       %h2.heading02 How It Works
-      %p There are many variations of passages of Lorem Ipsum available, but the majority
     .hiw_wrap
       %ul
         %li.process01.p01
@@ -67,19 +71,19 @@
 .get_bg
   %section.section_wrapper
     .get_started
-      %h2.heading02 Are You Ready To Get Started
+      %h2.heading02 Are You Ready To Get Started?
       %p.sub_tital03 Create and share your documents
-      %a.red_btn{:href => "#"} Learn More
+      =link_to "Get Started Now", documents_path, :class=>"red_btn"
 .abt_bg
   %section.section_wrapper{:name => "who-we-are"}
     .who_we_are
       %h2.heading02 Who We Are
-      %p There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
-      %a.blue_btn{:href => "#"} Learn More
+      %p The eMERGE network is a national consortium funded by the National Human Genome Research Institute (NHGRI) to develop methods and best practices for using the electronic health record (EHR) for genomic medicine and research.
+      %a.blue_btn{:href => "https://emerge.mc.vanderbilt.edu/"} Learn More
 %section.section_wrapper{:name => "partner"}
   .title_holder
     %h2.heading02 Partners &amp; Collaborators
-    %p There are many variations of passages of Lorem Ipsum available, but the majority
+    %p We are happy to be working with the following projects in the development and use of DocUBuild
   %ul.partner_list
     %li
       %a{:href => "https://emerge.mc.vanderbilt.edu/", :target => "_blank"}
@@ -100,13 +104,13 @@
         %li
           %a{:href => "#"} Home
         %li
-          %a{:href => "#"} About
+          %a{:href => "#about"} About
         %li
-          %a{:href => "#"} Who we are
+          %a{:href => "#who-we-are"} Who we are
         %li
-          %a{:href => "#"} Our Partners
+          %a{:href => "#partner"} Our Partners
         %li
-          %a{:href => "#"} Get Started Now
+          =link_to "Get Started Now", documents_path
         %li
           %a{:href => "#"} Contact Us
     .social_media
@@ -123,7 +127,7 @@
       .foot_logo
         =image_tag "footer-logo.png"
       .copy_text
-        Copyright © 2016 Docubuild INC. All rights reserved.
+        Copyright © 2016 Johns Hopkins University and Northwestern University
         %a{:href => "#"} Terms &amp; conditions
         |
         %a{:href => "#"} Privacy policy
