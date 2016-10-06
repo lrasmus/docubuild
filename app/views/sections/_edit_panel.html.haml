@@ -8,7 +8,7 @@
             %i.fa.fa-question>
     .cnt_text
       .section_display
-        =section.content.html_safe
+        =section.content.html_safe unless section.content.blank?
       .editForm
         .section_tabs.tabcordion
           %h3.tabcord-title{"data-hname" => "tab1"} Content
