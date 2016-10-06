@@ -218,6 +218,7 @@ class DocumentsController < ApplicationController
     def clone_document clone_source_id
       clone_doc = Document.find_by_id(clone_source_id)
       @document = clone_doc.dup
+      @document.title = "Copy of " + (@document.title.nil? ? "" : @document.title)
       @document.status_id = Status::InProgress
       @document.is_template = false   # Even if we're cloning from a template, we're creating a new document, not a template
       @document.template_id = (clone_doc.is_template? ? clone_doc.id : clone_doc.template_id)
