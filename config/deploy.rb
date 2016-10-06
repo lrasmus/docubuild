@@ -93,9 +93,9 @@ NameVirtualHost *:443
   ServerAlias #{ fetch(:site_name_alias) }.fsm.northwestern.edu
 
   SSLEngine On
-  SSLCertificateFile /etc/pki/tls/certs/#{ fetch(:site_name_alias) }_fsm_northwestern_edu_cert.cer
-  SSLCertificateChainFile /etc/pki/tls/certs/#{ fetch(:site_name_alias) }_fsm_northwestern_edu_interm.cer
-  SSLCertificateKeyFile /etc/pki/tls/private/#{ fetch(:application) }_#{ fetch(:stage) }_fsm_northwestern_edu.key
+  SSLCertificateFile /etc/pki/tls/certs/#{ fetch(:ssl_cert_file_base) }_fsm_northwestern_edu_cert.cer
+  SSLCertificateChainFile /etc/pki/tls/certs/#{ fetch(:ssl_cert_chain_file_base) }_fsm_northwestern_edu_interm.cer
+  SSLCertificateKeyFile /etc/pki/tls/private/#{ fetch(:ssl_cert_key_file_base) }_fsm_northwestern_edu.key
 
   TraceEnable off
 
