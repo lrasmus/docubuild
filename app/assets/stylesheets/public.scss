@@ -1,0 +1,54 @@
+@font-face {
+  font-family:'Gotham-Book';
+  src: asset-url('fonts/Gotham-Book_gdi.eot');
+  src: asset-url('fonts/Gotham-Book_gdi.eot?#iefix') format('embedded-opentype'),
+    asset-url('fonts/Gotham-Book_gdi.woff') format('woff'),
+    asset-url('fonts/Gotham-Book_gdi.ttf') format('truetype'),
+    asset-url('fonts/Gotham-Book_gdi.svg#Gotham-Book') format('svg');
+  font-weight: 325;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-2212;
+}
+
+body.public_document {
+  .dub-document-content, .public_index {
+    margin: 20px;
+  }
+  .public_header {
+    font-family: 'Gotham-Book';
+    .inside_logo {
+      font-size: 22pt;
+    }
+  }
+  .public_document_nav {
+    font-size: 10pt;
+    margin-bottom: 20px;
+    margin-top: 10px;  
+  }
+
+  .header_bg{width:100%; background:asset-url("librarary-bg.jpg") no-repeat top center; background-size: cover; height: calc(100% - 1px);}
+  .inside_header_bg{width:100%; background:image-url("banner-bg.jpg") no-repeat top center; background-size: cover; height: calc(100% - 1px);}
+  .inside_head_wrapper{padding: 10px 30px;}
+  .inside_header{width:1000px; display:table; position:relative;}
+  .inside_logo{width:400px; float:left;}
+  .inside_logo img{vertical-align:top;}
+
+
+  .public_index {
+    font-family: 'Gotham-Book';
+  }
+  .public_footer {
+    .public_footer_text, .public_footer_text a {
+      font-family: 'Gotham-Book';
+      text-align: center;
+      color: #FFFFFF;
+      font-size: 8pt;
+      padding: 7px;
+    }
+    width: 100%;
+    background: #171d20;
+    padding: 0px;
+    margin-top: 50px;
+  }
+}

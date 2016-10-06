@@ -4,6 +4,18 @@
   .box_panel
     .export_type
       .export_title
+        =image_tag "docubuild_logo.png"
+        DocUBuild Hosted 
+        %a.edit_btn{href: public_document_path(document), target: "_new"}
+          View
+      .export_description
+        %div
+          You may use this link to make your content accessible to a wider audience.  Please note that only published documents will be seen by everyone.
+        %div
+          = link_to public_document_url(document), public_document_path(document), target: "_new"
+  .box_panel
+    .export_type
+      .export_title
         =image_tag "html_logo.png"
         Export as standalone HTML
         %a.edit_btn{href: export_html_document_path(document)}

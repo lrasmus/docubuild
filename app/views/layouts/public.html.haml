@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title DocUBuild
+    = stylesheet_link_tag    'public', media: 'all', 'data-turbolinks-track' => false
+    = csrf_meta_tags
+  %body.public_document
+    = yield
+    .public_footer
+      .public_footer_text
+        Created with
+        = link_to "DocUBuild", root_path
