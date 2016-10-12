@@ -8,5 +8,6 @@
     = joomla_section_context_start(section)
     .dub-section
       %h2.dub-section-title=section.title
-      .dub-section-content=section.content.html_safe
+      .dub-section-content
+        =section.content.html_safe unless section.content.blank?
     = joomla_section_context_end(section)

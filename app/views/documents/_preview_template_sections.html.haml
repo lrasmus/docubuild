@@ -11,7 +11,7 @@
             %h4 Preview
             .prv_border_box
               .section_content
-                =section.content.html_safe
+                =section.content.html_safe unless section.content.blank?
           .prv_ci_btn
             %a{:href => "#", :class => "import_cancel"} Cancel
             %a{:href => "#", :class => "import", :data => {:section_id => section.id, :section_action => "replace"}} Import and Replace

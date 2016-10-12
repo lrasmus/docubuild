@@ -16,4 +16,5 @@
   - @document.sections.each do |section|
     .dub-section
       %h2.dub-section-title=section.title
-      .dub-section-content=section.content.html_safe
+      .dub-section-content
+        =section.content.html_safe unless section.content.blank?
