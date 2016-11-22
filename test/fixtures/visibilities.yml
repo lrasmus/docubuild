@@ -1,7 +1,5 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+public:
+  name: Public
 
-one:
-  name: MyString
-
-two:
-  name: MyString
+private:
+  name: Private

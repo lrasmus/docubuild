@@ -61,9 +61,9 @@ ActiveRecord::Schema.define(version: 20160929023411) do
     t.boolean  "is_template",     default: false
     t.integer  "status_id",                       null: false
     t.integer  "visibility_id",                   null: false
-    t.integer  "created_by"
-    t.integer  "updated_by"
-    t.integer  "deleted_by"
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
+    t.integer  "deleted_by_id"
     t.integer  "folder_id"
     t.integer  "template_id"
     t.datetime "created_at",                      null: false
@@ -74,14 +74,14 @@ ActiveRecord::Schema.define(version: 20160929023411) do
   end
 
   add_index "documents", ["clone_source_id"], name: "index_documents_on_clone_source_id", using: :btree
-  add_index "documents", ["created_by"], name: "index_documents_on_created_by", using: :btree
+  add_index "documents", ["created_by_id"], name: "index_documents_on_created_by", using: :btree
   add_index "documents", ["deleted_at"], name: "index_documents_on_deleted_at", using: :btree
-  add_index "documents", ["deleted_by"], name: "index_documents_on_deleted_by", using: :btree
+  add_index "documents", ["deleted_by_id"], name: "index_documents_on_deleted_by", using: :btree
   add_index "documents", ["folder_id"], name: "index_documents_on_folder_id", using: :btree
   add_index "documents", ["is_template"], name: "index_documents_on_is_template", using: :btree
   add_index "documents", ["status_id"], name: "index_documents_on_status_id", using: :btree
   add_index "documents", ["template_id"], name: "index_documents_on_template_id", using: :btree
-  add_index "documents", ["updated_by"], name: "index_documents_on_updated_by", using: :btree
+  add_index "documents", ["updated_by_id"], name: "index_documents_on_updated_by", using: :btree
   add_index "documents", ["visibility_id"], name: "index_documents_on_visibility_id", using: :btree
 
   create_table "folders", force: :cascade do |t|
@@ -89,9 +89,9 @@ ActiveRecord::Schema.define(version: 20160929023411) do
     t.text     "description"
     t.integer  "status_id"
     t.integer  "visibility_id"
-    t.integer  "created_by"
-    t.integer  "updated_by"
-    t.integer  "deleted_by"
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
+    t.integer  "deleted_by_id"
     t.integer  "parent"
     t.integer  "owner"
     t.datetime "created_at",    null: false
@@ -109,9 +109,9 @@ ActiveRecord::Schema.define(version: 20160929023411) do
     t.text     "content"
     t.integer  "status_id"
     t.integer  "visibility_id"
-    t.integer  "created_by"
-    t.integer  "updated_by"
-    t.integer  "deleted_by"
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
+    t.integer  "deleted_by_id"
     t.integer  "document_id"
     t.integer  "order"
     t.integer  "template_id"

@@ -3,21 +3,11 @@
 one:
   title: MyString
   content: MyText
-  status_id: 
-  visibility_id: 
-  created_by: 1
-  updated_by: 1
-  deleted_by: 1
-  document_id: 
+  document: in_progress
   order: 1
 
 two:
   title: MyString
   content: MyText
-  status_id: 
-  visibility_id: 
-  created_by: 1
-  updated_by: 1
-  deleted_by: 1
-  document_id: 
-  order: 1
+  document: in_progress
+  order: 2

@@ -2,7 +2,9 @@ require 'test_helper'
 
 class DocumentsControllerTest < ActionController::TestCase
   setup do
-    @document = documents(:one)
+    @document = documents(:in_progress)
+    @user = users(:one)
+    sign_in @user
   end
 
   test "should get index" do
@@ -17,6 +19,7 @@ class DocumentsControllerTest < ActionController::TestCase
   end
 
   test "should create document" do
+    puts "*** 1"
     assert_difference('Document.count') do
       post :create, document: { created_by: @document.created_by, deleted_by: @document.deleted_by, description: @document.description, folder_id: @document.folder_id, status_id: @document.status_id, template_id: @document.template_id, title: @document.title, updated_by: @document.updated_by, visibility_id: @document.visibility_id }
     end
