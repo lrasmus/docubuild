@@ -30,4 +30,9 @@ module DocumentsHelper
       set_context_section_path(item)
     end
   end
+
+  def safe_get_style_value document, style_name
+    return nil if document.nil? or document.style.nil?
+    document.style[style_name]
+  end
 end

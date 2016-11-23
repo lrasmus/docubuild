@@ -5,19 +5,11 @@ one:
   description: MyText
   status_id: 
   visibility_id: 
-  created_by: 1
-  updated_by: 1
-  deleted_by: 1
-  parent: 1
-  owner: 1
+  owner: one
 
 two:
   title: MyString
   description: MyText
   status_id: 
   visibility_id: 
-  created_by: 1
-  updated_by: 1
-  deleted_by: 1
-  parent: 1
-  owner: 1
+  owner: one

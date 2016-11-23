@@ -1,7 +1,8 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+in_progress:
+  name: In Progress
 
-one:
-  name: MyString
+published:
+  name: Published
 
-two:
-  name: MyString
+archived:
+  name: Archived

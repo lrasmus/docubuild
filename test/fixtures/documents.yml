@@ -1,23 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  description: MyText
-  status_id: 
-  visibility_id: 
-  created_by: 
-  updated_by: 
-  deleted_by: 
-  folder_id: 
-  template_id: 
-
-two:
-  title: MyString
-  description: MyText
-  status_id: 
-  visibility_id: 
-  created_by: 
-  updated_by: 
-  deleted_by: 
-  folder_id: 
-  template_id: 
+in_progress:
+  title: In Progress Document
+  description: My document that is in progress
+  is_template: false
+  status: in_progress
+  visibility: public

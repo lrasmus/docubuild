@@ -6,9 +6,9 @@ class CreateSections < ActiveRecord::Migration
       t.text :content
       t.references :status, index: true, foreign_key: true
       t.references :visibility, index: true, foreign_key: true
-      t.integer :created_by
-      t.integer :updated_by
-      t.integer :deleted_by
+      t.integer :created_by_id
+      t.integer :updated_by_id
+      t.integer :deleted_by_id
       t.references :document, index: true, foreign_key: true
       t.integer :order
       t.integer :template_id, index: true, foreign_key: true
