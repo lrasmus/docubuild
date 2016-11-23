@@ -2,27 +2,27 @@
   .document_font_details.font_details
     .font_type Document Title
     .font_name_select
-      = style_form.select(:document_font_name, options_for_select(font_list(), document.style["document_font_name"]))
+      = style_form.select(:document_font_name, options_for_select(font_list(), safe_get_style_value(document, "document_font_name")))
     .font_size_select
-      = style_form.select(:document_font_size, options_for_select(font_size_list(), document.style["document_font_size"]))
+      = style_form.select(:document_font_size, options_for_select(font_size_list(), safe_get_style_value(document, "document_font_size")))
     .font_color_select
-      = style_form.color_field :document_font_color, :value => document.style["document_font_color"]
+      = style_form.color_field :document_font_color, :value => safe_get_style_value(document, "document_font_color")
   .section_font_details.font_details
     .font_type Section Title
     .font_name_select
-      = style_form.select(:section_font_name, options_for_select(font_list(), document.style["section_font_name"]))
+      = style_form.select(:section_font_name, options_for_select(font_list(), safe_get_style_value(document, "section_font_name")))
     .font_size_select
-      = style_form.select(:section_font_size, options_for_select(font_size_list(), document.style["section_font_size"]))
+      = style_form.select(:section_font_size, options_for_select(font_size_list(), safe_get_style_value(document, "section_font_size")))
     .font_color_select
-      = style_form.color_field :section_font_color, :value => document.style["section_font_color"]
+      = style_form.color_field :section_font_color, :value => safe_get_style_value(document, "section_font_color")
   .text_font_details.font_details
     .font_type Text
     .font_name_select
-      = style_form.select(:font_name, options_for_select(font_list(), document.style["font_name"]))
+      = style_form.select(:font_name, options_for_select(font_list(), safe_get_style_value(document, "font_name")))
     .font_size_select
-      = style_form.select(:font_size, options_for_select(font_size_list(), document.style["font_size"]))
+      = style_form.select(:font_size, options_for_select(font_size_list(), safe_get_style_value(document, "font_size")))
     .font_color_select
-      = style_form.color_field :font_color, :value => document.style["font_color"]
+      = style_form.color_field :font_color, :value => safe_get_style_value(document, "font_color")
 
 .font_preview
   %h1 Example Document Title

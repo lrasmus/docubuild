@@ -1,21 +1,7 @@
 class SectionsController < ApplicationController
   include ContextsHelper
   
-  before_action :set_section, only: [:show, :edit, :update, :destroy, :set_context]
-
-  # GET /sections/1
-  # GET /sections/1.json
-  def show
-  end
-
-  # GET /sections/new
-  def new
-    @section = Section.new
-  end
-
-  # GET /sections/1/edit
-  def edit
-  end
+  before_action :set_section, only: [:update, :destroy, :set_context]
 
   # POST /sections
   # POST /sections.json

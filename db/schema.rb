@@ -74,9 +74,9 @@ ActiveRecord::Schema.define(version: 20160929023411) do
   end
 
   add_index "documents", ["clone_source_id"], name: "index_documents_on_clone_source_id", using: :btree
-  add_index "documents", ["created_by_id"], name: "index_documents_on_created_by", using: :btree
+  add_index "documents", ["created_by_id"], name: "index_documents_on_created_by_id", using: :btree
   add_index "documents", ["deleted_at"], name: "index_documents_on_deleted_at", using: :btree
-  add_index "documents", ["deleted_by_id"], name: "index_documents_on_deleted_by", using: :btree
+  add_index "documents", ["deleted_by_id"], name: "index_documents_on_deleted_by_id", using: :btree
   add_index "documents", ["folder_id"], name: "index_documents_on_folder_id", using: :btree
   add_index "documents", ["is_template"], name: "index_documents_on_is_template", using: :btree
   add_index "documents", ["status_id"], name: "index_documents_on_status_id", using: :btree

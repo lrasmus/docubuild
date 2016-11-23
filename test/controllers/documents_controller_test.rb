@@ -19,12 +19,11 @@ class DocumentsControllerTest < ActionController::TestCase
   end
 
   test "should create document" do
-    puts "*** 1"
     assert_difference('Document.count') do
-      post :create, document: { created_by: @document.created_by, deleted_by: @document.deleted_by, description: @document.description, folder_id: @document.folder_id, status_id: @document.status_id, template_id: @document.template_id, title: @document.title, updated_by: @document.updated_by, visibility_id: @document.visibility_id }
+      post :create, document: { created_by_id: @document.created_by_id, deleted_by_id: @document.deleted_by_id, description: @document.description, folder_id: @document.folder_id, status_id: @document.status_id, template_id: @document.template_id, title: @document.title, updated_by_id: @document.updated_by_id, visibility_id: @document.visibility_id }
     end
 
-    assert_redirected_to document_path(assigns(:document))
+    assert_redirected_to edit_document_path(assigns(:document))
   end
 
   test "should show document" do
@@ -38,8 +37,8 @@ class DocumentsControllerTest < ActionController::TestCase
   end
 
   test "should update document" do
-    patch :update, id: @document, document: { created_by: @document.created_by, deleted_by: @document.deleted_by, description: @document.description, folder_id: @document.folder_id, status_id: @document.status_id, template_id: @document.template_id, title: @document.title, updated_by: @document.updated_by, visibility_id: @document.visibility_id }
-    assert_redirected_to document_path(assigns(:document))
+    patch :update, id: @document, document: { created_by_id: @document.created_by_id, deleted_by_id: @document.deleted_by_id, description: @document.description, folder_id: @document.folder_id, status_id: @document.status_id, template_id: @document.template_id, title: @document.title, updated_by_id: @document.updated_by_id, visibility_id: @document.visibility_id }
+    assert_redirected_to edit_document_path(assigns(:document))
   end
 
   test "should destroy document" do
