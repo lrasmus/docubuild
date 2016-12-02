@@ -56,8 +56,9 @@
       .ct_tital
         %span Content Topics
         %a#add_section{:href => "#"} Add Section
-      - @document.sections.each do |section|
-        = render partial: "sections/edit_panel", locals: {section: section}
+      .sortable
+        - @document.sections.each do |section|
+          = render partial: "sections/edit_panel", locals: {section: section}
       .box_panel
         .content_edit.actions
           = render :partial => "actions", :locals => {:document => @document}
@@ -80,6 +81,25 @@
 
 :javascript
   $(function(){
+    $( ".sortable" ).sortable({
+      handle: ".fa-sort",
+      placeholder: "ui-state-highlight",
+      update: function( event, ui ) {
+        var panels = ui.item.closest('.sortable').children('.box_panel');
+        var sections = [];
+        for (var index = 0; index < panels.length; index++) {
+          var panel = panels[index];
+          sections.push({id: $(panel).attr('data-section-id'), order: panels.index(panel)})
+        }
+        $.ajax({
+          method: "PUT",
+          url: "#{reorder_sections_document_path(@document)}",
+          data: {sections: sections}
+        });
+      }
+    });
+    $( ".sortable" ).disableSelection();
+  
     // Instead of using the tinymce-rails include, we provide a custom initialization of TinyMCE so we can
     // specify an editor change event handler.  This keeps changes in TinyMCE consistent with the form
     // field that is submitted.

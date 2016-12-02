@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       post 'set_context'
       get 'export_html'
       get 'export_joomla'
+      put 'reorder_sections'
     end
     collection do
       get 'select_clone'

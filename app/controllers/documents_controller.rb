@@ -3,7 +3,7 @@ require 'docubuild/html_exporter'
 class DocumentsController < ApplicationController
   include ContextsHelper
 
-  before_action :set_document, only: [:show, :edit, :update, :destroy, :template_sections, :add_sections_from_templates, :import_sections, :preview, :set_context, :export_html, :export_joomla]
+  before_action :set_document, only: [:show, :edit, :update, :destroy, :template_sections, :add_sections_from_templates, :import_sections, :preview, :set_context, :export_html, :export_joomla, :reorder_sections]
   before_filter :check_for_cancel, :only => [:create, :update, :clone]
   before_filter :clean_view_param, :only => [:template_sections]
 
@@ -186,6 +186,20 @@ class DocumentsController < ApplicationController
       send_data temp_file.read, filename: "#{exporter.document_export_name(@document)}.zip"
       temp_file.unlink
     end
+  end
+
+  # PUT /documents/1/reorder_sections
+  def reorder_sections
+    sections = params[:sections]
+    sections.each do |section_data|
+      section = Section.find(section_data[1]['id'].to_i)
+      order = section_data[1]['order'].to_i
+      unless section.nil? or section.order == order
+        section.order = order
+        section.save
+      end
+    end
+    render json: {result: 'OK'}, status: :ok
   end
 
   private

@@ -1,6 +1,7 @@
-.box_panel
+.box_panel{"data-section-id" => section.id}
   .content_edit
     .cnt_edit_tital
+      %i.fa.fa-sort{"aria-hidden"=>true}
       %label.chk_box_text=section.title
       .section_actions
         - unless section.description.blank?
@@ -29,4 +30,4 @@
 
       %a.edit_btn.edit-link{:href => "#"}
         %i.fa.fa-pencil>
-        Edit
+        Edit}
