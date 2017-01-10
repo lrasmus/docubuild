@@ -2,6 +2,7 @@ require 'docubuild/html_exporter'
 
 class DocumentsController < ApplicationController
   include ContextsHelper
+  include ApplicationHelper
 
   before_action :set_document, only: [:show, :edit, :update, :destroy, :template_sections, :add_sections_from_templates, :import_sections, :preview, :set_context, :export_html, :export_joomla, :reorder_sections]
   before_filter :check_for_cancel, :only => [:create, :update, :clone]
@@ -47,6 +48,7 @@ class DocumentsController < ApplicationController
           new_section = section.dup
           new_section.document = @document
           new_section.template = section
+          update_user_attribution new_section, true, false, false
           new_section.save
         end
       end
@@ -72,6 +74,7 @@ class DocumentsController < ApplicationController
       @document = Document.new
       @document.status_id = Status::InProgress
       @document.visibility_id = 1
+      update_user_attribution @document, true, false, false
       success = @document.save
     end
 
@@ -117,6 +120,7 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(document_params)
     @document.style = default_style if @document.style.nil?
+    update_user_attribution @document, true, false, false
 
     success = @document.save
     if success and !@document.template_id.nil?
@@ -140,6 +144,7 @@ class DocumentsController < ApplicationController
   # PATCH/PUT /documents/1
   # PATCH/PUT /documents/1.json
   def update
+    update_user_attribution @document, false, true, false
     respond_to do |format|
       if @document.update(document_params)
         format.html { redirect_to edit_document_path(@document), notice: 'Document was successfully updated.' }
@@ -154,6 +159,10 @@ class DocumentsController < ApplicationController
   # DELETE /documents/1
   # DELETE /documents/1.json
   def destroy
+    # Save off a record of who performed the deletion before we proceed to destroy the record
+    update_user_attribution @document, false, false, true
+    @document.save
+
     @document.destroy
     respond_to do |format|
       format.html { redirect_to documents_url, notice: 'Document was successfully destroyed.' }
@@ -196,6 +205,7 @@ class DocumentsController < ApplicationController
       order = section_data[1]['order'].to_i
       unless section.nil? or section.order == order
         section.order = order
+        update_user_attribution section, false, true
         section.save
       end
     end
@@ -210,7 +220,7 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:title, :description, :institution, :status_id, :visibility_id, :created_by_id, :updated_by_id, :deleted_by_id, :folder_id, :template_id,
+      params.require(:document).permit(:title, :description, :institution, :status_id, :visibility_id, :folder_id, :template_id,
         style:[:document_font_name, :document_font_size, :document_font_color, :section_font_name, :section_font_size, :section_font_color, :font_name, :font_size, :font_color])
     end
 
@@ -237,6 +247,7 @@ class DocumentsController < ApplicationController
       @document.is_template = false   # Even if we're cloning from a template, we're creating a new document, not a template
       @document.template_id = (clone_doc.is_template? ? clone_doc.id : clone_doc.template_id)
       @document.clone_source = (clone_doc.is_template ? nil : clone_doc)
+      update_user_attribution @document, true, false, false
       success = @document.save &&
         duplicate_sections_from_document(@document, clone_doc) &&
         duplicate_document_files_from_document(@document, clone_doc) &&
@@ -250,6 +261,7 @@ class DocumentsController < ApplicationController
         new_section = section.dup
         new_section.document = document
         new_section.template = (is_true_template ? section : section.template)
+        update_user_attribution new_section, true, false, false
         success = success and new_section.save
       end
 

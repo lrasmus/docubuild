@@ -1,5 +1,6 @@
 class SectionsController < ApplicationController
   include ContextsHelper
+  include ApplicationHelper
   
   before_action :set_section, only: [:update, :destroy, :set_context]
 
@@ -15,6 +16,8 @@ class SectionsController < ApplicationController
       @section.order = document.sections.last.order + 1
     end
 
+    update_user_attribution @section, true
+
     respond_to do |format|
       if @section.save
         format.html { redirect_to @section, notice: 'Section was successfully created.' }
@@ -29,6 +32,7 @@ class SectionsController < ApplicationController
   # PATCH/PUT /sections/1
   # PATCH/PUT /sections/1.json
   def update
+    update_user_attribution @section, false, true
     respond_to do |format|
       if @section.update(section_params)
         format.html { redirect_to edit_document_path(@section.document), notice: 'Section was successfully updated.' }
@@ -43,6 +47,10 @@ class SectionsController < ApplicationController
   # DELETE /sections/1
   # DELETE /sections/1.json
   def destroy
+    # Save off a record of who performed the deletion before we proceed to destroy the record
+    update_user_attribution @section, false, false, true
+    @section.save
+
     @section.destroy
     respond_to do |format|
       format.html { redirect_to sections_url, notice: 'Section was successfully destroyed.' }
@@ -64,6 +72,6 @@ class SectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def section_params
-      params.require(:section).permit(:title, :content, :description, :status_id, :visibility_id, :created_by, :updated_by, :deleted_by, :document_id, :order)
+      params.require(:section).permit(:title, :content, :description, :status_id, :visibility_id, :document_id, :order)
     end
 end
