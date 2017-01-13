@@ -21,6 +21,9 @@ class Document < ActiveRecord::Base
   scope :published, -> { where(status_id: Status::Published) }
   scope :archived, -> { where(status_id: Status::Archived) }
 
+  scope :clonable_by_user, ->(user) { where("created_by_id = ? OR visibility_id = ?", user.id, Visibility::Public) }
+  scope :editable_by_user, ->(user) { where(created_by_id: user.id) }
+
   def has_sections
     sections.count > 0
   end

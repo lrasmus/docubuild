@@ -11,7 +11,7 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.not_templates
+    @documents = Document.not_templates.editable_by_user(current_user)
   end
 
   # GET /documents/1/template_sections[?missing_only=true|false][view=default|preview|select]
@@ -62,7 +62,7 @@ class DocumentsController < ApplicationController
   # GET /documents/select_clone
   def select_clone
     @document = Document.new
-    @documents = Document.not_templates
+    @documents = Document.not_templates.clonable_by_user(current_user)
   end
 
   # POST /documents/clone
@@ -73,7 +73,7 @@ class DocumentsController < ApplicationController
     else
       @document = Document.new
       @document.status_id = Status::InProgress
-      @document.visibility_id = 1
+      @document.visibility_id = Visibility::Private
       update_user_attribution @document, true, false, false
       success = @document.save
     end
