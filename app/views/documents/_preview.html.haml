@@ -19,7 +19,9 @@
 
 
 .dub-document-content
-  =image_tag(document_file_path(@document.logo_file)) if @document.logo_file.persisted?
+  - logo_width = @document.logo_file.dimensions[0]
+  - logo_height = @document.logo_file.dimensions[1]
+  =image_tag(document_file_path(@document.logo_file), :style => "width: #{logo_width}; height: #{logo_height}") if @document.logo_file.persisted?
   %h1.dub-document-title=@document.title
   - @document.sections.each do |section|
     .dub-section

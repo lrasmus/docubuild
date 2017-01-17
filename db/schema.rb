@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160929023411) do
+ActiveRecord::Schema.define(version: 20170116022738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160929023411) do
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.datetime "deleted_at"
+    t.json     "properties"
   end
 
   add_index "document_files", ["deleted_at"], name: "index_document_files_on_deleted_at", using: :btree
