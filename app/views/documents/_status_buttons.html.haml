@@ -1,0 +1,17 @@
+%div.status
+  %label.title Status:
+  = form_for @document, :html => {:id => "document_status_form"} do |f|
+    = f.hidden_field :status_id
+    %div.btn-group
+      - Status.all.each do |status|
+        %button.btn.btn-primary.doc-status{:type => "button", "data-value" => status.id, :class => (@document.status_id == status.id) ? "active" : "" }=status.name
+
+:javascript
+  $(function(){
+    $(".doc-status").on("click", function(event) {
+      event.stopPropagation();
+      event.preventDefault();
+      $("#document_status_id").val($(this).attr('data-value'));
+      $("#document_status_form").submit();
+    });
+  });

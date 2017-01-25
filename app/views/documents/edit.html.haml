@@ -8,30 +8,29 @@
         - @document.errors.full_messages.each do |message|
           %li= message
 
-  = form_for @document, :html => {:id => "document_properties_form"} do |f|
-    .row
-      .col-lg-6
+  .row
+    .col-lg-8
+      = form_for @document, :html => {:id => "document_properties_form"} do |f|
         %h1
           %label.editable=@document.title
           =f.text_field :title, class: "editable editable_name"
         %span.institution
           %label.editable=@document.institution
           =f.text_field :institution, class: "editable editable_name"
-      .col-lg-6
-        %span.status
-          .progres_btn=@document.status.name
         %div.description
           %span.title Description: 
           %label.editable=@document.description
           =f.text_area :description, class: "editable editable_name"
-        %div.template
-          %span.title Template:
-          =@document.template.nil? ? "(No template)" : @document.template.title
-    .row
-      .col-lg-12
         %a.edit_tag.edit.editable{:href => "#"} Edit
         =link_to "Save", "#", id: "save_document", class: "edit_tag edit editable hidden_form_btn"
         %a.edit_tag.edit.editable.hidden_form_btn{:href => "#"} Cancel
+
+    .col-lg-4
+      %div.template
+        %span.title Template:
+        =@document.template.nil? ? "(No template)" : @document.template.title
+      = render partial: "status_buttons"
+      = render partial: "visibility_buttons"
 
 
 %section.section_wrapper
@@ -61,7 +60,9 @@
           = render partial: "sections/edit_panel", locals: {section: section}
       .box_panel
         .content_edit.actions
-          = render :partial => "actions", :locals => {:document => @document}
+          =link_to documents_path, class: "prv_doc pub_doc" do
+            %i.fa.fa-arrow-left{"aria-hidden" => "true"}
+            Back to Document List
     .accordion.content_topics.look_feel_tab
       = render partial: "look_and_feel", locals: {document: @document}
     .accordion.content_topics.infobutton_context
