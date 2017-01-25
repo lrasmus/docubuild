@@ -75,9 +75,10 @@ a.tital_chk {
   hr {
     margin: 5px 0px;
   }
-  .title {
-    font-family: Gotham-Medium;
-  }
+}
+
+.title {
+  font-family: Gotham-Medium;
 }
 
 .status {
@@ -356,4 +357,10 @@ div.actions {
 
 .ui-state-highlight {
   height: 30px;
+}
+
+#ajax-flash {
+  display: none;
+  position: fixed;
+  top:0; left:0;
 }

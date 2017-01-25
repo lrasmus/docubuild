@@ -54,7 +54,7 @@ class SectionsController < ApplicationController
     @section.destroy
     respond_to do |format|
       format.html { redirect_to sections_url, notice: 'Section was successfully destroyed.' }
-      format.json { head :no_content }
+      format.json { render text: "Section removed", status: :ok }
     end
   end
 

@@ -1,6 +1,6 @@
 %div.status
-  %label.title Status:
-  = form_for @document, :html => {:id => "document_status_form"} do |f|
+  %span.title Status:
+  = form_for @document, :remote => true, :html => {:id => "document_status_form"} do |f|
     = f.hidden_field :status_id
     %div.btn-group
       - Status.all.each do |status|

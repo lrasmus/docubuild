@@ -46,14 +46,14 @@ $(function(){
     }
   });
 
-  $(".edit").click(function(){
+  $(document).on("click", ".edit", function(){
     $(".editable").toggle();
     $(".hidden_form_btn").each(function(index, btn) {
       if ($(btn).is(":visible")) { $(btn).css('display', 'inline-block'); }  // inline -> inline-block
     });
   });
 
-  $("a#save_document").on("click", function(event) {
+  $(document).on("click", "a#save_document", function(event) {
     event.stopPropagation();
     event.preventDefault();
     $("input.editable, textarea.editable").each(function(index, obj) {
@@ -90,8 +90,9 @@ $(function(){
           type: "DELETE",
           url: $form.attr('action'),
           dataType: "json",
-          complete: function(){
+          complete: function(data){
             $form.closest(".box_panel").fadeOut(300, function(){ $(this).remove();});
+            if (data && data.responseText) { AjaxFlash.flash("#ajax-flash", data.responseText); }
           }
       });
     }

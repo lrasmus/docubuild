@@ -1,8 +1,8 @@
 %div.visibility
-  = form_for @document, :html => {:id => "document_visibility_form"} do |f|
+  = form_for @document, :remote => true, :html => {:id => "document_visibility_form"} do |f|
     = f.hidden_field :visibility_id
     - if @document.status_id == Status::Published
-      %label Document visibility:
+      %span.title Document visibility:
       %br
       %div.btn-group
         - Visibility.all.each do |vis|

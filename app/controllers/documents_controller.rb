@@ -4,6 +4,7 @@ class DocumentsController < ApplicationController
   include ContextsHelper
   include ApplicationHelper
 
+  before_action :reset_flash
   before_action :set_document, only: [:show, :edit, :update, :destroy, :template_sections, :add_sections_from_templates, :import_sections, :preview, :set_context, :export_html, :export_joomla, :reorder_sections]
   before_filter :check_for_cancel, :only => [:create, :update, :clone]
   before_filter :clean_view_param, :only => [:template_sections]
@@ -147,9 +148,14 @@ class DocumentsController < ApplicationController
     update_user_attribution @document, false, true, false
     respond_to do |format|
       if @document.update(document_params)
-        format.html { redirect_to edit_document_path(@document), notice: 'Document was successfully updated.' }
+        format.js do
+          flash[:notice] = "Document was successfully updated"
+          render layout: false
+        end
+        format.html { redirect_to edit_document_path(@document) }
         format.json { render :show, status: :ok, location: @document }
       else
+        format.js {render layout: false}
         format.html { render :edit }
         format.json { render json: @document.errors, status: :unprocessable_entity }
       end
@@ -173,7 +179,9 @@ class DocumentsController < ApplicationController
   # POST /documents/1/set_context
   def set_context
     set_contexts_for_item @document
-    render json: {result: 'OK'}, status: :ok
+    flash[:notice] = "Document context saved successfully"
+    render "shared/ajax-flash"
+    #render json: {result: 'OK'}, status: :ok
   end
 
   # GET /documents/1/deploy
@@ -292,5 +300,9 @@ class DocumentsController < ApplicationController
       {"font_name" => "Arial", "font_size" => "11", "font_color" => "#000000",
         "section_font_name" => "Arial", "section_font_size" => "18", "section_font_color" => "#000000",
         "document_font_name" => "Arial", "document_font_size" => "22", "document_font_color" => "#000000"}
+    end
+
+    def reset_flash
+      flash[:notice] = nil
     end
 end

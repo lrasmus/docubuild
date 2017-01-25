@@ -7,6 +7,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => false
     = csrf_meta_tags
   %body
+    %div#ajax-flash.notice
     = render :partial => "shared/header"
     = yield
     = render :partial => "shared/footer"
