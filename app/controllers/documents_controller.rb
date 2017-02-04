@@ -122,9 +122,14 @@ class DocumentsController < ApplicationController
     @document.style = default_style if @document.style.nil?
     update_user_attribution @document, true, false, false
 
-    success = @document.save
-    if success and !@document.template_id.nil?
+    template = nil
+    unless @document.template_id.nil?
       template = Document.find_by_id(@document.template_id)
+      @document.template_version = template.versions.last.id
+    end
+
+    success = @document.save
+    if success && !template.nil?
       success = duplicate_sections_from_document(@document, template) &&
         duplicate_contexts_from_document(@document, template) &&
         duplicate_document_files_from_document(@document, template)
@@ -253,7 +258,9 @@ class DocumentsController < ApplicationController
       @document.status_id = Status::InProgress
       @document.is_template = false   # Even if we're cloning from a template, we're creating a new document, not a template
       @document.template_id = (clone_doc.is_template? ? clone_doc.id : clone_doc.template_id)
+      @document.template_version = (clone_doc.is_template? ? clone_doc.versions.last.id : clone_doc.template.versions.last.id)
       @document.clone_source = (clone_doc.is_template ? nil : clone_doc)
+      @document.clone_source_version = (clone_doc.is_template ? nil : clone_doc.versions.last.id)
       update_user_attribution @document, true, false, false
       success = @document.save &&
         duplicate_sections_from_document(@document, clone_doc) &&
@@ -268,6 +275,9 @@ class DocumentsController < ApplicationController
         new_section = section.dup
         new_section.document = document
         new_section.template = (is_true_template ? section : section.template)
+        new_section.template_version = new_section.template.versions.last.id
+        new_section.clone_source = (is_true_template ? nil : section)
+        new_section.clone_source_version = (is_true_template ? nil : section.versions.last.id)
         update_user_attribution new_section, true, false, false
         success = success and new_section.save
       end
