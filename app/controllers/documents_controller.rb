@@ -4,7 +4,10 @@ class DocumentsController < ApplicationController
   include ContextsHelper
   include ApplicationHelper
 
-  before_action :set_document, only: [:show, :edit, :update, :destroy, :template_sections, :add_sections_from_templates, :import_sections, :preview, :set_context, :export_html, :export_joomla, :reorder_sections]
+  before_action :set_document, only: [:show, :edit, :update, :destroy,
+    :template_sections, :add_sections_from_templates, :import_sections,
+    :preview, :set_context, :export_html, :export_joomla, :reorder_sections,
+    :break_template_link, :template_sync]
   before_filter :check_for_cancel, :only => [:create, :update, :clone]
   before_filter :clean_view_param, :only => [:template_sections]
 
@@ -113,6 +116,7 @@ class DocumentsController < ApplicationController
 
   # GET /documents/1/edit
   def edit
+    @changes = @document.changes_from_template
   end
 
   # POST /documents
@@ -185,7 +189,6 @@ class DocumentsController < ApplicationController
     set_contexts_for_item @document
     flash[:notice] = "Document context saved successfully"
     render "shared/ajax-flash"
-    #render json: {result: 'OK'}, status: :ok
   end
 
   # GET /documents/1/deploy
@@ -222,6 +225,33 @@ class DocumentsController < ApplicationController
       end
     end
     render text: "Section order changed", status: :ok
+  end
+
+  # PUT /documents/template_sync
+  # Expects an array of objects containing sync information
+  def template_sync
+    @document.sections.each do |section|
+      if params[:commit] == 'Apply'
+        section.sync_to_template
+      end
+      section.template_version = section.template.versions.last.id
+      section.save
+    end
+    @document.template_version = @document.template.versions.last.id
+    @document.save
+    redirect_to edit_document_path(@document)
+  end
+
+  # PUT /documents/1/break_template_link
+  def break_template_link
+    @document.template = nil
+    @document.template_version = nil
+    if @document.save
+      flash[:notice] = "Document unlinked from its original template"
+    else
+      flash[:notice] = "Failed to unlink the document from its template"
+    end
+    redirect_to edit_document_path(@document)
   end
 
   private

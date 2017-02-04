@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :sections do
     member do
       post 'set_context'
+      patch 'template_sync'
     end
   end
   resources :folders
@@ -23,6 +24,8 @@ Rails.application.routes.draw do
       get 'export_html'
       get 'export_joomla'
       put 'reorder_sections'
+      put 'break_template_link'
+      put 'template_sync'
     end
     collection do
       get 'select_clone'

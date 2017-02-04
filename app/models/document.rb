@@ -46,9 +46,9 @@ class Document < ActiveRecord::Base
 
     updated_sections = []
     template.sections.each do |ts|
-      template_version_id = ts.versions.blank? ? nil : ts.versions.last.id
+      template_version_id = (ts.versions.blank? or ts.versions.count < 2) ? nil : ts.versions.last.id
       updated_sections << self.sections.with_deleted.select do |ds|
-        !(ts.versions.blank?) and !(ds.template_version.nil?) and (ds.template_id == ts.id) and (ds.template_version < template_version_id)
+        !(template_version_id.blank?) and !(ds.template_version.nil?) and (ds.template_id == ts.id) and (ds.template_version < template_version_id)
       end
     end
 

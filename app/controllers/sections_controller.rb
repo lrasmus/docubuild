@@ -2,7 +2,7 @@ class SectionsController < ApplicationController
   include ContextsHelper
   include ApplicationHelper
 
-  before_action :set_section, only: [:update, :destroy, :set_context]
+  before_action :set_section, only: [:update, :destroy, :set_context, :template_sync]
 
   # POST /sections
   # POST /sections.json
@@ -60,6 +60,15 @@ class SectionsController < ApplicationController
       format.html { redirect_to sections_url, notice: 'Section was successfully destroyed.' }
       format.json { render text: "Section removed", status: :ok }
     end
+  end
+
+  def template_sync
+    if params[:commit] == 'Apply'
+      @section.sync_to_template
+    end
+    @section.template_version = @section.template.versions.last.id
+    @section.save
+    redirect_to edit_document_path(@section.document)
   end
 
   # POST /sections/1/set_context
