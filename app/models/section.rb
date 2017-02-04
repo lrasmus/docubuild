@@ -13,4 +13,10 @@ class Section < ActiveRecord::Base
   has_many :contexts, as: :item
 
   default_scope { order('sections.order') }
+
+  def sync_to_template
+    self.title = template.title
+    self.description = template.description
+    self.content = template.content
+  end
 end

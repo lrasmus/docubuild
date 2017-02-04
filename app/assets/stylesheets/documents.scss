@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$button-color: #008acb;
+$button-text-color: #fff;
+
 .template_list {
   display: table;
   padding: -10px 10px 0px 0px;
@@ -368,4 +371,53 @@ div.actions {
 .application_menu {
   width: auto;
   float: left;
+}
+
+#changes {
+  padding: 10px;
+  border: solid 1px black;
+  #change-intro {
+    margin-bottom: 20px;
+  }
+  .section-detail-change {
+    margin: 3px;
+    form {
+      display: inline-block;
+    }
+    input[type=submit] {
+      color: $button-text-color;
+      background: $button-color;
+      border: none;
+      padding: 0px 3px;
+      border-radius: 2px;
+    }
+  }
+  #change-actions {
+    text-align: center;
+    margin-top: 30px;
+
+    .change-action-button {
+      width: 250px;
+      display: inline-block;
+      vertical-align: middle;
+      border-radius: 7px;
+      background: $button-color;
+      color: $button-text-color;
+      padding: 10px 20px;
+      height: 70px;
+      margin: 10px;
+      .link {
+        padding-bottom: 10px;
+      }
+      a {
+        color: #fff;
+        font-size: 1.1em;
+      }
+      .note {
+        font-size: 0.8em;
+        line-height: 100%;
+        opacity: 0.6;
+      }
+    }
+  }
 }

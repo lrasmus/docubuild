@@ -1,0 +1,29 @@
+- unless @changes.nil? or (@changes[:new_sections].blank? and @changes[:updated_sections].blank?)
+  %section.section_wrapper
+    #changes.alert-info
+      #change-intro
+        The template that your document was created from has been updated.  A summary of the changes is
+        listed below.  If you would like to automatically incorporate those changes, you can click the
+        "Apply" button next to each change.
+      - unless @changes[:new_sections].blank?
+        #change-new-sections
+          New Sections
+      - unless @changes[:updated_sections].blank?
+        #change-updated-sections
+          %b The following sections appear to have been updated:
+          %ul
+            - @changes[:updated_sections].each do |section|
+              = render :partial => "sections/updated_section", locals: {section: section}
+      #change-actions
+        %div.change-action-button
+          %div.link
+            =link_to "Apply All", template_sync_document_path(@document, commit: 'Apply'), {method: :put}
+          %div.note Apply all of the shown changes
+        %div.change-action-button
+          %div.link
+            =link_to "Ignore All", template_sync_document_path(@document, commit: 'Ignore'), {method: :put}
+          %div.note Ignore these changes. You will be alerted of future changes
+        %div.change-action-button
+          %div.link
+            =link_to "Break Link With Template", break_template_link_document_path(@document), {method: :put}
+          %div.note You will not be notified of future changes
