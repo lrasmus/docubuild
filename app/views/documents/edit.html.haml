@@ -73,32 +73,24 @@
         $.ajax({
           method: "PUT",
           url: "#{reorder_sections_document_path(@document)}",
-          data: {sections: sections}
+          data: {sections: sections},
+          complete: function(data) {
+            if (data && data.responseText) { AjaxFlash.flash("#ajax-flash", data.responseText); }
+          }
         });
       }
     });
     $( ".sortable" ).disableSelection();
-  
-    // Instead of using the tinymce-rails include, we provide a custom initialization of TinyMCE so we can
-    // specify an editor change event handler.  This keeps changes in TinyMCE consistent with the form
-    // field that is submitted.
-    tinymce.init({
-      selector: "textarea.tinymce",
-      height: 400,
-      toolbar: ["styleselect | bold italic underline link | bullist numlist | undo redo"],
-      plugins: "link,table,lists",
-      menubar: "edit format table",
-      setup: function (editor) {
-        editor.on('change', function () {
-            editor.save();
-        });
-      }
+
+    // Watch for dynamically created elements and perform initialization on them when they appear.
+    $(".section_tabs").initialize(function(){
+      $(this).tabcordion();
+    });
+    $(".section_description").initialize(function(){
+      $(this).tooltip();
     });
 
-    $(".section_description").tooltip();
-
     $('#tabcordion').tabcordion();
-    $('.section_tabs').tabcordion();
 
     $("#look_feel_tab, #document_sections, #infobutton_context, #preview_document, #deploy_document").on("click", function(event) {
       event.stopPropagation();
@@ -154,7 +146,8 @@
         });
     });
 
-    $("a.import_section").on("click", function(event) {
+
+    $(document).on("click", "a.import_section", function(event){
       event.stopPropagation();
       event.preventDefault();
 
@@ -179,5 +172,21 @@
         .fail(function(err) {
           alert("Error");
         });
+    });
+
+    // Instead of using the tinymce-rails include, we provide a custom initialization of TinyMCE so we can
+    // specify an editor change event handler.  This keeps changes in TinyMCE consistent with the form
+    // field that is submitted.
+    tinymce.init({
+      selector: "textarea.tinymce",
+      height: 400,
+      toolbar: ["styleselect | bold italic underline link | bullist numlist | undo redo"],
+      plugins: "link,table,lists",
+      menubar: "edit format table",
+      setup: function (editor) {
+        editor.on('change', function () {
+            editor.save();
+        });
+      }
     });
   });

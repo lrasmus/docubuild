@@ -1,4 +1,4 @@
-.box_panel{"data-section-id" => section.id}
+.box_panel{:id => "section#{section.id}", "data-section-id" => section.id}
   .content_edit
     .cnt_edit_tital
       %i.fa.fa-sort{"aria-hidden"=>true}
@@ -15,7 +15,7 @@
           %h3.tabcord-title{"data-hname" => "tab1"} Content
           .tabcord-disp
             .form-group
-              =form_for section do |f|
+              =form_for section, :remote => true do |f|
                 = f.text_area :content, :class => "form-control tinymce", :rows => "5", :data => {:original_text => section.content}, :id => "section_content_#{section.id}"
                 .multiple_btn
                   %a.cancel.save_section{:href => "#"} Save Section
@@ -26,7 +26,7 @@
 
           %h3.tabcord-title{"data-hname" => "tab2"} Section Context
           .tabcord-disp
-            = render partial: "infobutton_context", locals: {item: section}
+            = render partial: "documents/infobutton_context", locals: {item: section}
 
       %a.edit_btn.edit-link{:href => "#"}
         %i.fa.fa-pencil>

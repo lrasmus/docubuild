@@ -55,7 +55,7 @@ function getInfobuttonContext(formElement) {
 }
 
 $(function() {
-  $(".add_context_link").on("click", function(e) {
+  $("body").on("click", ".add_context_link", function(e) {
     e.preventDefault();
     var button = $(this);
     $.get(button.attr('href'), function(data) {
@@ -63,7 +63,7 @@ $(function() {
     });
   });
 
-  $(".save_context_link").on("click", function(e) {
+  $("body").on("click", ".save_context_link", function(e) {
     e.preventDefault();
     var form = $(this).closest(".context_form");
     var context = getInfobuttonContext(form);

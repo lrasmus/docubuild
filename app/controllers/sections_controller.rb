@@ -1,7 +1,7 @@
 class SectionsController < ApplicationController
   include ContextsHelper
   include ApplicationHelper
-  
+
   before_action :set_section, only: [:update, :destroy, :set_context]
 
   # POST /sections
@@ -35,6 +35,10 @@ class SectionsController < ApplicationController
     update_user_attribution @section, false, true
     respond_to do |format|
       if @section.update(section_params)
+        format.js do
+          flash[:notice] = "Section was successfully updated"
+          render layout: false
+        end
         format.html { redirect_to edit_document_path(@section.document), notice: 'Section was successfully updated.' }
         format.json { render :show, status: :ok, location: @section }
       else
@@ -61,7 +65,9 @@ class SectionsController < ApplicationController
   # POST /sections/1/set_context
   def set_context
     set_contexts_for_item @section
-    render json: {result: 'OK'}, status: :ok
+    flash[:notice] = "Section context saved successfully"
+    render "shared/ajax-flash"
+    #render json: {result: 'OK'}, status: :ok
   end
 
   private

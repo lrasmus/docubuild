@@ -1,3 +1,10 @@
+$.fn.replaceWithPush = function(a) {
+    var $a = $(a);
+
+    this.replaceWith($a);
+    return $a;
+};
+
 $(function () {
   var active = true;
   $('#collapse-init').click(function () {
@@ -18,7 +25,8 @@ $(function () {
     if (active) { $('#accordion .in').collapse('hide'); }
   });
 
-  $('a.edit-link').on('click', function(e){
+
+  $(document).on("click", "a.edit-link", function(e){
     e.preventDefault();
     var $parent = $(this).closest('.cnt_text'); 
     $parent.find('.editForm').show();
@@ -26,7 +34,7 @@ $(function () {
     $(this).hide();
   });
   
-  $('a.cancel').on('click', function(e){
+  $(document).on("click", "a.cancel", function(e){
     e.preventDefault();
     var $parent = $(this).closest('.cnt_text');
     $parent.find('.editForm').hide();
@@ -62,16 +70,37 @@ $(function(){
     $("#document_properties_form").submit();
   });
 
-  $("a.save_section").on("click", function(event) {
+
+  $(document).on("click", "a.save_section", function(event){
     event.stopPropagation();
     event.preventDefault();
     var $form = $(this).closest("form");
     if ($form) {
+      event.stopPropagation();
+      event.preventDefault();
       $form.submit();
     }
   });
 
-  $("a.cancel_section").on("click", function(event) {
+  // $("a.save_section").on("click", function(event) {
+  //   event.stopPropagation();
+  //   event.preventDefault();
+  //   var $form = $(this).closest("form");
+  //   if ($form) {
+  //     $.ajax({
+  //         type: "PUT",
+  //         url: $form.attr('action'),
+  //         dataType: "json",
+  //         data: $form.serializeArray(),
+  //         complete: function(data){
+  //           alert(data);
+  //         }
+  //     });
+  //   }
+  // });
+
+
+  $(document).on("click", "a.cancel_section", function(event){
     event.stopPropagation();
     event.preventDefault();
     var $form = $(this).closest("form");
@@ -81,7 +110,7 @@ $(function(){
     }
   });
 
-  $("a.delete_section").click(function(event){
+  $(document).on("click", "a.delete_section", function(event){
     event.stopPropagation();
     event.preventDefault();
     var $form = $(this).closest("form");

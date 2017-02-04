@@ -4,7 +4,6 @@ class DocumentsController < ApplicationController
   include ContextsHelper
   include ApplicationHelper
 
-  before_action :reset_flash
   before_action :set_document, only: [:show, :edit, :update, :destroy, :template_sections, :add_sections_from_templates, :import_sections, :preview, :set_context, :export_html, :export_joomla, :reorder_sections]
   before_filter :check_for_cancel, :only => [:create, :update, :clone]
   before_filter :clean_view_param, :only => [:template_sections]
@@ -217,7 +216,7 @@ class DocumentsController < ApplicationController
         section.save
       end
     end
-    render json: {result: 'OK'}, status: :ok
+    render text: "Section order changed", status: :ok
   end
 
   private
@@ -302,7 +301,7 @@ class DocumentsController < ApplicationController
         "document_font_name" => "Arial", "document_font_size" => "22", "document_font_color" => "#000000"}
     end
 
-    def reset_flash
-      flash[:notice] = nil
-    end
+    # def reset_flash
+    #   flash[:notice] = nil
+    # end
 end
