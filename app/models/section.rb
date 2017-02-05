@@ -19,4 +19,10 @@ class Section < ActiveRecord::Base
     self.description = template.description
     self.content = template.content
   end
+
+  def sync_to_clone
+    self.title = clone_source.title
+    self.description = clone_source.description
+    self.content = clone_source.content
+  end
 end

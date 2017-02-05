@@ -32,3 +32,31 @@ five:
   item_id: 6
   event: Create
   created_at: 2010-02-11 11:02:57
+
+six:
+  id: 6
+  item_type: Section
+  item_id: 7
+  event: Create
+  created_at: 2010-02-11 11:02:57
+
+seven:
+  id: 7
+  item_type: Section
+  item_id: 8
+  event: Create
+  created_at: 2010-02-11 11:02:57
+
+eight:
+  id: 8
+  item_type: Section
+  item_id: 1
+  event: Create
+  created_at: 2010-02-11 11:02:57
+
+nine:
+  id: 9
+  item_type: Section
+  item_id: 2
+  event: Create
+  created_at: 2010-02-11 11:02:57

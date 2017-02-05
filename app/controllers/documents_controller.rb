@@ -7,7 +7,7 @@ class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy,
     :template_sections, :add_sections_from_templates, :import_sections,
     :preview, :set_context, :export_html, :export_joomla, :reorder_sections,
-    :break_template_link, :template_sync]
+    :break_template_link, :break_clone_link, :template_sync, :clone_sync]
   before_filter :check_for_cancel, :only => [:create, :update, :clone]
   before_filter :clean_view_param, :only => [:template_sections]
 
@@ -116,7 +116,7 @@ class DocumentsController < ApplicationController
 
   # GET /documents/1/edit
   def edit
-    @changes = @document.changes_from_template
+    @changes = {template: @document.changes_from_template, clone: @document.changes_from_clone}
   end
 
   # POST /documents
@@ -228,7 +228,6 @@ class DocumentsController < ApplicationController
   end
 
   # PUT /documents/template_sync
-  # Expects an array of objects containing sync information
   def template_sync
     @document.sections.each do |section|
       if params[:commit] == 'Apply'
@@ -242,6 +241,20 @@ class DocumentsController < ApplicationController
     redirect_to edit_document_path(@document)
   end
 
+  # PUT /documents/clone_sync
+  def clone_sync
+    @document.sections.each do |section|
+      if params[:commit] == 'Apply'
+        section.sync_to_clone
+      end
+      section.clone_source_version = section.clone_source.versions.last.id
+      section.save
+    end
+    @document.clone_source_version = @document.clone_source.versions.last.id
+    @document.save
+    redirect_to edit_document_path(@document)
+  end
+
   # PUT /documents/1/break_template_link
   def break_template_link
     @document.template = nil
@@ -250,6 +263,18 @@ class DocumentsController < ApplicationController
       flash[:notice] = "Document unlinked from its original template"
     else
       flash[:notice] = "Failed to unlink the document from its template"
+    end
+    redirect_to edit_document_path(@document)
+  end
+
+  # PUT /documents/1/break_clone_link
+  def break_clone_link
+    @document.clone_source = nil
+    @document.clone_source_version = nil
+    if @document.save
+      flash[:notice] = "Document unlinked from its original document"
+    else
+      flash[:notice] = "Failed to unlink the document from its original document"
     end
     redirect_to edit_document_path(@document)
   end

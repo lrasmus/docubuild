@@ -2,7 +2,7 @@ class SectionsController < ApplicationController
   include ContextsHelper
   include ApplicationHelper
 
-  before_action :set_section, only: [:update, :destroy, :set_context, :template_sync]
+  before_action :set_section, only: [:update, :destroy, :set_context, :template_sync, :clone_sync]
 
   # POST /sections
   # POST /sections.json
@@ -67,6 +67,15 @@ class SectionsController < ApplicationController
       @section.sync_to_template
     end
     @section.template_version = @section.template.versions.last.id
+    @section.save
+    redirect_to edit_document_path(@section.document)
+  end
+
+  def clone_sync
+    if params[:commit] == 'Apply'
+      @section.sync_to_clone
+    end
+    @section.clone_source_version = @section.clone_source.versions.last.id
     @section.save
     redirect_to edit_document_path(@section.document)
   end

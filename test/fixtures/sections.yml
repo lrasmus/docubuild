@@ -45,3 +45,21 @@ from_template_two:
   order: 2
   template_id: 4
   template_version: 3
+
+from_clone_one:
+  id: 7
+  title: MyString
+  content: MyText
+  document_id: 5
+  order: 1
+  clone_source_id: 1
+  clone_source_version: 8
+
+from_clone_two:
+  id: 8
+  title: MyString
+  content: MyText
+  document_id: 5
+  order: 2
+  clone_source_id: 2
+  clone_source_version: 9

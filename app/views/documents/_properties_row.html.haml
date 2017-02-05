@@ -16,6 +16,10 @@
       %a.edit_tag.edit.editable.hidden_form_btn{:href => "#"} Cancel
 
   .col-lg-4
+    - unless @document.clone_source.nil?
+      %div.template
+        %span.title Copied from:
+        = link_to @document.clone_source.title, edit_document_path(@document.clone_source)
     %div.template
       %span.title Template:
       =@document.template.nil? ? "(No template)" : @document.template.title

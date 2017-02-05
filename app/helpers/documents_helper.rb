@@ -35,4 +35,20 @@ module DocumentsHelper
     return nil if document.nil? or document.style.nil?
     document.style[style_name]
   end
+
+  def document_sync_path document, commit, is_clone
+    if is_clone
+      clone_sync_document_path(@document, commit: commit)
+    else
+      template_sync_document_path(@document, commit: commit)
+    end
+  end
+
+  def document_break_link_path document, is_clone
+    if is_clone
+      break_clone_link_document_path(@document)
+    else
+      break_template_link_document_path(@document)
+    end
+  end
 end

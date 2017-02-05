@@ -1,8 +1,8 @@
-- section_changes = summarize_section_change_from_template(section)
+- section_changes = summarize_section_change_from_other_document(section, is_clone)
 - unless section_changes.blank?
   %li.section-detail-change
     = section.title
-    = form_for section, url: template_sync_section_path(section) do |f|
+    = form_for section, url: section_sync_path(section, is_clone) do |f|
       =f.submit "Apply"
       =f.submit "Ignore"
     %ul

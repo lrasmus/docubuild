@@ -10,7 +10,8 @@
 
   = render :partial => "properties_row"
 
-= render :partial => "document_changes"
+- # render :partial => "document_changes", locals: {changes: @changes[:template], is_clone: false}
+= render :partial => "document_changes", locals: {changes: @changes[:clone], is_clone: true}
 
 %section.section_wrapper
   .doc_features

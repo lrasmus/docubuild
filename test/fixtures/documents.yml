@@ -32,3 +32,13 @@ from_template:
   template_id: 1
   status: in_progress
   visibility: public
+
+from_clone:
+  id: 5
+  title: From Clone
+  description: This document was created from a clone
+  is_template: false
+  template_id: 1
+  clone_source_id: 2
+  status: in_progress
+  visibility: private
