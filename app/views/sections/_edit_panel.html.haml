@@ -1,0 +1,33 @@
+.box_panel{:id => "section#{section.id}", "data-section-id" => section.id}
+  .content_edit
+    .cnt_edit_tital
+      %i.fa.fa-sort{"aria-hidden"=>true}
+      %label.chk_box_text=section.title
+      .section_actions
+        - unless section.description.blank?
+          %a.section_description{:title => section.description}
+            %i.fa.fa-question>
+    .cnt_text
+      .section_display
+        =section.content.html_safe unless section.content.blank?
+      .editForm
+        .section_tabs.tabcordion
+          %h3.tabcord-title{"data-hname" => "tab1"} Content
+          .tabcord-disp
+            .form-group
+              =form_for section, :remote => true do |f|
+                = f.text_area :content, :class => "form-control tinymce", :rows => "5", :data => {:original_text => section.content}, :id => "section_content_#{section.id}"
+                .multiple_btn
+                  %a.cancel.save_section{:href => "#"} Save Section
+                  %a.cancel.cancel_section{:href => "#"} Cancel
+                  .spacer
+                  %a.rs_btn.anchor.delete_section{:href => "#"} Remove Section
+                  %a.cf_btn.anchor.import_section{:href => "#"} Copy From Library
+
+          %h3.tabcord-title{"data-hname" => "tab2"} Section Context
+          .tabcord-disp
+            = render partial: "documents/infobutton_context", locals: {item: section}
+
+      %a.edit_btn.edit-link{:href => "#"}
+        %i.fa.fa-pencil>
+        Edit

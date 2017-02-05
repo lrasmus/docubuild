@@ -1,0 +1,52 @@
+@font-face {
+	font-family:'Gotham-Medium';
+	src: url('fonts/Gotham-Medium_gdi.eot');
+	src: url('fonts/Gotham-Medium_gdi.eot?#iefix') format('embedded-opentype'),
+		url('fonts/Gotham-Medium_gdi.woff') format('woff'),
+		url('fonts/Gotham-Medium_gdi.ttf') format('truetype'),
+		url('fonts/Gotham-Medium_gdi.svg#Gotham-Medium') format('svg');
+	font-weight: 350;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-2212;
+}
+
+.tabcordion {
+  width: 1000px; position:relative;
+}
+
+.tabcord-title {
+  background-color: #e6e6e6;
+  padding: 20px 8px;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+  position: relative; text-align:center; color:#768997; font-size:14px; font-family:'Gotham-Medium'; text-transform:uppercase;}
+
+.tabcord-headerBar {
+  border-left: 1px solid #dfdfdf; background:#e6e6e6; width:75%; border-radius:8px;}
+  .tabcord-headerBar .tabcord-title {
+    border-left: none; }
+    .tabcord-headerBar .tabcord-title.active:after {
+      background-color: #fff;
+      display: block;
+      position: absolute;
+      content: " ";
+      bottom: -1px;
+      height: 1px;
+      left: 0;
+      right: 0; }
+
+.tabcord-title.active{color: #fff;
+  background-color: #008acb;}
+
+
+.tabcord-disp {
+  background-color: #fff; overflow:hidden;}
+  
+  .border_right_corner {
+  border-bottom-right-radius: 8px;
+  border-top-right-radius:8px;
+}
+.border_left_corner{  border-bottom-left-radius: 8px;
+  border-top-left-radius:8px;}
+

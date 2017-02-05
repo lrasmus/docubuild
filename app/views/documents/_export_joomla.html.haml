@@ -1,0 +1,13 @@
+- exporter = DocUBuild::HtmlExporter.new
+= joomla_document_context(@document)
+.dub-document-content
+  - if @document.logo_file.persisted?
+    %img{src: "images/#{exporter.logo_file_export_name(@document.logo_file)}"}
+  %h1.dub-document-title=@document.title
+  - @document.sections.each do |section|
+    = joomla_section_context_start(section)
+    .dub-section
+      %h2.dub-section-title=section.title
+      .dub-section-content
+        =section.content.html_safe unless section.content.blank?
+    = joomla_section_context_end(section)

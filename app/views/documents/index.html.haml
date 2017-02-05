@@ -1,0 +1,19 @@
+%section.section_wrapper
+  #tabcordion.tabcordion
+    = render partial: "tab", locals: {index: 1, name: "In Progress", documents: @documents.in_progress}
+    = render partial: "tab", locals: {index: 2, name: "Published", documents: @documents.published}
+    = render partial: "tab", locals: {index: 3, name: "Archived", documents: @documents.archived}
+    = render partial: "tab", locals: {index: 4, name: "All Documents", documents: @documents}
+
+    .create_doc_btn
+      = link_to new_document_path do
+        %i.fa.fa-plus>
+        New
+      = link_to select_clone_documents_path do
+        %i.fa.fa-files-o>
+        Clone
+
+:javascript
+  $( function() {
+    $('#tabcordion').tabcordion();
+  } );

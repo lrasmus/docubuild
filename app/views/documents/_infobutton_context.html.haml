@@ -1,0 +1,8 @@
+- context_groups = item.contexts.blank? ? {} : item.contexts.group_by{|c| c.category}
+.context_form
+  - context_groups.each do |group|
+    = render :partial => "contexts/infobutton_context_element", locals: {context_group: group}
+  %a{:href=>context_new_path,:class=>"context_link add_context_link"}
+    %i.fa.fa-plus-square-o{"aria-hidden" => true}
+    Add Context
+  %a{:href=>set_item_context_path(item),:class=>"context_link save_context_link"} Save

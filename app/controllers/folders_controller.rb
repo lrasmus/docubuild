@@ -1,4 +1,6 @@
 class FoldersController < ApplicationController
+  include ApplicationHelper
+
   before_action :set_folder, only: [:show, :edit, :update, :destroy]
 
   # GET /folders
@@ -25,6 +27,7 @@ class FoldersController < ApplicationController
   # POST /folders.json
   def create
     @folder = Folder.new(folder_params)
+    update_user_attribution @folder, true
 
     respond_to do |format|
       if @folder.save
@@ -40,6 +43,7 @@ class FoldersController < ApplicationController
   # PATCH/PUT /folders/1
   # PATCH/PUT /folders/1.json
   def update
+    update_user_attribution @folder, false, true
     respond_to do |format|
       if @folder.update(folder_params)
         format.html { redirect_to @folder, notice: 'Folder was successfully updated.' }
@@ -54,6 +58,7 @@ class FoldersController < ApplicationController
   # DELETE /folders/1
   # DELETE /folders/1.json
   def destroy
+    update_user_attribution @folder, false, false, true
     @folder.destroy
     respond_to do |format|
       format.html { redirect_to folders_url, notice: 'Folder was successfully destroyed.' }
@@ -69,6 +74,6 @@ class FoldersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def folder_params
-      params.require(:folder).permit(:title, :description, :status_id, :visibility_id, :created_by, :updated_by, :deleted_by, :parent, :owner)
+      params.require(:folder).permit(:title, :description, :status_id, :visibility_id, :parent, :owner)
     end
 end

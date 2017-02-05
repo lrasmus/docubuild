@@ -1,0 +1,194 @@
+- content_for :inside_page_name do
+  - if @document.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@document.errors.count, "error")
+        prohibited this document from being saved:
+      %ul
+        - @document.errors.full_messages.each do |message|
+          %li= message
+
+  = render :partial => "properties_row"
+
+- # render :partial => "document_changes", locals: {changes: @changes[:template], is_clone: false}
+= render :partial => "document_changes", locals: {changes: @changes[:clone], is_clone: true}
+
+%section.section_wrapper
+  .doc_features
+    %a.active{:href => "#", :id => "document_sections"}
+      %i.fa.fa-file>
+      Document
+    %a{:href => "#", :id => "look_feel_tab"}
+      %i.fa.fa-heart>
+      Look &amp; Feel
+    %a{:href => "#", :id => "infobutton_context"}
+      %i.fa.fa-info-circle{"aria-hidden" => "true"}
+      Global Context
+    %a{:href => "#", :id => "preview_document"}
+      %i.fa.fa-search{"aria-hidden" => "true"}
+      Preview Document
+    %a{:href => "#", :id => "deploy_document"}
+      %i.fa.fa-download{"aria-hidden" => "true"}
+      Deploy
+  .document_detail
+    .accordion.content_topics.document_sections
+      .ct_tital
+        %span Content Topics
+        %a#add_section{:href => "#"} Add Section
+      .sortable
+        - @document.sections.each do |section|
+          = render partial: "sections/edit_panel", locals: {section: section}
+      .box_panel
+        .content_edit.actions
+          =link_to documents_path, class: "prv_doc pub_doc" do
+            %i.fa.fa-arrow-left{"aria-hidden" => "true"}
+            Back to My Documents
+    .accordion.content_topics.look_feel_tab
+      = render partial: "look_and_feel", locals: {document: @document}
+    .accordion.content_topics.infobutton_context
+      = render partial: "infobutton_context", locals: {item: @document}
+    .accordion.content_topics.preview_document
+      .loading
+        %span.spinner
+          %i.fa.fa-spinner.fa-spin{"aria-hidden" => true}
+      .content
+    .accordion.content_topics.deploy_document
+      = render partial: "deploy", locals: {document: @document}
+
+
+%div#dialog{title: "DocUBuild"}
+  #content
+
+
+:javascript
+  $(function(){
+    $( ".sortable" ).sortable({
+      handle: ".fa-sort",
+      placeholder: "ui-state-highlight",
+      update: function( event, ui ) {
+        var panels = ui.item.closest('.sortable').children('.box_panel');
+        var sections = [];
+        for (var index = 0; index < panels.length; index++) {
+          var panel = panels[index];
+          sections.push({id: $(panel).attr('data-section-id'), order: panels.index(panel)})
+        }
+        $.ajax({
+          method: "PUT",
+          url: "#{reorder_sections_document_path(@document)}",
+          data: {sections: sections},
+          complete: function(data) {
+            if (data && data.responseText) { AjaxFlash.flash("#ajax-flash", data.responseText); }
+          }
+        });
+      }
+    });
+    $( ".sortable" ).disableSelection();
+
+    // Watch for dynamically created elements and perform initialization on them when they appear.
+    $(".section_tabs").initialize(function(){
+      $(this).tabcordion();
+    });
+    $(".section_description").initialize(function(){
+      $(this).tooltip();
+    });
+
+    $('#tabcordion').tabcordion();
+
+    $("#look_feel_tab, #document_sections, #infobutton_context, #preview_document, #deploy_document").on("click", function(event) {
+      event.stopPropagation();
+      event.preventDefault();
+
+      $(".document_sections").hide();
+      $(".look_feel_tab").hide();
+      $(".infobutton_context").hide();
+      $(".preview_document").hide();
+      $(".deploy_document").hide();
+      $("#document_sections").removeClass("active");
+      $("#look_feel_tab").removeClass("active");
+      $("#infobutton_context").removeClass("active");
+      $("#preview_document").removeClass("active");
+      $("#deploy_document").removeClass("active");
+
+      $(event.target).addClass("active");
+      $("." + event.target.id).show();
+    });
+
+    $("#preview_document").on("click", function(e) {
+      $.get("#{preview_document_path(@document)}", function(data) {
+        $(".preview_document .loading").hide();
+        $(".preview_document .content").html(data).show();
+      });
+    });
+
+    $("#document_sections").click();
+
+    $("a#add_section").on("click", function(event) {
+      event.stopPropagation();
+      event.preventDefault();
+      $.get( "#{template_sections_document_path(@document, :missing_only => true)}")
+        .done(function( data ) {
+          $("#dialog").dialog({ 
+            width: 600,
+            modal: true,
+            title: 'Add Sections',
+            buttons: [
+              {
+                text: 'OK', class: 'acceptButton',
+                click: function() {}
+              },
+              {
+                text: 'Cancel',
+                click: function() { $(this).dialog("close"); }
+              }
+            ]});
+          $("#dialog #content").html( data );
+        })
+        .fail(function(err) {
+          alert("Error");
+        });
+    });
+
+
+    $(document).on("click", "a.import_section", function(event){
+      event.stopPropagation();
+      event.preventDefault();
+
+      var editor = tinymce.get($(this).closest(".form-group").find("textarea").attr('id'));
+      $.get( "#{import_sections_document_path(@document)}")
+        .done(function( data ) {
+          $("#dialog").dialog({ 
+            width: 1000,
+            modal: true,
+            title: 'Import Sections',
+            beforeClose: function(event, ui) {
+              if ($(this).attr('data-section-action') === "copy") {
+                editor.setContent(editor.getContent() + "\r\n" + $(this).attr('data-section-content'));
+              }
+              else if ($(this).attr('data-section-action') === "replace") {
+                editor.setContent($(this).attr('data-section-content'));
+              }
+            } 
+          });
+          $("#dialog #content").html( data );
+        })
+        .fail(function(err) {
+          alert("Error");
+        });
+    });
+
+    // Instead of using the tinymce-rails include, we provide a custom initialization of TinyMCE so we can
+    // specify an editor change event handler.  This keeps changes in TinyMCE consistent with the form
+    // field that is submitted.
+    tinymce.init({
+      selector: "textarea.tinymce",
+      height: 400,
+      toolbar: ["styleselect | bold italic underline link | bullist numlist | undo redo"],
+      plugins: "link,table,lists",
+      menubar: "edit format table",
+      setup: function (editor) {
+        editor.on('change', function () {
+            editor.save();
+        });
+      }
+    });
+  });

@@ -1,0 +1,2 @@
+- Move Visibility and Status to just be local enums
+- Think if we need Sections to have a status and visibility (I think they don't)

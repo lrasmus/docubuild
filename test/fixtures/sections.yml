@@ -1,23 +1,65 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   title: MyString
   content: MyText
-  status_id: 
-  visibility_id: 
-  created_by: 1
-  updated_by: 1
-  deleted_by: 1
-  article_id: 
+  document_id: 2
   order: 1
 
 two:
+  id: 2
   title: MyString
   content: MyText
-  status_id: 
-  visibility_id: 
-  created_by: 1
-  updated_by: 1
-  deleted_by: 1
-  article_id: 
+  document_id: 2
+  order: 2
+
+template_one:
+  id: 3
+  title: MyString
+  content: MyText
+  document_id: 1
   order: 1
+
+template_two:
+  id: 4
+  title: MyString
+  content: MyText
+  document_id: 1
+  order: 2
+
+from_template_one:
+  id: 5
+  title: MyString
+  content: MyText
+  document_id: 4
+  order: 1
+  template_id: 3
+  template_version: 2
+
+from_template_two:
+  id: 6
+  title: MyString
+  content: MyText
+  document_id: 4
+  order: 2
+  template_id: 4
+  template_version: 3
+
+from_clone_one:
+  id: 7
+  title: MyString
+  content: MyText
+  document_id: 5
+  order: 1
+  clone_source_id: 1
+  clone_source_version: 8
+
+from_clone_two:
+  id: 8
+  title: MyString
+  content: MyText
+  document_id: 5
+  order: 2
+  clone_source_id: 2
+  clone_source_version: 9

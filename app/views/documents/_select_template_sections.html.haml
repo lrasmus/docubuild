@@ -1,0 +1,55 @@
+- if @templated and !@open_template
+  %div{:style => "padding-bottom: 20px;"}
+    - if @sections.blank?
+      This document currently contains all of the sections from its template (#{@document.template.title}).
+    - else
+      Please select the section(s) to add
+
+  %ul.section_list
+    - @sections.each do |section|
+      %li
+        =check_box_tag :section, section.id
+        %div=section.title
+
+  :javascript
+    $(function(){
+      $(".acceptButton").unbind("click").on("click", function(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        var checkedVals = $('#dialog #content input:checkbox:checked').map(function() {
+          return this.value;
+        }).get();
+        if (checkedVals && checkedVals.length > 0) {
+          $.post("#{add_sections_from_templates_document_path(@document)}",
+            {"sections" : checkedVals });
+        }
+        $("#dialog").dialog("close");
+        location.reload();
+      });
+    });
+
+- else
+  %div{:style => "padding-bottom: 20px;"}
+    Please provide the following information for your new section:
+  = form_for Section.new, :remote => true do |f|
+    .field
+      = f.label :title, :class => "new_document_field"
+      = f.text_field :title, :class => "new_document_field", :autofocus => true
+    .field
+      = f.label :description, :class => "new_document_field"
+      = f.text_area :description, :class => "new_document_field"
+    = f.hidden_field :document_id, :value => @document.id
+
+  :javascript
+    $(function(){
+      $(".acceptButton").unbind("click").on("click", function(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        var $form = $("#dialog #content form");
+        if ($form) {
+          $form.submit();
+          location.reload();
+        }
+        $("#dialog").dialog("close");
+      });
+    });

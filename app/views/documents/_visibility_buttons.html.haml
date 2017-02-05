@@ -1,0 +1,26 @@
+%div.visibility
+  = form_for @document, :remote => true, :html => {:id => "document_visibility_form"} do |f|
+    = f.hidden_field :visibility_id
+    - if @document.status_id == Status::Published
+      %span.title Document visibility:
+      %br
+      %div.btn-group
+        - Visibility.all.each do |vis|
+          %button.btn.btn-primary.doc-visibility{:type => "button", "data-value" => vis.id, :class => (@document.visibility_id == vis.id) ? "active" : "" }=vis.name
+    -elsif @document.status_id == Status::InProgress
+      %span.note This document is being worked on, so it won't be accessible to anyone but you.
+    -elsif @document.status_id == Status::Archived
+      %span.note
+        This document is obsolete or retired, and can still be accessed by you until
+        =@document.updated_at + 30.days
+        After that, the document will be automatically deleted by the system.
+
+:javascript
+  $(function(){
+    $(".doc-visibility").on("click", function(event) {
+      event.stopPropagation();
+      event.preventDefault();
+      $("#document_visibility_id").val($(this).attr('data-value'));
+      $("#document_visibility_form").submit();
+    });
+  });

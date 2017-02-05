@@ -1,0 +1,77 @@
+#tabcordion.tabcordion
+  %h3.tabcord-title{"data-hname" => "tab1"} Logo
+  .tabcord-disp
+    - if @document.logo_file.persisted?
+      - logo_width = document.logo_file.dimensions[0]
+      - logo_height = document.logo_file.dimensions[1]
+      .row.logo_file_preview
+        .col-md-6#logo_image
+          =image_tag(document_file_path(document.logo_file), :style => "width: #{logo_width}; height: #{logo_height}")
+        .col-md-6
+          .field
+            %label
+              Logo file:
+            = document_file_label(document.logo_file)
+          .field
+            %label
+              Width:
+            %input#logo_image_width{ :value => logo_width }
+          .field
+            %label
+              Height:
+            %input#logo_image_height{ :value => logo_height }
+    .upload_logo
+      = form_for [document, document.logo_file] do |f|
+        %h5 Choose the file (PNG, JPG, GIF) to use for your logo:
+        .upload_border_box
+          = f.file_field :content, :style => "display:none", :onchange => "logoFileChanged();"
+          %input#filename{:readonly => "true", :type => "text", :value => document_file_label(document.logo_file)}
+          %input#fakeBrowse{:onclick => "logoBrowseClick();", :type => "button", :value => "choose file"}
+        =f.submit "Upload Logo", :class => "document_style_btn"
+
+  %h3.tabcord-title{"data-hname" => "tab2"} Fonts
+  .tabcord-disp
+    .fonts_tab
+      = form_for document do |f|
+        = render :partial => "font_selector", :locals => {form: f, document: document}
+        = f.submit "Save Font", :class => "document_style_btn"
+
+
+:javascript
+  function setImageDimension(attrName, value) {
+    value = value.trim();
+    if (!value.endsWith("px") && !value.endsWith("%")) {
+      value += "px";
+    }
+    $("#logo_image img").css(attrName, value);
+    var fileId = #{@document.logo_file.id ? document.logo_file.id : '\'\''};
+    if (fileId) {
+      $.ajax({
+        url: "/documents/" + #{document.id} + "/document_files/" + fileId,
+        type: 'PUT',
+        dataType: "JSON",
+        data: {'document_file': {'properties': {'width': $('#logo_image_width').val(), 'height': $('#logo_image_height').val()} } }
+      });
+    }
+  }
+
+  $(function() {
+    $("#logo_image_width").on("change", function() {
+      setImageDimension("width", $(this).val());
+    })
+    $("#logo_image_height").on("change", function() {
+      setImageDimension("height", $(this).val());
+    })
+  });
+
+  function logoBrowseClick() {
+    var fileinput = document.getElementById("document_file_content");
+    fileinput.click();
+  }
+  
+  function logoFileChanged() {
+    var fileinput = document.getElementById("document_file_content");
+    var textinput = document.getElementById("filename");
+    var filename = $(fileinput).val().split('\\').pop();
+    textinput.value = filename;
+  }

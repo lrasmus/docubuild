@@ -1,0 +1,31 @@
+%p#notice= notice
+%p
+  %strong Title:
+  = @document.title
+%p
+  %strong Description:
+  = @document.description
+%p
+  %strong Status:
+  = @document.status
+%p
+  %strong Visibility:
+  = @document.visibility
+%p
+  %strong Created by:
+  = @document.created_by
+%p
+  %strong Updated by:
+  = @document.updated_by
+%p
+  %strong Deleted by:
+  = @document.deleted_by
+%p
+  %strong Folder:
+  = @document.folder
+%p
+  %strong Template:
+  = @document.template
+= link_to 'Edit', edit_document_path(@document)
+|
+= link_to 'Back', documents_path

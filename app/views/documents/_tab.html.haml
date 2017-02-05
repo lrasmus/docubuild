@@ -1,0 +1,7 @@
+%h3.tabcord-title{"data-hname" => "tab#{index}"}="#{name} (#{documents.count})"
+.tabcord-disp
+  - if documents.empty?
+    %h1 0 Documents here
+  - else
+    - documents.each_with_index do |document, index|
+      = render partial: "list_item", locals: {document: document, index: index}

@@ -1,0 +1,44 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+my_template:
+  id: 1
+  title: My Template
+  description: A document that is a template
+  is_template: true
+  status: published
+  visibility: public
+
+in_progress:
+  id: 2
+  title: In Progress Document
+  description: My document that is in progress
+  is_template: false
+  status: in_progress
+  visibility: public
+
+no_template:
+  id: 3
+  title: No Template
+  description: This document doesn't have a template (and isn't a template)
+  is_template: false
+  status: in_progress
+  visibility: public
+
+from_template:
+  id: 4
+  title: From Template
+  description: This document was created from a template
+  is_template: false
+  template_id: 1
+  status: in_progress
+  visibility: public
+
+from_clone:
+  id: 5
+  title: From Clone
+  description: This document was created from a clone
+  is_template: false
+  template_id: 1
+  clone_source_id: 2
+  status: in_progress
+  visibility: private

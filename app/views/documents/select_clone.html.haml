@@ -1,0 +1,4 @@
+%section.section_wrapper
+  %h1 Select the document you would like to clone:
+  .help_text Cloning means you will make your own copy of the document and can edit the content or re-style it without changing the original.
+  = render :partial => "select_document", :locals => { :document => @document, :documents => @documents }

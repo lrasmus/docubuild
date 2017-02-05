@@ -1,0 +1,33 @@
+- unless changes.nil? or (changes[:new_sections].blank? and changes[:updated_sections].blank?)
+  %section.section_wrapper
+    #changes.alert-info
+      #change-intro
+        - if is_clone
+          The original document that your document was copied (cloned) from has been updated.
+        - else
+          The template that your document was created from has been updated.
+
+        A summary of the changes is listed below.  If you would like to incorporate those changes, you can click the
+        "Apply" button next to each section.  If you wish to ignore these changes, you may click the "Ignore" button.
+      - unless changes[:new_sections].blank?
+        #change-new-sections
+          New Sections
+      - unless changes[:updated_sections].blank?
+        #change-updated-sections
+          %b The following sections appear to have been updated:
+          %ul
+            - changes[:updated_sections].each do |section|
+              = render :partial => "sections/updated_section", locals: {section: section, is_clone: is_clone}
+      #change-actions
+        %div.change-action-button
+          %div.link
+            =link_to "Apply All", document_sync_path(@document, 'Apply', is_clone), {method: :put}
+          %div.note Apply all of the changes to all of the sections
+        %div.change-action-button
+          %div.link
+            =link_to "Ignore All", document_sync_path(@document, 'Ignore', is_clone), {method: :put}
+          %div.note Ignore these changes. You will be alerted of future changes
+        %div.change-action-button
+          %div.link
+            =link_to "Break Link With #{is_clone ? 'Clone' : 'Template'}", document_break_link_path(@document, is_clone), {method: :put}
+          %div.note You will not be notified of future changes

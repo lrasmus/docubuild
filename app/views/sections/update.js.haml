@@ -1,0 +1,4 @@
+!= "$('#section#{@section.id}').replaceWithPush('#{escape_javascript(render :partial => 'edit_panel', locals: {section: @section})}');"
+tinymce.EditorManager.execCommand('mceRemoveEditor', true, "section_content_#{@section.id}");
+tinymce.EditorManager.execCommand('mceAddEditor', true, "section_content_#{@section.id}");
+AjaxFlash.flash('#ajax-flash', "#{flash[:notice]}");

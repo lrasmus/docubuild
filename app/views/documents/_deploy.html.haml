@@ -1,0 +1,40 @@
+.accordion
+  .ct_tital
+    Deployment Options
+  .box_panel
+    .export_type
+      .export_title
+        =image_tag "docubuild_logo.png"
+        DocUBuild Hosted 
+        %a.edit_btn{href: public_document_path(document), target: "_new"}
+          View
+      .export_description
+        %div
+          You may use this link to make your content accessible to a wider audience.  Please note that only published documents will be seen by everyone.
+        %div
+          = link_to public_document_url(document), public_document_path(document), target: "_new"
+  .box_panel
+    .export_type
+      .export_title
+        =image_tag "html_logo.png"
+        Export as standalone HTML
+        %a.edit_btn{href: export_html_document_path(document)}
+          Export
+      .export_description
+        %div
+          This will take the document content and render it into a single HTML file, and will include a copy of the
+          logo (if specified) as an image file.  All files will be delivered in a single zip archive.
+        %div
+          The zip file contents may be served from any website or intranet file share.
+  .box_panel
+    .export_type
+      .export_title
+        =image_tag "joomla_logo.png"
+        Export for Joomla! CMS
+        %a.edit_btn{href: export_joomla_document_path(document)}
+          Export
+      .export_description
+        %div
+          The export will take the document content and render it as a plain text file that can be copied and pasted as a Joomla! article.  The document will include all of the infobutton context specified.
+        %div
+          The zip file contents may be served from any website or intranet file share.

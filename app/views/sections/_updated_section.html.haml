@@ -1,0 +1,11 @@
+- section_changes = summarize_section_change_from_other_document(section, is_clone)
+- unless section_changes.blank?
+  %li.section-detail-change
+    = section.title
+    = form_for section, url: section_sync_path(section, is_clone) do |f|
+      =f.submit "Apply"
+      =f.submit "Ignore"
+    %ul
+      - section_changes.each do |ch|
+        %li
+          = ch

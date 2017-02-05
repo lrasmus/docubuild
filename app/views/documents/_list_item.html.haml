@@ -1,0 +1,13 @@
+.doc_detail
+  .doc_avtar{:class=>"color_cod0#{(document.id % 7) + 1}"}=doc_avatar_title(document)
+  .doc_info
+    %h3.heading03=document.title
+    %p.doc_info_text=document.description
+    .doc_progress
+      .progress_label=document.status.name
+      .progress_date
+        %i.fa.fa-calendar>
+        Last Modified:
+        =format_last_modified(document)
+      .edit_doc
+        =link_to "Edit Document", edit_document_path(document)

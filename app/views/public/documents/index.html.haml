@@ -1,0 +1,14 @@
+%div.inside_header_bg.public_header
+  %header.inside_head_wrapper
+    %div.inside_header
+      %div.inside_logo
+        =image_tag("logo01.png")
+        Library
+.public_index
+  - if @documents.blank?
+    %h1 Sorry, there are currently no publicly accessible documents at this time.
+  - else
+    %h2 The following documents are available:
+    %ul
+      - @documents.each do |document|
+        %li=link_to document.title, public_document_path(document)

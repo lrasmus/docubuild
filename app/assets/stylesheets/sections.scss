@@ -1,3 +1,18 @@
 // Place all the styles related to the sections controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.multiple_btn {
+  .spacer {
+    display: inline-block;
+    width: 30px;
+  }
+}
+
+.section_actions {
+  float: right;
+}
+
+.section_tabs {
+  width: auto;
+}

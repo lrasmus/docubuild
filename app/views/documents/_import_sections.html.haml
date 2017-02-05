@@ -1,0 +1,55 @@
+.row.import_sections
+  .document_list_short
+    %h2 Select the document to import from
+    = form_for @document, :url => "#" do |f|
+      .template_list
+        #accordion.templates
+          - @documents.each do |document|
+            .box_panel
+              .content_edit
+                .cnt_edit_tital
+                  =f.radio_button :template_id, document.id, :class => "tital_chk", :checked => false
+                  %label.chk_box_text=document.title
+                .template_details
+                  .template_description=document.description
+    .row
+      .prv_ci_btn
+        %a{:href => "#", :class=>"import_cancel"} Cancel
+  .section_details
+    .header
+      .pop_up_header
+        .ph_left_col.text_edit
+          %div.section_nav
+            %a{:href=> "#", :id=>"section_preview_back"} &lt; Back
+          %div.section_details
+            %span#document_title
+            %span.low_size#document_description
+    .section_list
+
+:javascript
+  $(function() {
+    $(".section_details").hide();
+
+
+    $(".import_sections").on('click', '.import_cancel', function(e) {
+      e.preventDefault();
+      $("#dialog").dialog("close");
+    });
+
+    $("#section_preview_back").on('click', function(e) {
+      e.preventDefault();
+      $(".document_list_short").show(500);
+      $(".section_details").hide(500);
+    });
+
+    $("#dialog #content form input:radio").on('click', function(e) {
+      $(".section_details #document_title").text($(this).siblings(".chk_box_text").text());
+      $(".section_details #document_description").text($(this).closest(".content_edit").find(".template_description").text());
+
+      $.get("/documents/" + $(this).val() + "/template_sections?view=preview", function(data) {
+        $(".document_list_short").hide(500);
+        $(".section_details .section_list").html(data);
+        $(".section_details").show(500);
+      });
+    });
+  });

@@ -1,0 +1,27 @@
+.row#properties
+  .col-lg-8
+    = form_for @document, :remote => true, :html => {:id => "document_properties_form"} do |f|
+      %h1
+        %label.editable=@document.title
+        =f.text_field :title, class: "editable editable_name"
+      %span.institution
+        %label.editable=@document.institution
+        =f.text_field :institution, class: "editable editable_name"
+      %div.description
+        %span.title Description: 
+        %label.editable=@document.description
+        =f.text_area :description, class: "editable editable_name"
+      %a.edit_tag.edit.editable{:href => "#"} Edit
+      =link_to "Save", "#", id: "save_document", class: "edit_tag edit editable hidden_form_btn"
+      %a.edit_tag.edit.editable.hidden_form_btn{:href => "#"} Cancel
+
+  .col-lg-4
+    - unless @document.clone_source.nil?
+      %div.template
+        %span.title Copied from:
+        = link_to @document.clone_source.title, edit_document_path(@document.clone_source)
+    %div.template
+      %span.title Template:
+      =@document.template.nil? ? "(No template)" : @document.template.title
+    = render partial: "status_buttons"
+    = render partial: "visibility_buttons"

@@ -1,0 +1,52 @@
+= form.fields_for :style do |style_form|
+  .document_font_details.font_details
+    .font_type Document Title
+    .font_name_select
+      = style_form.select(:document_font_name, options_for_select(font_list(), safe_get_style_value(document, "document_font_name")))
+    .font_size_select
+      = style_form.select(:document_font_size, options_for_select(font_size_list(), safe_get_style_value(document, "document_font_size")))
+    .font_color_select
+      = style_form.color_field :document_font_color, :value => safe_get_style_value(document, "document_font_color")
+  .section_font_details.font_details
+    .font_type Section Title
+    .font_name_select
+      = style_form.select(:section_font_name, options_for_select(font_list(), safe_get_style_value(document, "section_font_name")))
+    .font_size_select
+      = style_form.select(:section_font_size, options_for_select(font_size_list(), safe_get_style_value(document, "section_font_size")))
+    .font_color_select
+      = style_form.color_field :section_font_color, :value => safe_get_style_value(document, "section_font_color")
+  .text_font_details.font_details
+    .font_type Text
+    .font_name_select
+      = style_form.select(:font_name, options_for_select(font_list(), safe_get_style_value(document, "font_name")))
+    .font_size_select
+      = style_form.select(:font_size, options_for_select(font_size_list(), safe_get_style_value(document, "font_size")))
+    .font_color_select
+      = style_form.color_field :font_color, :value => safe_get_style_value(document, "font_color")
+
+.font_preview
+  %h1 Example Document Title
+  %h2 Example Section Title
+  .text
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+:javascript
+  function updatePreview() {
+    $(".font_preview h1").css("font-family", $(".document_font_details .font_name_select select option:selected").val());
+    $(".font_preview h1").css("font-size", $(".document_font_details .font_size_select select option:selected").val() + "pt");
+    $(".font_preview h1").css("color", $(".document_font_details .font_color_select input").val());
+    $(".font_preview h2").css("font-family", $(".section_font_details .font_name_select select option:selected").val());
+    $(".font_preview h2").css("font-size", $(".section_font_details .font_size_select select option:selected").val() + "pt");
+    $(".font_preview h2").css("color", $(".section_font_details .font_color_select input").val());
+    $(".font_preview .text").css("font-family", $(".text_font_details .font_name_select select option:selected").val());
+    $(".font_preview .text").css("font-size", $(".text_font_details .font_size_select select option:selected").val() + "pt");
+    $(".font_preview .text").css("color", $(".text_font_details .font_color_select input").val());
+  }
+
+  $(function() {
+    $('.font_name_select select, .font_size_select select, .font_color_select input').change(function(){
+      updatePreview();
+    });
+
+    updatePreview();
+  });
