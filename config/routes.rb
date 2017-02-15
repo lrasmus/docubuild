@@ -36,6 +36,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'public', to: redirect('/public/documents')
+
   namespace :public do
     resources :documents
     resources :document_files
