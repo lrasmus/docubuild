@@ -14,6 +14,7 @@
 body.public_document {
   .dub-document-content, .public_index {
     margin: 20px;
+    min-height: 300px;
   }
   .public_header {
     font-family: 'Gotham-Book';
@@ -43,8 +44,18 @@ body.public_document {
       font-family: 'Gotham-Book';
       text-align: center;
       color: #FFFFFF;
-      font-size: 8pt;
+      font-size: 10pt;
+    }
+
+    .public_footer_text {
       padding: 7px;
+    }
+
+    .disclaimer_text {
+      font-size: 8pt;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      color: #AAAAAA;
     }
     width: 100%;
     background: #171d20;
