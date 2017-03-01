@@ -9,18 +9,18 @@
 # We want control over statuses, so they are not editable from the application and only through the seeds
 # and/or migrations.  We replicate the values for these statuses in the Status model, so any changes here
 # should be reflected there as well.
-Status.create(:name => "In Progress")
-published = Status.create(:name => "Published")
-Status.create(:name => "Archived")
+Status.create(:id => 1, :name => "In Progress")
+published = Status.create(:id => 2, :name => "Published")
+Status.create(:id => 3, :name => "Archived")
 
-public_vis = Visibility.create(:name => "Public")
-Visibility.create(:name => "Private")
+public_vis = Visibility.create(:id => 1, :name => "Public")
+Visibility.create(:id => 2, :name => "Private")
 
-DocumentFileType.create(:name => "Logo (PNG)", :category => "Logo", :mime_type => "image/png", :extension => "png")
-DocumentFileType.create(:name => "Logo (JPEG)", :category => "Logo", :mime_type => "image/jpeg", :extension => "jpeg")
-DocumentFileType.create(:name => "Logo (JPEG)", :category => "Logo", :mime_type => "image/jpeg", :extension => "jpg")
-DocumentFileType.create(:name => "Logo (GIF)", :category => "Logo", :mime_type => "image/gif", :extension => "gif")
-DocumentFileType.create(:name => "Stylesheet", :category => "Style", :mime_type => "text/css", :extension => "css")
+DocumentFileType.create(:id => 1, :name => "Logo (PNG)", :category => "Logo", :mime_type => "image/png", :extension => "png")
+DocumentFileType.create(:id => 2, :name => "Logo (JPEG)", :category => "Logo", :mime_type => "image/jpeg", :extension => "jpeg")
+DocumentFileType.create(:id => 3, :name => "Logo (JPEG)", :category => "Logo", :mime_type => "image/jpeg", :extension => "jpg")
+DocumentFileType.create(:id => 4, :name => "Logo (GIF)", :category => "Logo", :mime_type => "image/gif", :extension => "gif")
+DocumentFileType.create(:id => 5, :name => "Stylesheet", :category => "Style", :mime_type => "text/css", :extension => "css")
 
 
 ##########################################################################
