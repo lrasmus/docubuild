@@ -182,9 +182,9 @@
     tinymce.init({
       selector: "textarea.tinymce",
       height: 400,
-      toolbar: ["styleselect | bold italic underline link | bullist numlist | undo redo"],
-      plugins: "link,table,lists",
-      menubar: "edit format table",
+      toolbar: ["styleselect | bold italic underline link | bullist numlist | undo redo | image"],
+      plugins: "link,table,lists,image",
+      menubar: "edit format table insert",
       setup: function (editor) {
         editor.on('change', function () {
             editor.save();
