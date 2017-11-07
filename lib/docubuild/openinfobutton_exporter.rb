@@ -26,7 +26,7 @@ module DocUBuild
         asset["assetId"] = response[0]["assetId"]
       end
 
-      response = RestClient.post(base_url + '/asset/update',
+      response = RestClient.post(base_url + '/assetManager/asset/update',
         asset.to_json,
         {content_type: :json, accept: :json})
       
