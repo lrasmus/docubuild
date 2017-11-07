@@ -16,6 +16,9 @@ class SectionsController < ApplicationController
       @section.order = document.sections.last.order + 1
     end
 
+    @section.visibility = document.visibility
+    @section.status = document.status
+
     update_user_attribution @section, true
 
     respond_to do |format|
@@ -23,6 +26,7 @@ class SectionsController < ApplicationController
         format.html { redirect_to @section, notice: 'Section was successfully created.' }
         format.json { render :show, status: :created, location: @section }
       else
+        puts @section.errors.full_messages
         format.html { render :new }
         format.json { render json: @section.errors, status: :unprocessable_entity }
       end

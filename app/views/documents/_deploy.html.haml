@@ -29,6 +29,18 @@
   .box_panel
     .export_type
       .export_title
+        =image_tag "oib_logo.png"
+        Export to OpenInfobutton
+        %a.edit_btn{href: export_oib_document_path(document)}
+          Export
+      .export_description
+        %div
+          This will index the document in the OpenInfobutton instance configured with DocUBuild.
+        %div
+          OpenInfobutton will return a link to this document from its responder.
+  .box_panel
+    .export_type
+      .export_title
         =image_tag "joomla_logo.png"
         Export for Joomla! CMS
         %a.edit_btn{href: export_joomla_document_path(document)}

@@ -9,18 +9,18 @@
 # We want control over statuses, so they are not editable from the application and only through the seeds
 # and/or migrations.  We replicate the values for these statuses in the Status model, so any changes here
 # should be reflected there as well.
-Status.create(:name => "In Progress")
-published = Status.create(:name => "Published")
-Status.create(:name => "Archived")
+Status.create(:id => 1, :name => "In Progress")
+published = Status.create(:id => 2, :name => "Published")
+Status.create(:id => 3, :name => "Archived")
 
-public_vis = Visibility.create(:name => "Public")
-Visibility.create(:name => "Private")
+public_vis = Visibility.create(:id => 1, :name => "Public")
+Visibility.create(:id => 2, :name => "Private")
 
-DocumentFileType.create(:name => "Logo (PNG)", :category => "Logo", :mime_type => "image/png", :extension => "png")
-DocumentFileType.create(:name => "Logo (JPEG)", :category => "Logo", :mime_type => "image/jpeg", :extension => "jpeg")
-DocumentFileType.create(:name => "Logo (JPEG)", :category => "Logo", :mime_type => "image/jpeg", :extension => "jpg")
-DocumentFileType.create(:name => "Logo (GIF)", :category => "Logo", :mime_type => "image/gif", :extension => "gif")
-DocumentFileType.create(:name => "Stylesheet", :category => "Style", :mime_type => "text/css", :extension => "css")
+DocumentFileType.create(:id => 1, :name => "Logo (PNG)", :category => "Logo", :mime_type => "image/png", :extension => "png")
+DocumentFileType.create(:id => 2, :name => "Logo (JPEG)", :category => "Logo", :mime_type => "image/jpeg", :extension => "jpeg")
+DocumentFileType.create(:id => 3, :name => "Logo (JPEG)", :category => "Logo", :mime_type => "image/jpeg", :extension => "jpg")
+DocumentFileType.create(:id => 4, :name => "Logo (GIF)", :category => "Logo", :mime_type => "image/gif", :extension => "gif")
+DocumentFileType.create(:id => 5, :name => "Stylesheet", :category => "Style", :mime_type => "text/css", :extension => "css")
 
 
 ##########################################################################
@@ -101,3 +101,38 @@ Section.create(:title => "Date of the information",
 
 Context.create(:item_id => fact_sheet.id, :item_type => 'Document', :category => "informationRecipient",
   :code => "PROV", :code_system_oid => "2.16.840.1.113883.5.110", :code_system_name => "Role Class", :term => "Provider")
+
+
+# ISCC Use Case
+iscc_template = Document.create(:title => "Inter-Society Coordinating Committee (ISCC) Use Case Template",
+  :description => "The genetic and genomic case studies created by the ISCC Case Studies Working Group members represent examples of scenarios physicians are likely to encounter in practice.",
+  :institution => "NHGRI ISCC",
+  :is_template => true, :status => published, :visibility => public_vis)
+
+Section.create(:title => "Specialty/Professional Society", 
+  :status => published, :visibility => public_vis, :order => 1, :document => iscc_template)
+Section.create(:title => "Type of Use Case", 
+  :content => "<ol><li>Genomic-based therapeutics.<ol><li>Pharmacogenomic</li></ol></li><li>Rare Single Gene Mendelian Disorder</li><li>Family History</li><li>Common Complex Disease with Genetic Component</li><li>Whole exome/genome sequencing<ol><li>Incidental findings (specifically included in EPA for genomic testing)</li></ol></li><li>Microbial Genomics</li></ol>",
+  :status => published, :visibility => public_vis, :order => 2, :document => iscc_template)
+Section.create(:title => "Title", 
+  :status => published, :visibility => public_vis, :order => 3, :document => iscc_template)
+Section.create(:title => "Clinical Scenario", 
+  :status => published, :visibility => public_vis, :order => 4, :document => iscc_template)
+Section.create(:title => "Relevant Genomic Information",
+  :description => "Description of relevant genomic information and how this information would be used", 
+  :status => published, :visibility => public_vis, :order => 5, :document => iscc_template)
+Section.create(:title => "Recommended Clinical Action", 
+  :content => "<ol><li>Identification of patients within the clinician’s practice for which use case is relevant</li><li>Specialty that develops use case could also define practice-based learning objectives that could be implemented based on the use case (e.g. Maintenance of Certification)</li></ol>",
+  :status => published, :visibility => public_vis, :order => 6, :document => iscc_template)
+Section.create(:title => "Family Implications", 
+  :status => published, :visibility => public_vis, :order => 7, :document => iscc_template)
+Section.create(:title => "Supporting Evidence",
+  :content => "<ol><li>Professional society practice guideline</li><li>Other guideline</li><li>Evidence review</li><li>Consensus Best Practice</li></ol>",
+  :description => "Evidence to support the use of genomic information in this scenario", 
+  :status => published, :visibility => public_vis, :order => 8, :document => iscc_template)
+Section.create(:title => "References and Resources",
+  :description => "List of additional resources", 
+  :status => published, :visibility => public_vis, :order => 9, :document => iscc_template)
+
+
+

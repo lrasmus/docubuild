@@ -2,4 +2,20 @@
   input:not([type=button]):not([type=submit]) {
     width: 100%;
   }
+
+  .field {
+    padding-bottom: 10px;
+
+    label {
+      margin-bottom: 0px;
+    }
+  }
+
+  .actions {
+    padding: 0px;
+  }
+
+  .row {
+    margin-bottom: 10px;
+  }
 }

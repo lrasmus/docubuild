@@ -1,4 +1,4 @@
-class DocumentFile < ActiveRecord::Base
+class DocumentFile < ApplicationRecord
   acts_as_paranoid
   has_paper_trail :skip => [:content]
 

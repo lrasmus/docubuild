@@ -1,12 +1,15 @@
 /*
   =require twitter-bootstrap-static/bootstrap
 
-  Use Font Awesome icons (default)
-  To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
-  =require twitter-bootstrap-static/fontawesome
-  */
+  Static version of css will use Glyphicons sprites by default
+  =require twitter-bootstrap-static/sprites
+*/
 
 h1 { margin: 0.67em 0; }
+
+.alert, .notice {
+  z-index: 1000;
+}
 
 .alert {
   background-color: #f2dede;
