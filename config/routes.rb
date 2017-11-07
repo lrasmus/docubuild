@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       post 'set_context'
       get 'export_html'
       get 'export_joomla'
+      get 'export_oib'
       put 'reorder_sections'
       put 'break_template_link'
       put 'break_clone_link'

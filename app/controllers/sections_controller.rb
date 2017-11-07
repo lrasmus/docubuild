@@ -26,6 +26,7 @@ class SectionsController < ApplicationController
         format.html { redirect_to @section, notice: 'Section was successfully created.' }
         format.json { render :show, status: :created, location: @section }
       else
+        puts @section.errors.full_messages
         format.html { render :new }
         format.json { render json: @section.errors, status: :unprocessable_entity }
       end

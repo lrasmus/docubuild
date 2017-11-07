@@ -29,6 +29,18 @@
   .box_panel
     .export_type
       .export_title
+        =image_tag "oib_logo.png"
+        Export to OpenInfobutton
+        %a.edit_btn{href: export_oib_document_path(document)}
+          Export
+      .export_description
+        %div
+          The export will take the document content and render it as a plain text file that can be copied and pasted as a Joomla! article.  The document will include all of the infobutton context specified.
+        %div
+          The zip file contents may be served from any website or intranet file share.
+  .box_panel
+    .export_type
+      .export_title
         =image_tag "joomla_logo.png"
         Export for Joomla! CMS
         %a.edit_btn{href: export_joomla_document_path(document)}

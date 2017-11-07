@@ -1,4 +1,5 @@
 require 'docubuild/html_exporter'
+require 'docubuild/openinfobutton_exporter'
 
 class DocumentsController < ApplicationController
   include ContextsHelper
@@ -6,7 +7,7 @@ class DocumentsController < ApplicationController
 
   before_action :set_document, only: [:show, :edit, :update, :destroy,
     :template_sections, :add_sections_from_templates, :import_sections,
-    :preview, :set_context, :export_html, :export_joomla, :reorder_sections,
+    :preview, :set_context, :export_html, :export_joomla, :export_oib, :reorder_sections,
     :break_template_link, :break_clone_link, :template_sync, :clone_sync]
   before_filter :check_for_cancel, :only => [:create, :update, :clone]
   before_filter :clean_view_param, :only => [:template_sections]
@@ -144,6 +145,7 @@ class DocumentsController < ApplicationController
         format.html { redirect_to edit_document_path(@document), notice: 'Document was successfully created.' }
         format.json { render :show, status: :created, location: @document }
       else
+        @templates = Document.templates
         format.html { render :new }
         format.json { render json: @document.errors, status: :unprocessable_entity }
       end
@@ -210,6 +212,12 @@ class DocumentsController < ApplicationController
       send_data temp_file.read, filename: "#{exporter.document_export_name(@document)}.zip"
       temp_file.unlink
     end
+  end
+
+  def export_oib
+    exporter = DocUBuild::OpenInfobuttonExporter.new
+    exporter.publish(@document, current_user.email)
+    redirect_to edit_document_path(@document, :anchor => "deploy_document") , flash: {notice: 'Document was successfully exported.'}
   end
 
   # PUT /documents/1/reorder_sections
