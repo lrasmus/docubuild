@@ -20,7 +20,7 @@ module DocUBuild
       url_for_document = public_document_url(document)
       asset = {"namespaceCd" => "DocUBuild","displayName" => document.title,"lastUpdateDate" => document.updated_at,"assetUrl" => url_for_document,"assetMimeType" => "text/html"}
 
-      response = JSON.parse(RestClient.get(base_url + "/assets?url=#{url_for_document}"))
+      response = JSON.parse(RestClient.get(base_url + "/assetManager/assets?url=#{url_for_document}"))
       unless response.nil? or response.blank?
         puts response[0]
         asset["assetId"] = response[0]["assetId"]
@@ -42,7 +42,7 @@ module DocUBuild
           properties << {"asset" => { "assetId" => assetId }, "propertyName" => map_context_category(context.category), "propertyType" => "CODE", "code" => context.code, "codeSystem" => context.code_system_oid, "displayName" => context.term, "generatedByCode" => user}
         end
       end
-      RestClient.post(base_url + '/assetProperty/update',
+      RestClient.post(base_url + '/assetManager/assetProperty/update',
         properties.to_json,
         {content_type: :json, accept: :json})
     end

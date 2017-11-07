@@ -81,6 +81,8 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
   config.action_mailer.default_url_options = { :host => "172.16.51.236", :port => 80 }
+
+  config.x.docubuild.openinfobutton_base_url = 'http://172.16.51.236:8080/openInfobutton'
 end
 
 Rails.application.routes.default_url_options[:host] = "172.16.51.236"
