@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.6.1'
+lock '3.9.1'
 
 set :application, 'docubuild'
 set :repo_url, 'ssh://git@stash.nubic.northwestern.edu:7999/emerge/docubuild.git'
@@ -9,7 +9,7 @@ set :branch, 'develop'
 set :deploy_to, "/var/www/apps/#{ fetch(:application) }_#{ fetch(:stage) }"
 
 # Default value for :scm is :git
-set :scm, :git
+set :scm, :git unless fetch(:stage) == 'vm'
 
 # Default value for :format is :pretty
 set :format, :pretty
@@ -115,9 +115,11 @@ EOF
   end
 end
 
-
 after "deploy:updated", "deploy:cleanup"
-after "deploy:finished", "deploy_prepare:create_vhost"
-after "deploy_prepare:create_vhost", "deploy:httpd_graceful"
-after "deploy:httpd_graceful", "deploy:restart"
-
+if fetch(:stage) == 'vm'
+  after "deploy:finished", "deploy:restart"
+else
+  after "deploy:finished", "deploy_prepare:create_vhost"
+  after "deploy_prepare:create_vhost", "deploy:httpd_graceful"
+  after "deploy:httpd_graceful", "deploy:restart"
+end
