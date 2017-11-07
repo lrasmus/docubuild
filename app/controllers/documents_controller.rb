@@ -223,9 +223,9 @@ class DocumentsController < ApplicationController
   # PUT /documents/1/reorder_sections
   def reorder_sections
     sections = params[:sections]
-    sections.each do |section_data|
-      section = Section.find(section_data[1]['id'].to_i)
-      order = section_data[1]['order'].to_i
+    sections.each do |key, section_data|
+      section = Section.find(section_data['id'].to_i)
+      order = section_data['order'].to_i
       unless section.nil? or section.order == order
         section.order = order
         update_user_attribution section, false, true
