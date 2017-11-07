@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -26,10 +25,9 @@ ActiveRecord::Schema.define(version: 20170204162355) do
     t.string   "term"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.index ["item_id"], name: "index_contexts_on_item_id", using: :btree
+    t.index ["item_type"], name: "index_contexts_on_item_type", using: :btree
   end
-
-  add_index "contexts", ["item_id"], name: "index_contexts_on_item_id", using: :btree
-  add_index "contexts", ["item_type"], name: "index_contexts_on_item_type", using: :btree
 
   create_table "document_file_types", force: :cascade do |t|
     t.string   "name"
@@ -49,11 +47,10 @@ ActiveRecord::Schema.define(version: 20170204162355) do
     t.datetime "updated_at",            null: false
     t.datetime "deleted_at"
     t.json     "properties"
+    t.index ["deleted_at"], name: "index_document_files_on_deleted_at", using: :btree
+    t.index ["document_file_type_id"], name: "index_document_files_on_document_file_type_id", using: :btree
+    t.index ["document_id"], name: "index_document_files_on_document_id", using: :btree
   end
-
-  add_index "document_files", ["deleted_at"], name: "index_document_files_on_deleted_at", using: :btree
-  add_index "document_files", ["document_file_type_id"], name: "index_document_files_on_document_file_type_id", using: :btree
-  add_index "document_files", ["document_id"], name: "index_document_files_on_document_id", using: :btree
 
   create_table "documents", force: :cascade do |t|
     t.string   "title"
@@ -74,18 +71,17 @@ ActiveRecord::Schema.define(version: 20170204162355) do
     t.integer  "clone_source_id"
     t.integer  "template_version"
     t.integer  "clone_source_version"
+    t.index ["clone_source_id"], name: "index_documents_on_clone_source_id", using: :btree
+    t.index ["created_by_id"], name: "index_documents_on_created_by_id", using: :btree
+    t.index ["deleted_at"], name: "index_documents_on_deleted_at", using: :btree
+    t.index ["deleted_by_id"], name: "index_documents_on_deleted_by_id", using: :btree
+    t.index ["folder_id"], name: "index_documents_on_folder_id", using: :btree
+    t.index ["is_template"], name: "index_documents_on_is_template", using: :btree
+    t.index ["status_id"], name: "index_documents_on_status_id", using: :btree
+    t.index ["template_id"], name: "index_documents_on_template_id", using: :btree
+    t.index ["updated_by_id"], name: "index_documents_on_updated_by_id", using: :btree
+    t.index ["visibility_id"], name: "index_documents_on_visibility_id", using: :btree
   end
-
-  add_index "documents", ["clone_source_id"], name: "index_documents_on_clone_source_id", using: :btree
-  add_index "documents", ["created_by_id"], name: "index_documents_on_created_by_id", using: :btree
-  add_index "documents", ["deleted_at"], name: "index_documents_on_deleted_at", using: :btree
-  add_index "documents", ["deleted_by_id"], name: "index_documents_on_deleted_by_id", using: :btree
-  add_index "documents", ["folder_id"], name: "index_documents_on_folder_id", using: :btree
-  add_index "documents", ["is_template"], name: "index_documents_on_is_template", using: :btree
-  add_index "documents", ["status_id"], name: "index_documents_on_status_id", using: :btree
-  add_index "documents", ["template_id"], name: "index_documents_on_template_id", using: :btree
-  add_index "documents", ["updated_by_id"], name: "index_documents_on_updated_by", using: :btree
-  add_index "documents", ["visibility_id"], name: "index_documents_on_visibility_id", using: :btree
 
   create_table "folders", force: :cascade do |t|
     t.string   "title"
@@ -100,11 +96,10 @@ ActiveRecord::Schema.define(version: 20170204162355) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_folders_on_deleted_at", using: :btree
+    t.index ["status_id"], name: "index_folders_on_status_id", using: :btree
+    t.index ["visibility_id"], name: "index_folders_on_visibility_id", using: :btree
   end
-
-  add_index "folders", ["deleted_at"], name: "index_folders_on_deleted_at", using: :btree
-  add_index "folders", ["status_id"], name: "index_folders_on_status_id", using: :btree
-  add_index "folders", ["visibility_id"], name: "index_folders_on_visibility_id", using: :btree
 
   create_table "sections", force: :cascade do |t|
     t.string   "title"
@@ -124,13 +119,12 @@ ActiveRecord::Schema.define(version: 20170204162355) do
     t.integer  "template_version"
     t.integer  "clone_source_id"
     t.integer  "clone_source_version"
+    t.index ["deleted_at"], name: "index_sections_on_deleted_at", using: :btree
+    t.index ["document_id"], name: "index_sections_on_document_id", using: :btree
+    t.index ["status_id"], name: "index_sections_on_status_id", using: :btree
+    t.index ["template_id"], name: "index_sections_on_template_id", using: :btree
+    t.index ["visibility_id"], name: "index_sections_on_visibility_id", using: :btree
   end
-
-  add_index "sections", ["deleted_at"], name: "index_sections_on_deleted_at", using: :btree
-  add_index "sections", ["document_id"], name: "index_sections_on_document_id", using: :btree
-  add_index "sections", ["status_id"], name: "index_sections_on_status_id", using: :btree
-  add_index "sections", ["template_id"], name: "index_sections_on_template_id", using: :btree
-  add_index "sections", ["visibility_id"], name: "index_sections_on_visibility_id", using: :btree
 
   create_table "statuses", force: :cascade do |t|
     t.string   "name"
@@ -158,11 +152,10 @@ ActiveRecord::Schema.define(version: 20170204162355) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "institution"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "versions", force: :cascade do |t|
     t.string   "item_type",      null: false
@@ -172,9 +165,8 @@ ActiveRecord::Schema.define(version: 20170204162355) do
     t.text     "object"
     t.datetime "created_at"
     t.text     "object_changes"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
   end
-
-  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
   create_table "visibilities", force: :cascade do |t|
     t.string   "name"

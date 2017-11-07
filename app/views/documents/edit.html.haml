@@ -109,7 +109,15 @@
       $("#preview_document").removeClass("active");
       $("#deploy_document").removeClass("active");
 
+      // Activate the tab, and also set the hash (in a way that doesn't cause a jump)
       $(event.target).addClass("active");
+      var hash = '#' + event.target.id;
+      if(history.pushState) {
+        history.pushState(null, null, hash);
+      }
+      else {
+        location.hash = hash;
+      }
       $("." + event.target.id).show();
     });
 
@@ -119,8 +127,6 @@
         $(".preview_document .content").html(data).show();
       });
     });
-
-    $("#document_sections").click();
 
     $("a#add_section").on("click", function(event) {
       event.stopPropagation();
@@ -191,4 +197,12 @@
         });
       }
     });
+
+    if (window.location.hash) {
+      $(window.location.hash).click();
+    }
+    else {
+      $("#document_sections").click();
+    }
+    window.scroll({top: 0, left: 0});
   });

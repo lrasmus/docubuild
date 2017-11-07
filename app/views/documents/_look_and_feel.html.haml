@@ -44,7 +44,7 @@
       value += "px";
     }
     $("#logo_image img").css(attrName, value);
-    var fileId = #{@document.logo_file.id ? document.logo_file.id : '\'\''};
+    var fileId = #{@document.logo_file.id ? document.logo_file.id : 'false'};
     if (fileId) {
       $.ajax({
         url: "/documents/" + #{document.id} + "/document_files/" + fileId,

@@ -1,15 +1,15 @@
-class Document < ActiveRecord::Base
+class Document < ApplicationRecord
   acts_as_paranoid
   has_paper_trail
 
   belongs_to :status
   belongs_to :visibility
   belongs_to :created_by, :class_name => "User", :foreign_key => "created_by_id"
-  belongs_to :updated_by, :class_name => "User", :foreign_key => "updated_by_id"
-  belongs_to :deleted_by, :class_name => "User", :foreign_key => "deleted_by_id"
-  belongs_to :folder
+  belongs_to :updated_by, :class_name => "User", :foreign_key => "updated_by_id", optional: true
+  belongs_to :deleted_by, :class_name => "User", :foreign_key => "deleted_by_id", optional: true
+  belongs_to :folder, optional: true
   belongs_to :template, :class_name => "Document", :foreign_key => "template_id"
-  belongs_to :clone_source, :class_name => "Document", :foreign_key => "clone_source_id"
+  belongs_to :clone_source, :class_name => "Document", :foreign_key => "clone_source_id", optional: true
   has_many :sections
   has_many :document_files
   has_many :contexts, as: :item

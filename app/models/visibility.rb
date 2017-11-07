@@ -1,4 +1,4 @@
-class Visibility < ActiveRecord::Base
+class Visibility < ApplicationRecord
   # Replicate the database values here for easy referencing.  Any changes here should be reflected in the seeds
   # and by a migration if you are changing an existing value.
   Public = 1

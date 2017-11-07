@@ -16,6 +16,9 @@ class SectionsController < ApplicationController
       @section.order = document.sections.last.order + 1
     end
 
+    @section.visibility = document.visibility
+    @section.status = document.status
+
     update_user_attribution @section, true
 
     respond_to do |format|

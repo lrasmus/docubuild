@@ -1,4 +1,4 @@
-class DocumentFileType < ActiveRecord::Base
+class DocumentFileType < ApplicationRecord
   Logo = 'Logo'
   Style = 'Style'
 

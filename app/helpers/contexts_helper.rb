@@ -32,7 +32,9 @@ module ContextsHelper
       {:value => "2.16.840.1.113883.6.88", name: "RxNorm"},
       {:value => "2.16.840.1.113883.6.177", name: "MeSH"},
       {:value => "2.16.840.1.113883.6.69", name: "NDC"},
-      {:value => "2.16.840.1.113883.6.1", name: "LOINC"}
+      {:value => "2.16.840.1.113883.6.1", name: "LOINC"},
+      {:value => "2.16.840.1.113883.6.174", name: "MIM"},
+      {:value => "2.16.840.1.113883.6.336", name: "HGNC"}
     ]
   end
 
@@ -172,13 +174,13 @@ module ContextsHelper
 
   def process_context_items context_params, item
     return nil if context_params.blank?
-    context_params.each do |context|
-      context[1]["values"].each do |value|
-        item.contexts << Context.new(category: context[1]["category"],
-          code: value[1]["code"],
-          term: value[1]["term"],
-          code_system_oid: value[1]["codeSystem"],
-          code_system_name: value[1]["codeSystemName"])
+    context_params.each do |key, context|
+      context["values"].each do |key, value|
+        item.contexts << Context.new(category: context["category"],
+          code: value["code"],
+          term: value["term"],
+          code_system_oid: value["codeSystem"],
+          code_system_name: value["codeSystemName"])
       end
     end
   end
