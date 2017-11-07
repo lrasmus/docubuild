@@ -116,7 +116,7 @@ EOF
 end
 
 after "deploy:updated", "deploy:cleanup"
-if fetch(:stage) == 'vm'
+if fetch(:stage) == :vm
   after "deploy:finished", "deploy:restart"
 else
   after "deploy:finished", "deploy_prepare:create_vhost"
