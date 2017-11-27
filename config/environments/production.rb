@@ -89,3 +89,5 @@ Rails.application.configure do
     :protocol => 'https'
   }
 end
+
+Rails.application.routes.default_url_options[:host] = "docubuild.fsm.northwestern.edu"
