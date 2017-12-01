@@ -167,6 +167,7 @@
             modal: true,
             title: 'Import Sections',
             beforeClose: function(event, ui) {
+              editor.focus();  // Need to focus before setting content, otherwise editor gets in weird state
               if ($(this).attr('data-section-action') === "copy") {
                 editor.setContent(editor.getContent() + "\r\n" + $(this).attr('data-section-content'));
               }
