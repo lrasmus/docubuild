@@ -17,7 +17,7 @@ module DocUBuild
         matches << expand_document_match(item) if item.is_a?(Document)
       end
 
-      matches
+      matches.flatten
     end
 
     def expand_section_match section
@@ -46,6 +46,30 @@ module DocUBuild
       return sub_query.select(:item_id, :item_type).to_a
     end
 
+    def match_task_context matches, ib_request
+      return matches if ib_request.nil? or ib_request.taskContextCode.blank?
+      matches.each do |match|
+        query = Context.where(category: "taskContext")
+              .where(code_system_oid: "2.16.840.1.113883.5.4")
+              .where(code: ib_request.taskContextCode)
+              .where(item_id: match.item.id)
+              .where(item_type: match.item.class.name).to_a
+      end
+      matches
+    end
+
+    def match_sub_topic_context matches, ib_request
+      return matches if ib_request.nil? or ib_request.subTopicCode.blank? or ib_request.subTopicCodeSystem.blank?
+      matches.each do |m|
+        query = Context.where(category: "subTopic")
+              .where(code_system_oid: ib_request.subTopicCodeSystem)
+              .where(code: ib_request.subTopicCode)
+              .where(item_id: m.item.id)
+              .where(item_type: m.item.class.name).to_a
+      end
+      matches
+    end
+
     def search ib_request
       query = Context.all
       # The main search criteria code and code system are required, so add those in first
@@ -54,16 +78,11 @@ module DocUBuild
                     .where(code_system_oid: ib_request.mainSearchCriteriaCodeSystem)
                     #.where("term ilike ?", "%#{ib_request.mainSearchCriteriaDisplayName}%")
 
-      matches = initialize_matches(query.dup.to_a)
+      matches = initialize_matches(query.to_a)
+      matches = match_task_context(matches, ib_request)
+      matches = match_sub_topic_context(matches, ib_request)
 
-      # Conditionally add the other main search criteria portions of the query if they have
-      # been specified
-      #query2 = query.dup
-      #query2 = query2.where("term ilike ?", "%#{ib_request.mainSearchCriteriaDisplayName}%") unless ib_request.mainSearchCriteriaDisplayName.blank?
-      #puts query2.to_sql
-      results = {}
-      results[:mainSearchCriteriaDisplayName] = sub_query_terms(query, ib_request.mainSearchCriteriaDisplayName) unless ib_request.mainSearchCriteriaDisplayName.blank?
-      puts results.inspect
+      matches
     end
   end
 end
