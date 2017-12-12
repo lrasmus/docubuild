@@ -37,14 +37,14 @@ gem 'font-awesome-rails'
 gem 'rubyzip',  "~> 1.1", require: 'zip'
 gem 'rest-client'
 
+# API management
+gem 'grape'
+gem 'grape-active_model_serializers'
+gem 'grape-knock'  # JWT management (via Knock) in Grape APIs
+gem 'rack-cors', :require => 'rack/cors'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 gem 'haml'
 gem 'haml-rails'

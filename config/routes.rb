@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post 'user_token' => 'user_token#create'
   devise_for :users, :controllers => { registrations: 'registrations' }
   get 'home/index'
   get 'context/new' => 'contexts#new'
@@ -43,6 +44,9 @@ Rails.application.routes.draw do
     resources :documents
     resources :document_files
   end
+
+  # Set API response location
+  mount API::Base, at: "/"
 
   # You can have the root of your site routed with "root"
   root 'home#index'
