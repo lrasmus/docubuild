@@ -12,6 +12,8 @@ class Section < ApplicationRecord
   belongs_to :clone_source, :class_name => "Section", :foreign_key => "clone_source_id", optional: true
   has_many :contexts, as: :item
 
+  attr_accessor :relevance_score
+
   default_scope { order('sections.order') }
 
   def sync_to_template
