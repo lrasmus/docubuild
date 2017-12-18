@@ -15,8 +15,6 @@ module DocUBuild
         matches[item] = [] if matches[item].nil?
         matches[item] << ContextMatch.new(context, ContextMatch::DirectMatch)
         matches = expand_match matches, context
-        # matches = matches.merge(expand_section_match(context, item)) if item.is_a?(Section)
-        # matches = matches.merge(expand_document_match(context, item)) if item.is_a?(Document)
       end
       matches
     end
@@ -32,9 +30,8 @@ module DocUBuild
       inherited_matches = {}
       # First, get the associated document and add that to our collection
       inherited_matches[section.document] = [] if inherited_matches[section.document].nil?
-      #puts section.document
-      #puts inherited_matches.inspect
       inherited_matches[section.document] << ContextMatch.new(context, ContextMatch::InheritedMatch)
+
       # Loop through the rest of the document's sections (minus the context one) and also add those to
       # our inherited collection
       section.document.sections.select{|s| s.id != section.id}.each do |s|
@@ -69,8 +66,6 @@ module DocUBuild
         unless result.nil?
           matches[item] << ContextMatch.new(result, ContextMatch::DirectMatch)
           matches = expand_match matches, result
-          #puts "******** perform_match_to_context"
-          #matches.each{ |k, v| puts "*** #{k.class.name} #{v.count}"}
         end
       end
       matches
@@ -79,31 +74,11 @@ module DocUBuild
     def match_task_context matches, ib_request
       return matches if ib_request.taskContextCode.blank?
       perform_match_to_context matches, "taskContext", "2.16.840.1.113883.5.4", ib_request.taskContextCode
-      # return matches if ib_request.nil? or ib_request.taskContextCode.blank?
-      # matches.each do |item, contexts|
-      #   result = Context.where(category: "taskContext")
-      #         .where(code_system_oid: "2.16.840.1.113883.5.4")
-      #         .where(code: ib_request.taskContextCode)
-      #         .where(item_id: item.id)
-      #         .where(item_type: item.class.name).first
-      #   matches[item] << ContextMatch.new(result, ContextMatch::DirectMatch) unless result.nil?
-      # end
-      # matches
     end
 
     def match_sub_topic_context matches, ib_request
       return matches if ib_request.subTopicCode.blank? or ib_request.subTopicCodeSystem.blank?
       perform_match_to_context matches, "subTopic", ib_request.subTopicCodeSystem, ib_request.subTopicCode
-      # return matches if ib_request.nil? or ib_request.subTopicCode.blank? or ib_request.subTopicCodeSystem.blank?
-      # matches.each do |item, contexts|
-      #   result = Context.where(category: "subTopic")
-      #         .where(code_system_oid: ib_request.subTopicCodeSystem)
-      #         .where(code: ib_request.subTopicCode)
-      #         .where(item_id: item.id)
-      #         .where(item_type: item.class.name).first
-      #   matches[item] << ContextMatch.new(result, ContextMatch::DirectMatch) unless result.nil?
-      # end
-      # matches
     end
 
     def match_gender_context matches, ib_request
@@ -139,7 +114,6 @@ module DocUBuild
       query = query.where(category: "mainSearchCriteria")
                     .where(code: ib_request.mainSearchCriteriaCode)
                     .where(code_system_oid: ib_request.mainSearchCriteriaCodeSystem)
-                    #.where("term ilike ?", "%#{ib_request.mainSearchCriteriaDisplayName}%")
 
       # The matches collection is a Hash, where the key is the item (Document or Section) that
       # is the match, and the key is an array of ContextMatch items

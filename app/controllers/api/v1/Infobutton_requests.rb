@@ -66,9 +66,6 @@ module API
 
           responder = DocUBuild::InfobuttonResponder.new
           responder.search ib_request
-
-          #Document.where(created_by_id: current_user.id).first
-          #[]
         end
       end
     end
