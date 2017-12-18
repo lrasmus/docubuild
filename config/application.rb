@@ -1,6 +1,17 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'rails/all'
+# Per http://blog.sundaycoding.com/blog/2016/08/10/how-to-remove-action-cable-from-a-rails-app/
+# we've taken out 'require "rails/all"' so that we don't have ActionCable loaded.  We are not
+# using it, and as of 12/17 there is an unresolved vulnerability showing up (https://snyk.io/vuln/SNYK-RUBY-ACTIONCABLE-20338)
+require "rails"
+require "active_model/railtie"
+require "active_job/railtie"
+require "active_record/railtie"
+require "action_controller/railtie"
+require "action_mailer/railtie"
+require "action_view/railtie"
+require "sprockets/railtie"
+require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
