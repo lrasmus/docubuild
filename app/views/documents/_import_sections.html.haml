@@ -8,8 +8,9 @@
             .box_panel
               .content_edit
                 .cnt_edit_tital
-                  =f.radio_button :template_id, document.id, :class => "tital_chk", :checked => false
-                  %label.chk_box_text=document.title
+                  %label.chk_box_text
+                    =document.title
+                    =f.radio_button :template_id, document.id, :class => "tital_chk", :checked => false
                 .template_details
                   .template_description=document.description
     .row
