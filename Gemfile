@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # Upgraded to Rails 5.0 in October 2017
 gem 'rails', '>=5.0', '<5.1'
-gem 'pg'
+gem 'pg', '~> 0.21'
 
 # Allows soft delete of models
 gem "paranoia", "~> 2.0"
