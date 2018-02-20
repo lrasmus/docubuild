@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actioncable (5.0.6)
       actionpack (= 5.0.6)
@@ -193,7 +193,7 @@ GEM
       request_store (~> 1.1)
     paranoia (2.4.0)
       activerecord (>= 4.0, < 5.2)
-    pg (1.0.0)
+    pg (0.21.0)
     puma (3.11.2)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
@@ -351,7 +351,7 @@ DEPENDENCIES
   mailcatcher
   paper_trail
   paranoia (~> 2.0)
-  pg
+  pg (~> 0.21)
   puma
   pundit
   rack-cors
