@@ -97,7 +97,7 @@ module DocUBuild
     end
 
     def match_information_recipient_context matches, ib_request
-      return matches if ib_request.severityObservationInterpretationCodeCode.blank? or ib_request.severityObservationInterpretationCodeCodeSystem.blank?
+      return matches if ib_request.informationRecipient.blank?
       perform_match_to_context matches, "informationRecipient", "2.16.840.1.113883.5.110", ib_request.informationRecipient
     end
 
