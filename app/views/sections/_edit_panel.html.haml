@@ -9,14 +9,14 @@
             %i.fa.fa-question>
     .cnt_text
       .section_display
-        =section.content.html_safe unless section.content.blank?
+        =sanitize section.content unless section.content.blank?
       .editForm
         .section_tabs.tabcordion
           %h3.tabcord-title{"data-hname" => "tab1"} Content
           .tabcord-disp
             .form-group
               =form_for section, :remote => true do |f|
-                = f.text_area :content, :class => "form-control tinymce", :rows => "5", :data => {:original_text => section.content}, :id => "section_content_#{section.id}"
+                = f.text_area :content, :class => "form-control tinymce", :rows => "5", :data => {:original_text => (sanitize section.content)}, :id => "section_content_#{section.id}"
                 .multiple_btn
                   %a.cancel.save_section{:href => "#"} Save Section
                   %a.cancel.cancel_section{:href => "#"} Cancel

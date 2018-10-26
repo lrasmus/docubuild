@@ -1,20 +1,20 @@
 :css
   .dub-section-content {
-    font-family: "#{@document.style['font_name']}";
-    color: #{@document.style['font_color']};
-    font-size: #{@document.style['font_size']}pt;
+    font-family: "#{h(@document.style['font_name'])}";
+    color: #{h(@document.style['font_color'])};
+    font-size: #{h(@document.style['font_size'])}pt;
   }
 
   .dub-document-title {
-    font-family: "#{@document.style['document_font_name']}";
-    color: #{@document.style['document_font_color']};
-    font-size: #{@document.style['document_font_size']}pt;
+    font-family: "#{h(@document.style['document_font_name'])}";
+    color: #{h(@document.style['document_font_color'])};
+    font-size: #{h(@document.style['document_font_size'])}pt;
   }
 
   .dub-section-title {
-    font-family: "#{@document.style['section_font_name']}";
-    color: #{@document.style['section_font_color']};
-    font-size: #{@document.style['section_font_size']}pt;
+    font-family: "#{h(@document.style['section_font_name'])}";
+    color: #{h(@document.style['section_font_color'])};
+    font-size: #{h(@document.style['section_font_size'])}pt;
   }
 
 .public_header.public_document_nav
@@ -24,10 +24,10 @@
 .dub-document-content
   - logo_width = @document.logo_file.dimensions[0]
   - logo_height = @document.logo_file.dimensions[1]
-  =image_tag(public_document_file_path(@document.logo_file), :style => "width: #{logo_width}; height: #{logo_height}") if @document.logo_file.persisted?
+  =image_tag(public_document_file_path(@document.logo_file), :style => "width: #{h(logo_width)}; height: #{h(logo_height)}") if @document.logo_file.persisted?
   %h1.dub-document-title=@document.title
   - @document.sections.each do |section|
     .dub-section
-      %h2.dub-section-title=section.title
+      %h2.dub-section-title=h(section.title)
       .dub-section-content
-        =section.content.html_safe unless section.content.blank?
+        =sanitize section.content unless section.content.blank?
