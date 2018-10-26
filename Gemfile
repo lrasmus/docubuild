@@ -66,6 +66,8 @@ group :development do
 
   # Used for local SMTP needs (for Devise)
   gem 'mailcatcher'
+
+  gem 'rails-erd'
 end
 
 gem 'figaro'
