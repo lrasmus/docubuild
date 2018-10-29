@@ -31,9 +31,9 @@ class DocumentTest < ActiveSupport::TestCase
 
   test "new document section does not count as change from the template" do
     doc = documents(:from_template)
-    Section.create(:title => "New section", 
+    Section.create!(:title => "New section", 
       :description => "My new section",
-      :content => "", :status => doc.status, :visibility => doc.visibility, :order => 1, :document => doc)
+      :content => "", :status => doc.status, :visibility => doc.visibility, :order => 1, :document => doc, :created_by => doc.created_by)
 
     changes = doc.changes_from_template
 
@@ -45,9 +45,9 @@ class DocumentTest < ActiveSupport::TestCase
   test "new template section counts as change from the template" do
     doc = documents(:from_template)
     template = documents(:my_template)
-    new_section = Section.create(:title => "New template section", 
+    new_section = Section.create!(:title => "New template section", 
       :description => "My new section",
-      :content => "", :status => template.status, :visibility => template.visibility, :order => 1, :document => template)
+      :content => "", :status => template.status, :visibility => template.visibility, :order => 1, :document => template, :created_by => doc.created_by)
 
     changes = doc.changes_from_template
 
@@ -61,7 +61,7 @@ class DocumentTest < ActiveSupport::TestCase
     template = documents(:my_template)
     updated_section = template.sections.last
     updated_section.description = "Updated description"
-    updated_section.save
+    updated_section.save!
 
     changes = doc.changes_from_template
 
@@ -100,9 +100,9 @@ class DocumentTest < ActiveSupport::TestCase
 
   test "new document section does not count as change from the clone" do
     doc = documents(:from_clone)
-    Section.create(:title => "New section", 
+    Section.create!(:title => "New section", 
       :description => "My new section",
-      :content => "", :status => doc.status, :visibility => doc.visibility, :order => 1, :document => doc)
+      :content => "", :status => doc.status, :visibility => doc.visibility, :order => 1, :document => doc, :created_by => doc.created_by)
 
     changes = doc.changes_from_clone
 
@@ -114,9 +114,9 @@ class DocumentTest < ActiveSupport::TestCase
   test "new clone section counts as change from the clone" do
     doc = documents(:from_clone)
     doc_clone = documents(:in_progress)
-    new_section = Section.create(:title => "New clone section", 
+    new_section = Section.create!(:title => "New clone section", 
       :description => "My new section",
-      :content => "", :status => doc_clone.status, :visibility => doc_clone.visibility, :order => 1, :document => doc_clone)
+      :content => "", :status => doc_clone.status, :visibility => doc_clone.visibility, :order => 1, :document => doc_clone, :created_by => doc_clone.created_by)
 
     changes = doc.changes_from_clone
 
@@ -130,7 +130,7 @@ class DocumentTest < ActiveSupport::TestCase
     doc_clone = documents(:in_progress)
     updated_section = doc_clone.sections.last
     updated_section.description = "Updated description"
-    updated_section.save
+    updated_section.save!
 
     changes = doc.changes_from_clone
 
@@ -141,11 +141,11 @@ class DocumentTest < ActiveSupport::TestCase
 
   test "detects publicly available documents" do
     doc = documents(:published_public)
-    assert_true doc.is_publicly_available?
+    assert doc.is_publicly_available?
 
     doc = documents(:published_private)
-    assert_false doc.is_publicly_available?
+    assert_equal false, doc.is_publicly_available?
     doc = documents(:in_progress)
-    assert_false doc.is_publicly_available?
+    assert_equal false, doc.is_publicly_available?
   end
 end
