@@ -40,7 +40,7 @@ gem 'rest-client'
 # API management
 gem 'grape'
 gem 'grape-active_model_serializers'
-gem 'grape-knock'  # JWT management (via Knock) in Grape APIs
+gem 'grape-jwt-authentication'  # JWT management in Grape APIs
 gem 'rack-cors', :require => 'rack/cors'
 
 # Use ActiveModel has_secure_password
@@ -55,6 +55,10 @@ gem 'paper_trail'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+end
+
+group :test do
+  gem 'rails-controller-testing'
 end
 
 group :development do
