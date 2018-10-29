@@ -42,3 +42,23 @@ from_clone:
   clone_source_id: 2
   status: in_progress
   visibility: private
+
+published_public:
+  id: 6
+  title: Published Public
+  description: This document is published and publicly available
+  is_template: false
+  template_id: 1
+  clone_source_id: 2
+  status: published
+  visibility: public
+
+published_private:
+  id: 7
+  title: Published Private
+  description: This document is published and privately available
+  is_template: false
+  template_id: 1
+  clone_source_id: 2
+  status: published
+  visibility: private

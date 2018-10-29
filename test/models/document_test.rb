@@ -138,4 +138,14 @@ class DocumentTest < ActiveSupport::TestCase
     assert_equal 1, changes[:updated_sections].length
     assert_equal sections(:from_clone_two).id, changes[:updated_sections][0].id
   end
+
+  test "detects publicly available documents" do
+    doc = documents(:published_public)
+    assert_true doc.is_publicly_available?
+
+    doc = documents(:published_private)
+    assert_false doc.is_publicly_available?
+    doc = documents(:in_progress)
+    assert_false doc.is_publicly_available?
+  end
 end
