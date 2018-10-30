@@ -1,6 +1,7 @@
 module DocumentsHelper
   def format_last_modified document
-    document.updated_at.strftime("%d %b %Y")
+    last_update = document.last_updated_content
+    last_update.nil? ? "(Unknown)" : last_update.strftime("%d %b %Y")
   end
 
   def default_document_status

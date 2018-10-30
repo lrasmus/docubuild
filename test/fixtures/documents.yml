@@ -69,3 +69,12 @@ published_private:
   status_id: 2
   visibility_id: 2
   created_by: one
+
+no_sections:
+  title: Document With No Sections
+  description: This document is created but has no sections added to it
+  is_template: false
+  template_id: 1
+  status_id: 1
+  visibility_id: 2
+  created_by: one

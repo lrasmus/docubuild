@@ -54,6 +54,13 @@ class Document < ApplicationRecord
     status_id == Status::Published && visibility_id == Visibility::Public
   end
 
+  def last_updated_content
+    updates = []
+    updates << [updated_at, created_at].max
+    updates << sections.map { |s| [s.created_at, s.updated_at].max  }.max unless sections.empty?
+    updates.max
+  end
+
   private
     def changes_from_document(other_document, is_clone)
       return nil if other_document.nil?

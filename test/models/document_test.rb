@@ -148,4 +148,44 @@ class DocumentTest < ActiveSupport::TestCase
     doc = documents(:in_progress)
     assert_equal false, doc.is_publicly_available?
   end
+
+  test "last updated timestamp from content" do
+    # When newly created, the last updated timestamp will equal the document's update timestamp.
+    # Note that we're tweaking the update & creation because otherwise we run the risk of all
+    # timestamps being in the same second as the test progresses.
+    doc = documents(:no_sections)
+    doc.created_at = doc.created_at - 5.days
+    doc.updated_at = doc.created_at
+    doc.save!
+    assert_equal doc.updated_at, doc.last_updated_content
+
+    # When we add a new section, the last updated timestamp for the document will change to that
+    # of the section.  We're doing a little date manipulation here as well.
+    new_section = Section.create!(:title => "New section", 
+      :description => "My new section",
+      :content => "", :status => doc.status, :visibility => doc.visibility, :order => 1, :document => doc, :created_by => doc.created_by)
+    new_section.created_at = new_section.created_at - 3.days
+    new_section.updated_at = new_section.created_at
+    new_section.save!
+    original_updated_at = new_section.updated_at
+    assert_equal new_section.updated_at, doc.last_updated_content
+
+    # When we update a section, the last updated timestamp for the document will change to that
+    # of the section's update timestamp.  We need to make sure as well that the updated timestamp
+    # has changed from the original save
+    new_section.description = "Here's an updated section"
+    new_section.updated_at = new_section.updated_at + 1.days
+    new_section.save!
+    doc.reload
+    recent_updated_at = new_section.updated_at
+    assert_not_equal recent_updated_at, original_updated_at
+    assert_equal new_section.updated_at, doc.last_updated_content
+
+    # Finally, if we update the document itself, check that the timestamp of the last update
+    # reflects that.
+    doc.title = "An Updated Document Title"
+    doc.save!
+    assert_not_equal recent_updated_at, doc.updated_at
+    assert_equal doc.updated_at, doc.last_updated_content
+  end
 end
