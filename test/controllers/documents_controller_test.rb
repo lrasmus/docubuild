@@ -31,6 +31,11 @@ class DocumentsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should redirect invalid document" do
+    get :show, params: { id: 9999999 }
+    assert_redirected_to documents_path
+  end
+
   test "should get edit" do
     get :edit, params: { id: @document }
     assert_response :success

@@ -12,6 +12,7 @@
 Status.create(:id => 1, :name => "In Progress")
 published = Status.create(:id => 2, :name => "Published")
 Status.create(:id => 3, :name => "Archived")
+Status.create(:id => 4, :name => "Deleted")
 
 public_vis = Visibility.create(:id => 1, :name => "Public")
 Visibility.create(:id => 2, :name => "Private")

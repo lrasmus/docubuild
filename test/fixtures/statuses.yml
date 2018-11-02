@@ -9,3 +9,7 @@ published:
 archived:
   id: 3
   name: Archived
+
+deleted:
+  id: 4
+  name: Deleted
