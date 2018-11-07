@@ -5,6 +5,8 @@ Rails.application.config.assets.version = '1.0'
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
+Rails.application.config.assets.precompile << "jquery.js"
+Rails.application.config.assets.precompile << "jquery-ui.js"
 Rails.application.config.assets.precompile << "tinymce-jquery.js"
 
 # Precompile additional assets.

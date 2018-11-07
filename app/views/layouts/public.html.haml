@@ -4,6 +4,8 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title DocUBuild
     = stylesheet_link_tag    'public', media: 'all', 'data-turbolinks-track' => false
+    = javascript_include_tag 'jquery', 'data-turbolinks-track' => false
+    = javascript_include_tag 'jquery-ui', 'data-turbolinks-track' => false
     = csrf_meta_tags
   %body.public_document
     = yield

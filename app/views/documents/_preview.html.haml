@@ -17,6 +17,9 @@
     font-size: #{h(@document.style['section_font_size'])}pt;
   }
 
+  .dub-section .panel-heading { padding: 5px; }
+  .collapse .dub-section-content { padding: 5px; }
+
 
 .dub-document-content
   - logo_width = @document.logo_file.dimensions[0]
@@ -24,7 +27,23 @@
   =image_tag(document_file_path(@document.logo_file), :style => "width: #{h(logo_width)}; height: #{h(logo_height)}") if @document.logo_file.persisted?
   %h1.dub-document-title=@document.title
   - @document.sections.each do |section|
-    .dub-section
-      %h2.dub-section-title=h(section.title)
-      .dub-section-content
-        =sanitize section.content unless section.content.blank?
+    - if @document.display_format["section_display"].casecmp("accordion") == 0
+      .dub-section.panel.panel-default
+        .panel-heading
+          %h2.panel-title.dub-section-title
+            %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapse#{section.id}"}
+              %i.expand-collapse.fa.fa-angle-down
+              =h(section.title)
+        .collapse.in{:id => "#collapse#{section.id}"}
+          .dub-section-content
+            =sanitize section.content unless section.content.blank?
+    - else
+      .dub-section
+        %h2.dub-section-title=h(section.title)
+        .dub-section-content
+          =sanitize section.content unless section.content.blank?
+
+:javascript
+  $('#myCollapsible').collapse({
+    toggle: false
+  })

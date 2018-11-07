@@ -32,9 +32,16 @@
   %h3.tabcord-title{"data-hname" => "tab2"} Fonts
   .tabcord-disp
     .fonts_tab
-      = form_for document do |f|
+      = form_for document, remote: true do |f|
         = render :partial => "font_selector", :locals => {form: f, document: document}
         = f.submit "Save Font", :class => "document_style_btn"
+
+  %h3.tabcord-title{"data-hname" => "tab3"} Display Format
+  .tabcord-disp
+    .sections_tab
+      = form_for document, remote: true do |f|
+        = render :partial => "display_format", :locals => {form: f, document: document}
+        = f.submit "Save Format", :class => "document_style_btn"
 
 
 :javascript
