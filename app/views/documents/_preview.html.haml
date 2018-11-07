@@ -1,20 +1,22 @@
+- is_collapsable_display = @document.display_format["section_display"].casecmp("accordion") == 0
+
 :css
   .dub-section-content {
-    font-family: "#{h(@document.style['font_name'])}";
-    color: #{h(@document.style['font_color'])};
-    font-size: #{h(@document.style['font_size'])}pt;
+    font-family: "#{h(@document.style['font_name'])}" !important;
+    color: #{h(@document.style['font_color'])} !important;
+    font-size: #{h(@document.style['font_size'])}pt !important;
   }
 
   .dub-document-title {
-    font-family: "#{h(@document.style['document_font_name'])}";
-    color: #{h(@document.style['document_font_color'])};
-    font-size: #{h(@document.style['document_font_size'])}pt;
+    font-family: "#{h(@document.style['document_font_name'])}" !important;
+    color: #{h(@document.style['document_font_color'])} !important;
+    font-size: #{h(@document.style['document_font_size'])}pt !important;
   }
 
   .dub-section-title {
-    font-family: "#{h(@document.style['section_font_name'])}";
-    color: #{h(@document.style['section_font_color'])};
-    font-size: #{h(@document.style['section_font_size'])}pt;
+    font-family: "#{h(@document.style['section_font_name'])}" !important;
+    color: #{h(@document.style['section_font_color'])} !important;
+    font-size: #{h(@document.style['section_font_size'])}pt !important;
   }
 
   .dub-section .panel-heading { padding: 5px; }
@@ -26,24 +28,20 @@
   - logo_height = @document.logo_file.dimensions[1]
   =image_tag(document_file_path(@document.logo_file), :style => "width: #{h(logo_width)}; height: #{h(logo_height)}") if @document.logo_file.persisted?
   %h1.dub-document-title=@document.title
-  - @document.sections.each do |section|
-    - if @document.display_format["section_display"].casecmp("accordion") == 0
-      .dub-section.panel.panel-default
-        .panel-heading
-          %h2.panel-title.dub-section-title
-            %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapse#{section.id}"}
-              %i.expand-collapse.fa.fa-angle-down
-              =h(section.title)
-        .collapse.in{:id => "#collapse#{section.id}"}
+  #dub-sections
+    - @document.sections.each do |section|
+      - if is_collapsable_display
+        .dub-section
+          %h2.dub-section-title
+            =h(section.title)
           .dub-section-content
             =sanitize section.content unless section.content.blank?
-    - else
-      .dub-section
-        %h2.dub-section-title=h(section.title)
-        .dub-section-content
-          =sanitize section.content unless section.content.blank?
+      - else
+        .dub-section
+          %h2.dub-section-title=h(section.title)
+          .dub-section-content
+            =sanitize section.content unless section.content.blank?
 
-:javascript
-  $('#myCollapsible').collapse({
-    toggle: false
-  })
+- if is_collapsable_display
+  :javascript
+    $("#dub-sections").togglepanels();

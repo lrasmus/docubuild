@@ -421,3 +421,10 @@ div.actions {
     }
   }
 }
+
+.dub-section .ui-state-active {
+  background-color: #f6f6f6;
+  a, a:link, a:visited {
+    color: #000;
+  }
+}

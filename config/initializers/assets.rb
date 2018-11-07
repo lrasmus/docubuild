@@ -13,3 +13,6 @@ Rails.application.config.assets.precompile << "tinymce-jquery.js"
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w( chek-box-text.js, public.css )
+Rails.application.config.assets.precompile += %w( toggle-panels.js )
+Rails.application.config.assets.precompile += %w( jquery-ui.css )
+Rails.application.config.assets.precompile += %w( font-awesome.css )

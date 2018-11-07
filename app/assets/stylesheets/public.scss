@@ -62,4 +62,11 @@ body.public_document {
     padding: 0px;
     margin-top: 50px;
   }
+
+  .ui-state-active {
+    background-color: #f6f6f6;
+    a {
+      color: #000;
+    }
+  }
 }
