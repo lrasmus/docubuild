@@ -27,4 +27,12 @@ class Section < ApplicationRecord
     self.description = clone_source.description
     self.content = clone_source.content
   end
+
+  def suppress_collapse?
+    self.display_format != nil && self.display_format["suppress_collapse"] == "1"
+  end
+
+  def default_collapsed?
+    self.display_format != nil && self.display_format["collapse_default"] == "1"
+  end
 end

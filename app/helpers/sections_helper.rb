@@ -25,4 +25,22 @@ module SectionsHelper
       template_sync_section_path(section)
     end
   end
+
+  def section_title_css_classes section
+    if section.suppress_collapse?
+      "dub-section-title dub-no-collapse"
+    elsif section.default_collapsed?
+      "dub-section-title dub-default-collapse"
+    else
+      "dub-section-title dub-default-open"
+    end
+  end
+
+  def section_body_css_classes section
+    if section.default_collapsed?
+      "dub-section-content dub-default-collapse"
+    else
+      "dub-section-content dub-default-open"
+    end
+  end
 end

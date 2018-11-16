@@ -1,0 +1,13 @@
+.section_display_settings
+  %i Only used when the document uses the Collapsable display format
+  .form-group
+  =form_for section, :remote => true do |form|
+    = form.fields_for :display_format do |f|
+      %div
+        =f.check_box :suppress_collapse, {checked: section.suppress_collapse? }
+        =f.label :suppress_collapse, 'Always show the section content (always open)'
+      %div
+        =f.check_box :collapse_default, {checked: section.default_collapsed? }
+        =f.label :collapse_default, 'Section is collapsed (closed) by default'
+      .multiple_btn
+        %a.cancel.save_section{:href => "#"} Save

@@ -52,4 +52,12 @@ module DocumentsHelper
       break_template_link_document_path(@document)
     end
   end
+
+  def document_text_section_display document
+    !document.nil? && !document.display_format.nil? && document.display_format["section_display"] == 'text'
+  end
+
+  def document_collapsable_section_display document
+    !document.nil? && !document.display_format.nil? && document.display_format["section_display"] == 'accordion'
+  end
 end
