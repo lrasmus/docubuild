@@ -20,6 +20,7 @@ class Document < ApplicationRecord
   scope :in_progress, -> { where(status_id: Status::InProgress) }
   scope :published, -> { where(status_id: Status::Published) }
   scope :archived, -> { where(status_id: Status::Archived) }
+  scope :publicly_available, -> { where("status_id = ? AND visibility_id = ?", Status::Published, Visibility::Public) }
 
   scope :clonable_by_user, ->(user) { where("created_by_id = ? OR visibility_id = ?", user.id, Visibility::Public) }
   scope :editable_by_user, ->(user) { where(created_by_id: user.id) }
@@ -47,6 +48,17 @@ class Document < ApplicationRecord
   #  - Updated section content
   def changes_from_template
     changes_from_document(template, false)
+  end
+
+  def is_publicly_available?
+    status_id == Status::Published && visibility_id == Visibility::Public
+  end
+
+  def last_updated_content
+    updates = []
+    updates << [updated_at, created_at].max
+    updates << sections.map { |s| [s.created_at, s.updated_at].max  }.max unless sections.empty?
+    updates.max
   end
 
   private

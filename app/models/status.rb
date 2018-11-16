@@ -4,4 +4,7 @@ class Status < ApplicationRecord
   InProgress = 1
   Published = 2
   Archived = 3
+  Deleted = 4
+
+  scope :displayable, -> { where(:id => [InProgress, Published, Archived]) }
 end

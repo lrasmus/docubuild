@@ -40,7 +40,7 @@ gem 'rest-client'
 # API management
 gem 'grape'
 gem 'grape-active_model_serializers'
-gem 'grape-knock'  # JWT management (via Knock) in Grape APIs
+gem 'grape-jwt-authentication'  # JWT management in Grape APIs
 gem 'rack-cors', :require => 'rack/cors'
 
 # Use ActiveModel has_secure_password
@@ -57,6 +57,11 @@ group :development, :test do
   gem 'byebug'
 end
 
+group :test do
+  gem 'rails-controller-testing'
+  gem 'database_cleaner'
+end
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -66,6 +71,8 @@ group :development do
 
   # Used for local SMTP needs (for Devise)
   gem 'mailcatcher'
+
+  gem 'rails-erd'
 end
 
 gem 'figaro'

@@ -9,9 +9,17 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  ActiveRecord::Migration.check_pending!
+  DatabaseCleaner.strategy = :truncation
+  setup { DatabaseCleaner.start }
+  teardown { DatabaseCleaner.clean } 
 end
 
 
 class ActionController::TestCase
   include Devise::Test::ControllerHelpers
+
+  DatabaseCleaner.strategy = :truncation
+  setup { DatabaseCleaner.start }
+  teardown { DatabaseCleaner.clean } 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170204162355) do
+ActiveRecord::Schema.define(version: 20181107203036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20170204162355) do
     t.integer  "clone_source_id"
     t.integer  "template_version"
     t.integer  "clone_source_version"
+    t.json     "display_format"
     t.index ["clone_source_id"], name: "index_documents_on_clone_source_id", using: :btree
     t.index ["created_by_id"], name: "index_documents_on_created_by_id", using: :btree
     t.index ["deleted_at"], name: "index_documents_on_deleted_at", using: :btree
@@ -119,6 +120,7 @@ ActiveRecord::Schema.define(version: 20170204162355) do
     t.integer  "template_version"
     t.integer  "clone_source_id"
     t.integer  "clone_source_version"
+    t.json     "display_format"
     t.index ["deleted_at"], name: "index_sections_on_deleted_at", using: :btree
     t.index ["document_id"], name: "index_sections_on_document_id", using: :btree
     t.index ["status_id"], name: "index_sections_on_status_id", using: :btree

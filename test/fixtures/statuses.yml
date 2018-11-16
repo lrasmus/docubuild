@@ -1,8 +1,15 @@
 in_progress:
+  id: 1
   name: In Progress
 
 published:
+  id: 2
   name: Published
 
 archived:
+  id: 3
   name: Archived
+
+deleted:
+  id: 4
+  name: Deleted

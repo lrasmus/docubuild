@@ -1,0 +1,43 @@
+= form.fields_for :display_format do |f|
+  %h4 How should sections be displayed?
+  .section_option
+    =f.radio_button :section_display, 'text', :checked => document_text_section_display(document)
+    =f.label :section_display, 'As text', value: 'text'
+
+    .font_preview
+      %h2 Example Section Title 1
+      .text
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      %h2 Example Section Title 2
+      .text
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  .section_option
+    =f.radio_button :section_display, 'accordion', :checked => document_collapsable_section_display(document)
+    =f.label :section_display, 'Collapsable (accordion)', value: 'accordion'
+
+    .font_preview
+      .panel-group{:id => "exampleAccordion"}
+        .panel.panel-default
+          .panel-heading
+            %h2.panel-title
+              %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapse1"}
+                Example Section Title 1
+          .collapse.in{:id => "collapse1"}
+            .panel-body.text
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        .panel.panel-default
+          .panel-heading
+            %h2.panel-title
+              %a.accordion-toggle{"data-toggle" => "collapse", :href => "#collapse2"}
+                Example Section Title 2
+          .collapse.in{:id => "collapse2"}
+            .panel-body.text
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+
+:javascript
+  $(function() {
+    $('.section_option').click(function(){
+      $(this).find(':radio').prop('checked', true);
+    });
+  });

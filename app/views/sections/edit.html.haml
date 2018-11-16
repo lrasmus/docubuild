@@ -4,12 +4,12 @@
       %label.chk_box_text{:for => "cbxShowHide#{section.id}"}=format_order_and_title(section)
       %a{:id => "cbxShowHide#{section.id}", :class => "tital_chk fa fa-info-circle", :data => {:checked => false}} &nbsp;Details
       .chk_hide_text{:id => "block#{section.id}", :class => "hidden_block"}
-        =section.description.html_safe unless section.description.blank?
+        =sanitize section.description.html_safe unless section.description.blank?
     .cnt_text
       .editForm
         .form-group
           =form_for section, remote: true do |f|
-            = f.text_area :content, :class => "form-control", :rows => "5", :data => {:original_text => section.content}
+            = f.text_area :content, :class => "form-control", :rows => "5", :data => {:original_text => (sanitize section.content)}
             .multiple_btn
               %a.cancel.save_section{:href => "#"} Save Section
               %a.cancel.cancel_section{:href => "#"} Cancel

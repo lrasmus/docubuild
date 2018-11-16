@@ -9,5 +9,8 @@
         %i.fa.fa-calendar>
         Last Modified:
         =format_last_modified(document)
+      .delete_doc
+        =link_to document_path(document), method: :delete, data: {confirm: 'Are you sure you want to delete this document?'} do
+          %i.fa.fa-trash
       .edit_doc
         =link_to "Edit Document", edit_document_path(document)

@@ -6,6 +6,9 @@ one:
   content: MyText
   document_id: 2
   order: 1
+  created_by: one
+  status_id: 1
+  visibility_id: 2
 
 two:
   id: 2
@@ -13,6 +16,9 @@ two:
   content: MyText
   document_id: 2
   order: 2
+  created_by: one
+  status_id: 1
+  visibility_id: 2
 
 template_one:
   id: 3
@@ -20,6 +26,9 @@ template_one:
   content: MyText
   document_id: 1
   order: 1
+  created_by: one
+  status_id: 1
+  visibility_id: 2
 
 template_two:
   id: 4
@@ -27,6 +36,9 @@ template_two:
   content: MyText
   document_id: 1
   order: 2
+  created_by: one
+  status_id: 1
+  visibility_id: 2
 
 from_template_one:
   id: 5
@@ -36,6 +48,9 @@ from_template_one:
   order: 1
   template_id: 3
   template_version: 2
+  created_by: one
+  status_id: 1
+  visibility_id: 2
 
 from_template_two:
   id: 6
@@ -45,6 +60,9 @@ from_template_two:
   order: 2
   template_id: 4
   template_version: 3
+  created_by: one
+  status_id: 1
+  visibility_id: 2
 
 from_clone_one:
   id: 7
@@ -54,6 +72,9 @@ from_clone_one:
   order: 1
   clone_source_id: 1
   clone_source_version: 8
+  created_by: one
+  status_id: 1
+  visibility_id: 2
 
 from_clone_two:
   id: 8
@@ -63,3 +84,6 @@ from_clone_two:
   order: 2
   clone_source_id: 2
   clone_source_version: 9
+  created_by: one
+  status_id: 1
+  visibility_id: 2

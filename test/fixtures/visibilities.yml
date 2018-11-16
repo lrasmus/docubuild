@@ -1,5 +1,7 @@
 public:
+  id: 1
   name: Public
 
 private:
+  id: 2
   name: Private

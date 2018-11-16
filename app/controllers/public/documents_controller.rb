@@ -6,14 +6,18 @@ module Public
     # GET /documents
     # GET /documents.json
     def index
-      @documents = Document.not_templates.published
+      @documents = Document.not_templates.publicly_available
       render layout: "layouts/public"
     end
 
     # GET /documents/1
     # GET /documents/1.json
     def show
-      render layout: "layouts/public"
+      if @document.is_publicly_available?
+        render layout: "layouts/public"
+      else
+        redirect_to public_documents_url
+      end
     end
 
     private

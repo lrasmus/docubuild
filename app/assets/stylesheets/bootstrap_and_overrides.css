@@ -37,3 +37,7 @@ h1 { margin: 0.67em 0; }
   filter: Alpha(Opacity=50) !important;
   background-color: rgb(50, 50, 50) !important; /* This will make it darker */
 }
+
+.ui-accordion .ui-accordion-content {
+  padding: 1em 1em !important;
+}

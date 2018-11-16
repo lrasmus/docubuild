@@ -1,6 +1,7 @@
 module DocumentsHelper
   def format_last_modified document
-    document.updated_at.strftime("%d %b %Y")
+    last_update = document.last_updated_content
+    last_update.nil? ? "(Unknown)" : last_update.strftime("%d %b %Y")
   end
 
   def default_document_status
@@ -50,5 +51,13 @@ module DocumentsHelper
     else
       break_template_link_document_path(@document)
     end
+  end
+
+  def document_text_section_display document
+    !document.nil? && !document.display_format.nil? && document.display_format["section_display"] == 'text'
+  end
+
+  def document_collapsable_section_display document
+    !document.nil? && !document.display_format.nil? && document.display_format["section_display"] == 'accordion'
   end
 end

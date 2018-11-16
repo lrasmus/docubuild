@@ -20,30 +20,35 @@ class DocumentsControllerTest < ActionController::TestCase
 
   test "should create document" do
     assert_difference('Document.count') do
-      post :create, document: { created_by_id: @document.created_by_id, deleted_by_id: @document.deleted_by_id, description: @document.description, folder_id: @document.folder_id, status_id: @document.status_id, template_id: @document.template_id, title: @document.title, updated_by_id: @document.updated_by_id, visibility_id: @document.visibility_id }
+      post :create, params: { document: { created_by_id: @document.created_by_id, deleted_by_id: @document.deleted_by_id, description: @document.description, folder_id: @document.folder_id, status_id: @document.status_id, template_id: @document.template_id, title: @document.title, updated_by_id: @document.updated_by_id, visibility_id: @document.visibility_id } }
     end
 
     assert_redirected_to edit_document_path(assigns(:document))
   end
 
   test "should show document" do
-    get :show, id: @document
+    get :show, params: { id: @document }
     assert_response :success
   end
 
+  test "should redirect invalid document" do
+    get :show, params: { id: 9999999 }
+    assert_redirected_to documents_path
+  end
+
   test "should get edit" do
-    get :edit, id: @document
+    get :edit, params: { id: @document }
     assert_response :success
   end
 
   test "should update document" do
-    patch :update, id: @document, document: { created_by_id: @document.created_by_id, deleted_by_id: @document.deleted_by_id, description: @document.description, folder_id: @document.folder_id, status_id: @document.status_id, template_id: @document.template_id, title: @document.title, updated_by_id: @document.updated_by_id, visibility_id: @document.visibility_id }
+    patch :update, params: { id: @document, document: { created_by_id: @document.created_by_id, deleted_by_id: @document.deleted_by_id, description: @document.description, folder_id: @document.folder_id, status_id: @document.status_id, template_id: @document.template_id, title: @document.title, updated_by_id: @document.updated_by_id, visibility_id: @document.visibility_id } }
     assert_redirected_to edit_document_path(assigns(:document))
   end
 
   test "should destroy document" do
     assert_difference('Document.count', -1) do
-      delete :destroy, id: @document
+      delete :destroy, params: { id: @document }
     end
 
     assert_redirected_to documents_path

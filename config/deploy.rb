@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.10.1'
+lock '3.11.0'
 
 set :application, 'docubuild'
 set :repo_url, 'ssh://git@stash.nubic.northwestern.edu:7999/emerge/docubuild.git'

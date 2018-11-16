@@ -9,8 +9,8 @@ class DocumentsController < ApplicationController
     :template_sections, :add_sections_from_templates, :import_sections,
     :preview, :set_context, :export_html, :export_joomla, :export_oib, :reorder_sections,
     :break_template_link, :break_clone_link, :template_sync, :clone_sync]
-  before_filter :check_for_cancel, :only => [:create, :update, :clone]
-  before_filter :clean_view_param, :only => [:template_sections]
+  before_action :check_for_cancel, :only => [:create, :update, :clone]
+  before_action :clean_view_param, :only => [:template_sections]
 
   # GET /documents
   # GET /documents.json
@@ -165,6 +165,7 @@ class DocumentsController < ApplicationController
         format.html { redirect_to edit_document_path(@document) }
         format.json { render :show, status: :ok, location: @document }
       else
+        puts @document.errors.inspect
         format.js {render layout: false}
         format.html { render :edit }
         format.json { render json: @document.errors, status: :unprocessable_entity }
@@ -290,13 +291,15 @@ class DocumentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_document
-      @document = Document.find(params[:id])
+      @document = Document.find_by_id(params[:id])
+      redirect_to documents_path unless @document
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
       params.require(:document).permit(:title, :description, :institution, :status_id, :visibility_id, :folder_id, :template_id,
-        style:[:document_font_name, :document_font_size, :document_font_color, :section_font_name, :section_font_size, :section_font_color, :font_name, :font_size, :font_color])
+        style:[:document_font_name, :document_font_size, :document_font_color, :section_font_name, :section_font_size, :section_font_color, :font_name, :font_size, :font_color],
+        display_format:[:section_display])
     end
 
     def clean_view_param

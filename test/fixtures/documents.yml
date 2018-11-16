@@ -5,24 +5,27 @@ my_template:
   title: My Template
   description: A document that is a template
   is_template: true
-  status: published
-  visibility: public
+  status_id: 2
+  visibility_id: 1
 
 in_progress:
   id: 2
   title: In Progress Document
   description: My document that is in progress
   is_template: false
-  status: in_progress
-  visibility: public
+  template_id: 1
+  status_id: 1
+  visibility_id: 1
+  created_by: one
 
 no_template:
   id: 3
   title: No Template
   description: This document doesn't have a template (and isn't a template)
   is_template: false
-  status: in_progress
-  visibility: public
+  status_id: 1
+  visibility_id: 1
+  created_by: one
 
 from_template:
   id: 4
@@ -30,8 +33,9 @@ from_template:
   description: This document was created from a template
   is_template: false
   template_id: 1
-  status: in_progress
-  visibility: public
+  status_id: 1
+  visibility_id: 1
+  created_by: one
 
 from_clone:
   id: 5
@@ -40,5 +44,37 @@ from_clone:
   is_template: false
   template_id: 1
   clone_source_id: 2
-  status: in_progress
-  visibility: private
+  status_id: 1
+  visibility_id: 2
+  created_by: one
+
+published_public:
+  id: 6
+  title: Published Public
+  description: This document is published and publicly available
+  is_template: false
+  template_id: 1
+  clone_source_id: 2
+  status_id: 2
+  visibility_id: 1
+  created_by: one
+
+published_private:
+  id: 7
+  title: Published Private
+  description: This document is published and privately available
+  is_template: false
+  template_id: 1
+  clone_source_id: 2
+  status_id: 2
+  visibility_id: 2
+  created_by: one
+
+no_sections:
+  title: Document With No Sections
+  description: This document is created but has no sections added to it
+  is_template: false
+  template_id: 1
+  status_id: 1
+  visibility_id: 2
+  created_by: one

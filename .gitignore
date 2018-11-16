@@ -17,3 +17,5 @@
 /tmp
 
 *.pem
+
+.DS_Store

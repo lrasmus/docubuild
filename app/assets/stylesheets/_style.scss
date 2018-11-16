@@ -276,6 +276,8 @@ a{outline:none !important;}
 .progress_date .fa-calendar{font-size:18px; color:#6a777d; padding-right:5px;}
 .edit_doc{float:right; width:130px;}
 .edit_doc a{color:#fff; background:#008acb; border-radius:5px; display:block; padding:10px 0; text-align:center; font-size:12.5px;}
+.delete_doc{float:right; width:16px; margin-left: 15px; margin-right: 3px;}
+.delete_doc a{padding: 10px 0; display: block;}
 .heading03{font-family:'Gotham-Medium'; font-size:25px; color:#344349;}
 .doc_info_text{ font-size:15px; color:#445259; padding:15px 0; width:80%;}
 .create_doc_btn{position:absolute; top:17px; right:0px;}
@@ -495,6 +497,7 @@ background-image:-webkit-gradient(linear, right top, right bottom, color-stop(0%
 .custom-file-upload {background:#008acb; text-align:center; font-size:14px; text-transform:uppercase; font-family: "Gotham-Medium"; padding:16px 0; width:100%; color:#fff; border:0px; display:inline-block; cursor:pointer;
 }
 
+.sections_tab{width:100%; display:table;}
 
 .colour_box{width:100%;}
 .fonts_tab{width:100%; display:table;}
@@ -574,4 +577,12 @@ background-image:-webkit-gradient(linear, right top, right bottom, color-stop(0%
   font-size: 8pt;
   padding-top: 15px;
   text-transform: none;
+}
+
+.section_option {
+  border:2px solid #bbb; padding:15px 20px; border-radius:10px; margin-bottom: 5px; background-color: #f7f7f7;
+}
+
+.section_option:hover {
+  background-color: darken(#f7f7f7, 3);
 }
