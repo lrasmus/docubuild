@@ -1,0 +1,11 @@
+- if collapsable
+  .dub-section
+    %h2{class: section_title_css_classes(section)}
+      =h(section.title)
+    %div{class: section_body_css_classes(section)}
+      =sanitize section.content unless section.content.blank?
+- else
+  .dub-section
+    %h2.dub-section-title=h(section.title)
+    .dub-section-content
+      =sanitize section.content unless section.content.blank?

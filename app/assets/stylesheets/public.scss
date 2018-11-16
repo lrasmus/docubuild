@@ -69,4 +69,17 @@ body.public_document {
       color: #000;
     }
   }
+
+  .ui-accordion .ui-accordion-content {
+    padding: 1em 1em !important;
+  }
+
+  .dub-section-content {
+    margin: 0;
+    padding: 0;
+    p {
+      margin-block-start: 0px;
+      margin-block-end: 0px;
+    }
+  }
 }

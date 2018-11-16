@@ -30,17 +30,7 @@
   %h1.dub-document-title=@document.title
   #dub-sections
     - @document.sections.each do |section|
-      - if is_collapsable_display
-        .dub-section
-          %h2.dub-section-title
-            =h(section.title)
-          .dub-section-content
-            =sanitize section.content unless section.content.blank?
-      - else
-        .dub-section
-          %h2.dub-section-title=h(section.title)
-          .dub-section-content
-            =sanitize section.content unless section.content.blank?
+      = render partial: "sections/preview", locals: {section: section, collapsable: is_collapsable_display}
 
 - if is_collapsable_display
   :javascript
