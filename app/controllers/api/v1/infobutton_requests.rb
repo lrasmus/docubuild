@@ -1,10 +1,10 @@
 require 'docubuild/infobutton_responder'
 require 'docubuild/infobutton_request'
 
-module API
+module Api
   module V1
-    class InfobuttonRequests < Grape::API
-      include API::V1::Defaults
+    class InfobuttonRequests #< Grape::API
+      #include API::V1::Defaults
 
       resource :infobuttonRequests do
         desc "Performs an infobutton request for resources"
