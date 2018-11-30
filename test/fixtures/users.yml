@@ -5,13 +5,20 @@
 # below each fixture, per the syntax in the comments below
 #
 one: 
-  email: one@test.comments
+  email: one@test.com
   first_name: First
   last_name: User
   confirmed_at: 2016-02-11 11:02:57
 
 two: 
-  email: two@test.comments
+  email: two@test.com
   first_name: Second
   last_name: User
+  confirmed_at: 2016-02-11 11:02:57
+
+api_user:
+  email: api@test.com
+  encrypted_password: <%= encrypted_password %>
+  first_name: api
+  last_name: user
   confirmed_at: 2016-02-11 11:02:57
