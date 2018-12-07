@@ -11,7 +11,7 @@ module Api
         if auth_token.blank?
           json_response({message: 'Username or password is incorrect'}, :unauthorized)
         else
-          json_response(auth_token: auth_token)
+          json_response(jwt: auth_token)
         end
       end
 

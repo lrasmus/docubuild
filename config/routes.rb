@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   #mount API::V1::Base, at: "/api"
   scope module: 'api' do
     scope module: 'v1' do
+      post '/user_token', to: 'authentication#authenticate'  # Legacy - used by AGS
       post '/api/login', to: 'authentication#authenticate'
       get '/api/documents', to: 'documents#index'
       get '/api/documents/:id', to: 'documents#show'
