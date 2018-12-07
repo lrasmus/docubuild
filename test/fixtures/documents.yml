@@ -78,3 +78,12 @@ no_sections:
   status_id: 1
   visibility_id: 2
   created_by: one
+
+api_user_document:
+  title: Document Belonging to API User
+  description: This document should be available to the API User
+  is_template: false
+  template_id: 1
+  status_id: 1
+  visibility_id: 2
+  created_by: api_user

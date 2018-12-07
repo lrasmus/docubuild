@@ -1,6 +1,7 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
+require 'token_test_helper'
 
 class ActiveSupport::TestCase
   PaperTrail.enabled = true
@@ -23,3 +24,11 @@ class ActionController::TestCase
   setup { DatabaseCleaner.start }
   teardown { DatabaseCleaner.clean } 
 end
+
+module FixtureFileHelpers
+  def encrypted_password(password = 'password123')
+    User.new.send(:password_digest, password)
+  end
+end
+
+ActiveRecord::FixtureSet.context_class.send :include, FixtureFileHelpers
