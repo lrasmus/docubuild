@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  apipie
   post 'user_token' => 'user_token#create'
   devise_for :users, :controllers => { registrations: 'registrations' }
   get 'home/index'
@@ -46,7 +47,16 @@ Rails.application.routes.draw do
   end
 
   # Set API response location
-  mount API::Base, at: "/"
+  #mount API::V1::Base, at: "/api"
+  scope module: 'api' do
+    scope module: 'v1' do
+      post '/api/login', to: 'authentication#authenticate'
+      get '/api/documents', to: 'documents#index'
+      get '/api/documents/:id', to: 'documents#show'
+      get '/api/infobuttonRequests/search', to: 'infobutton_requests#search'
+    end
+  end
+
 
   # You can have the root of your site routed with "root"
   root 'home#index'

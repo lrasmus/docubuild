@@ -38,10 +38,11 @@ gem 'rubyzip',  "~> 1.1", require: 'zip'
 gem 'rest-client'
 
 # API management
-gem 'grape'
-gem 'grape-active_model_serializers'
-gem 'grape-jwt-authentication'  # JWT management in Grape APIs
+gem 'active_model_serializers'
+gem 'apipie-rails'
+gem 'jwt'
 gem 'rack-cors', :require => 'rack/cors'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
