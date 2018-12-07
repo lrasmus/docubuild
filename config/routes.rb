@@ -54,6 +54,10 @@ Rails.application.routes.draw do
       get '/api/documents', to: 'documents#index'
       get '/api/documents/:id', to: 'documents#show'
       get '/api/infobuttonRequests/search', to: 'infobutton_requests#search'
+
+      get '/api/v1/documents', to: 'documents#index'
+      get '/api/v1/documents/:id', to: 'documents#show'
+      get '/api/v1/infobuttonRequests/search', to: 'infobutton_requests#search'
     end
   end
 
