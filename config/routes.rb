@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   apipie
-  post 'user_token' => 'user_token#create'
   devise_for :users, :controllers => { registrations: 'registrations' }
   get 'home/index'
   get 'context/new' => 'contexts#new'
