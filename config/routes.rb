@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  apipie
   post 'user_token' => 'user_token#create'
   devise_for :users, :controllers => { registrations: 'registrations' }
   get 'home/index'
@@ -52,6 +53,7 @@ Rails.application.routes.draw do
       post '/api/login', to: 'authentication#authenticate'
       get '/api/documents', to: 'documents#index'
       get '/api/documents/:id', to: 'documents#show'
+      get '/api/infobuttonRequests/search', to: 'infobutton_requests#search'
     end
   end
 

@@ -1,12 +1,20 @@
 module Api  
   module V1
     class DocumentsController < BaseController
-      def index
-        render json: Document.all.where(created_by_id: current_user.id)
+      resource_description do
+        short 'DocUBuild authored documents'
+        formats ['json']
       end
 
+      api :GET, '/documents', "Return all documents the currently authenticated user has access to"
+      def index
+        render json: Document.clonable_by_user(current_user)
+      end
+
+      api :GET, '/documents/:id', "Return a specific document"
+      param :id, :number, required: true, :desc => "The document ID to retrieve"
       def show
-        render json: Document.where(id: permitted_params[:id], created_by_id: current_user.id).first!
+        render json: Document.clonable_by_user(current_user).where(id: permitted_params[:id]).first!
       end
 
       private

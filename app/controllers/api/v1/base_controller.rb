@@ -6,6 +6,10 @@ module Api
       
       before_action :authorize_request
 
+      resource_description do
+        api_version "1"
+      end
+
       private
 
       # Check for valid request token and return user
