@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   apipie
-  post 'user_token' => 'user_token#create'
   devise_for :users, :controllers => { registrations: 'registrations' }
   get 'home/index'
   get 'context/new' => 'contexts#new'
@@ -50,10 +49,15 @@ Rails.application.routes.draw do
   #mount API::V1::Base, at: "/api"
   scope module: 'api' do
     scope module: 'v1' do
+      post '/user_token', to: 'authentication#authenticate'  # Legacy - used by AGS
       post '/api/login', to: 'authentication#authenticate'
       get '/api/documents', to: 'documents#index'
       get '/api/documents/:id', to: 'documents#show'
       get '/api/infobuttonRequests/search', to: 'infobutton_requests#search'
+
+      get '/api/v1/documents', to: 'documents#index'
+      get '/api/v1/documents/:id', to: 'documents#show'
+      get '/api/v1/infobuttonRequests/search', to: 'infobutton_requests#search'
     end
   end
 
