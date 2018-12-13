@@ -188,4 +188,27 @@ class DocumentTest < ActiveSupport::TestCase
     assert_not_equal recent_updated_at, doc.updated_at
     assert_equal doc.updated_at, doc.last_updated_content
   end
+
+  test "handles null cases for collapsable display flag" do
+    doc = Document.new
+    assert_not doc.is_collapsable_display?
+
+    doc.display_format = {}
+    assert_not doc.is_collapsable_display?
+
+    doc.display_format = {"section_display" => nil}
+    assert_not doc.is_collapsable_display?
+  end
+
+  test "detects section display and translates it to collapsable status" do
+    doc = Document.new
+    doc.display_format = {"section_display" => "accordion"}
+    assert doc.is_collapsable_display?
+
+    doc.display_format = {"section_display" => "ACCORDION"}
+    assert doc.is_collapsable_display?
+
+    doc.display_format = {"section_display" => "normal"}
+    assert_not doc.is_collapsable_display?
+  end
 end

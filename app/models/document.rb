@@ -54,6 +54,10 @@ class Document < ApplicationRecord
     status_id == Status::Published && visibility_id == Visibility::Public
   end
 
+  def is_collapsable_display?
+    display_format && display_format["section_display"] && display_format["section_display"].casecmp("accordion") == 0
+  end
+
   def last_updated_content
     updates = []
     updates << [updated_at, created_at].max

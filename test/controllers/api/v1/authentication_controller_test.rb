@@ -10,27 +10,27 @@ class AuthenticationControllerTest < ActionController::TestCase
 
   test "should authenticate a valid user" do
     post :authenticate, params: { email: @user.email, password: "password123" }
-    assert_response :success
-    assert_not @response.body["auth_token"].nil?
+    assert_response :created
+    assert_not @response.body["jwt"].nil?
   end
 
   test "should authenticate a valid user using legacy params" do
     post :authenticate, params: { auth: { email: @user.email, password: "password123" } }
-    assert_response :success
-    assert_not @response.body["auth_token"].nil?
+    assert_response :created
+    assert_not @response.body["jwt"].nil?
   end
 
   test "should fail to authenticate a valid user with the wrong password" do
     post :authenticate, params: { email: @user.email, password: "password1234" }
     assert_response :unauthorized
     assert_not @response.body["message"].nil?
-    assert @response.body["auth_token"].nil?
+    assert @response.body["jwt"].nil?
   end
 
   test "should fail to authenticate an unknown user" do
     post :authenticate, params: { email: "nobody@test.com", password: "password1234" }
     assert_response :unauthorized
     assert_not @response.body["message"].nil?
-    assert @response.body["auth_token"].nil?
+    assert @response.body["jwt"].nil?
   end
 end
