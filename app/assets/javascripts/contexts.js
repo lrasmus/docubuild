@@ -55,11 +55,36 @@ function getInfobuttonContext(formElement) {
 }
 
 $(function() {
+  var vocabulary = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    remote: {
+        url: '/terminology/search/',
+        wildcard: '%QUERY',
+        cache: false,
+        prepare: function(query, settings) {
+          settings.url += $(document.activeElement).closest(".term").find("#termCodeSystem").val() + '/' + query;
+          return settings;
+        }
+    }
+  });
+
+  function registerTypeahead() {
+    $('.typeahead').typeahead({
+      minLength: 2
+    }, {
+      name: 'vocabulary',
+      displayKey: 'code_value',
+      source: vocabulary
+    });
+  }
+
   $("body").on("click", ".add_context_link", function(e) {
     e.preventDefault();
     var button = $(this);
     $.get(button.attr('href'), function(data) {
       $(data).insertBefore(button);
+      registerTypeahead();
     });
   });
 
@@ -67,18 +92,20 @@ $(function() {
     e.preventDefault();
     var form = $(this).closest(".context_form");
     var context = getInfobuttonContext(form);
-    $.post($(this).attr('href'), context, function(data) {
-    });
+    $.post($(this).attr('href'), context, function(data) {});
   });
 
   $("body").on("click", ".addTerm", function(e) {
     e.preventDefault();
     var template = $(this).closest(".mainSearchCriteria").find(".termTemplate").clone().removeClass("termTemplate").addClass("term");
     template.insertBefore($(this).closest(".mainSearchCriteria").find("div.actions"));
+    registerTypeahead();
   });
 
   $("body").on("click", ".removeTerm", function(e) {
     e.preventDefault();
     $(this).closest(".term, .contextItemContainer").remove();
   });
+
+  $(document).ready(registerTypeahead);
 });

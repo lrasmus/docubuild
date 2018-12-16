@@ -16,3 +16,4 @@
 //= require twitter/bootstrap
 //= require tinymce-jquery
 //= require_tree .
+//= require_tree ../../../vendor/assets/javascripts/plugins/typeahead/.
