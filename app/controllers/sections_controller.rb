@@ -24,11 +24,11 @@ class SectionsController < ApplicationController
     respond_to do |format|
       if @section.save
         format.html { redirect_to @section, notice: 'Section was successfully created.' }
-        format.json { render :show, status: :created, location: @section }
+        format.any(:json, :js) { render :show, status: :created, location: @section }
       else
         puts @section.errors.full_messages
         format.html { render :new }
-        format.json { render json: @section.errors, status: :unprocessable_entity }
+        format.any(:json, :js) { render json: @section.errors, status: :unprocessable_entity }
       end
     end
   end
