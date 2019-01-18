@@ -1,14 +1,24 @@
 %div.contextDetails.mainSearchCriteria{:style => context_item_visibility("mainSearchCriteria", selected_category)}
+  %table.mainSearchCriteriaList
+    %tr
+      %th{width: "130px"} Vocab
+      %th{width: "140px"} Code
+      %th{width: "250px"} Description
   - if context_group.nil?
-    %div.term
-      = render partial: "contexts/main_criteria_item"
+    .well No codes have been added yet
   - else
-    - context_group[1].each do |context|
-      %div.term
-        = render partial: "contexts/main_criteria_item", locals: {context: context}
+    %tr
+      - context_group[1].each do |context|
+        %td
+          = render partial: "contexts/main_criteria_item", locals: {context: context}
   .termTemplate
     = render partial: "contexts/main_criteria_item"
+  .searchTemplate
+    = render partial: "contexts/main_criteria_item_search"
   %div.actions
+    %a.searchTerm{:href=>"#"}
+      %i.fa.fa-search{"aria-hidden" => true}
+      Search UMLS
     %a.addTerm{:href=>"#"}
       %i.fa.fa-plus-square-o{"aria-hidden" => true}
-      Add Term
+      Add Local Code

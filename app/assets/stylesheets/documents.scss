@@ -285,26 +285,8 @@ a.tital_chk {
   }
 }
 
-.termTemplate {
-  display: none;
-  .actions {
-    i {
-      font-size: 12pt;
-    }
-  }
-}
-
 div.actions {
   display: inline-block;
-}
-.addTerm {
-  border: 2px solid #008acb;
-  color: #fff;
-  background: #008acb;
-  font-size: 12px;
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 7px;
 }
 
 .help_text {

@@ -1,0 +1,39 @@
+.termCodeSearch {
+  width: 300px;
+}
+
+.termCodeSystem {
+  width: 130px;
+}
+.termCodeValue {
+  width: 140px;
+}
+.termCodeText {
+  width: 250px;
+}
+
+.termTemplate, .searchTemplate {
+  display: none;
+  .actions {
+    i {
+      font-size: 12pt;
+    }
+  }
+}
+
+.addTerm, .searchTerm {
+  border: 2px solid #008acb;
+  color: #fff;
+  background: #008acb;
+  font-size: 12px;
+  display: inline-block;
+  padding: 2px 5px;
+  border-radius: 7px;
+}
+
+.mainSearchCriteriaList {
+  font-size: 10pt;
+  width: 100%;
+  border-bottom: solid 1px black;
+  margin-bottom: 3px;
+}

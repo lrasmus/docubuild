@@ -71,11 +71,26 @@ $(function() {
 
   function registerTypeahead() {
     $('.typeahead').typeahead({
-      minLength: 2
+      minLength: 2,
+      autoselect: true
     }, {
+      source: vocabulary,
       name: 'vocabulary',
-      displayKey: 'code_value',
-      source: vocabulary
+      limit: 25,
+      display: function(suggestion) {
+        return suggestion.name + ' (' + suggestion.ui + ')'
+      },
+      templates: {
+        suggestion: function(data) {
+          return '<div><strong>' + data.name + '</strong> – ' + data.ui + '</div>'
+        },
+        pending: function(data) {
+          return '<div class="tt-pending">(Please wait, searching for ... \'' + data.query + '\')';
+        }
+      }
+    })
+    .on('typeahead:select', function(ev, suggestion) {
+      console.log(suggestion);
     });
   }
 
@@ -99,7 +114,10 @@ $(function() {
     e.preventDefault();
     var template = $(this).closest(".mainSearchCriteria").find(".termTemplate").clone().removeClass("termTemplate").addClass("term");
     template.insertBefore($(this).closest(".mainSearchCriteria").find("div.actions"));
-    registerTypeahead();
+  });
+  $("body").on("click", ".searchTerm", function(e) {
+    e.preventDefault();
+    $(this).closest(".mainSearchCriteria").find(".searchTemplate").toggle();
   });
 
   $("body").on("click", ".removeTerm", function(e) {

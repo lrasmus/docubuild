@@ -1,0 +1,3 @@
+= select_tag("termCodeSystem", options_for_select(main_criteria_context_values.collect {|c| [ c[:name], c[:value] ] }), {include_blank: false, :class => "termCodeSystem"})
+%input.termCodeSearch{:type => "text", :placeholder => "Term name or code (e.g. Diabetes, 234.0)"}
+%div.vocabulary_search_result
