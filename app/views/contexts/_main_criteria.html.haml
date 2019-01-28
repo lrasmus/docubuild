@@ -5,7 +5,7 @@
       %th{width: "140px"} Code
       %th{width: "250px"} Description
   - if context_group.nil?
-    .well No codes have been added yet
+    #no-codes.well No codes have been added yet
   - else
     %tr
       - context_group[1].each do |context|
@@ -16,9 +16,7 @@
   .searchTemplate
     = render partial: "contexts/main_criteria_item_search"
   %div.actions
-    %a.searchTerm{:href=>"#"}
-      %i.fa.fa-search{"aria-hidden" => true}
-      Search UMLS
+    Can't find what you're looking for? 
     %a.addTerm{:href=>"#"}
       %i.fa.fa-plus-square-o{"aria-hidden" => true}
       Add Local Code

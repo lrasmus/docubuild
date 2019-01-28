@@ -12,13 +12,20 @@
   width: 250px;
 }
 
-.termTemplate, .searchTemplate {
+.termTemplate {
   display: none;
+}
+
+.termTemplate, .searchTemplate {
   .actions {
     i {
       font-size: 12pt;
     }
   }
+}
+
+.searchTemplate {
+  margin-top: 20px;
 }
 
 .addTerm, .searchTerm {
@@ -36,4 +43,38 @@
   width: 100%;
   border-bottom: solid 1px black;
   margin-bottom: 3px;
+}
+
+.mainSearchCriteria  {
+  width: 600px;
+  .actions {
+    padding-top: 5px;
+    padding-bottom: 15px;
+  }
+}
+
+#termSearchResults {
+  margin-top: 15px;
+
+  table, td, th {
+    border: solid 1px gray;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  td {
+    vertical-align: top;
+  }
+  th {
+    background-color: #eee;
+  }
+  td, th {
+    padding: 1px 5px;
+  }
+}
+
+#termSearchError, #termSearchWaiting {
+  display: none;
 }

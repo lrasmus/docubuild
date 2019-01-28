@@ -59,7 +59,7 @@ class UmlsRestClient
       # It's expired, so we're going to start this process by resetting the state
       clear_ticket_state
 
-      response = RestClient.post(Rails.configuration.x.umls.umls_auth_base_url, { username: "test", password: "test" })
+      response = RestClient.post(Rails.configuration.x.umls.umls_auth_base_url, { username: Rails.configuration.x.umls.username, password: Rails.configuration.x.umls.password })
       if response.code != 201 # expect a 201/Created response
         return nil
       end

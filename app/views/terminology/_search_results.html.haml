@@ -1,0 +1,16 @@
+- if @terminology_data.nil? or @terminology_data.blank? or (@terminology_data.length == 1 && @terminology_data[0]["ui"] == "NONE")
+  .well No matching codes were found
+- else
+  %table
+    %thead
+      %tr
+        %th 
+        %th Code
+        %th Name
+    %tbody
+      - @terminology_data.each do |term|
+        %tr
+          %td
+            =check_box_tag 'selected_term[]', term["ui"]
+          %td=term["ui"]
+          %td=term["name"]

@@ -4,7 +4,11 @@ class TerminologyController < ApplicationController
   include ApplicationHelper
 
   def search
-    render json: UmlsRestClient.instance.search_by_name(params[:term], oid_to_sab(params[:vocab]))
+    @terminology_data = UmlsRestClient.instance.search_by_name(params[:term], oid_to_sab(params[:vocab]))
+    respond_to do |format|
+      format.js   { render :partial => "search_results", layout: false }
+      format.json { render json: @terminology_data }
+    end
   end
 
   private

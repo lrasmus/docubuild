@@ -54,54 +54,68 @@ function getInfobuttonContext(formElement) {
   return {context: itemContexts};
 }
 
-$(function() {
-  var vocabulary = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    remote: {
-        url: '/terminology/search/',
-        wildcard: '%QUERY',
-        cache: false,
-        prepare: function(query, settings) {
-          settings.url += $(document.activeElement).closest(".term").find("#termCodeSystem").val() + '/' + query;
-          return settings;
-        }
-    }
-  });
+function createTermTemplate(elem) {
+  var template = elem.closest(".mainSearchCriteria").find(".termTemplate").find(".term").clone();
+  template.insertBefore(elem.closest(".mainSearchCriteria").find(".searchTemplate"));
+  return template;
+}
 
-  function registerTypeahead() {
-    $('.typeahead').typeahead({
-      minLength: 2,
-      autoselect: true
-    }, {
-      source: vocabulary,
-      name: 'vocabulary',
-      limit: 25,
-      display: function(suggestion) {
-        return suggestion.name + ' (' + suggestion.ui + ')'
-      },
-      templates: {
-        suggestion: function(data) {
-          return '<div><strong>' + data.name + '</strong> – ' + data.ui + '</div>'
-        },
-        pending: function(data) {
-          return '<div class="tt-pending">(Please wait, searching for ... \'' + data.query + '\')';
-        }
+$(function() {
+  // Init a timeout variable to be used below
+  var timeout = null;
+
+  // Listen for keystroke events in the term search field
+  $("body").on("keyup", ".termCodeSearch", function (e) {
+    var input = $(this);
+    // Clear the timeout if it has already been set. This will prevent the previous search
+    // from executing.
+    clearTimeout(timeout);
+
+    // Make a new timeout set to go off in 500ms - at that point the search will be performed.
+    timeout = setTimeout(function () {
+      var templateDiv = input.closest(".searchTemplate");
+      templateDiv.find("#termSearchError").hide();
+      templateDiv.find("#termSearchWaiting").show();
+      if (input.val().trim() === '') {
+        templateDiv.find("#termSearchResults").html("");
+        templateDiv.find("#termSearchWaiting").hide();
       }
-    })
-    .on('typeahead:select', function(ev, suggestion) {
-      console.log(suggestion);
-    });
-  }
+      else {
+        $.ajax({
+          url: '/terminology/search/' + templateDiv.find("#termCodeSystem").val() + '/' + input.val(),
+          dataType: 'html'
+        }).done(function(data) {
+          templateDiv.find("#termSearchResults").html(data);
+          templateDiv.find("#termSearchWaiting").hide();
+        }).error(function(d) {
+          console.log("Error");
+          templateDiv.find("#termSearchError").show();
+          templateDiv.find("#termSearchWaiting").hide();
+        });
+      }
+    }, 500);
+  });
 
   $("body").on("click", ".add_context_link", function(e) {
     e.preventDefault();
     var button = $(this);
     $.get(button.attr('href'), function(data) {
       $(data).insertBefore(button);
-      registerTypeahead();
     });
   });
+
+  $("body").on("click", "#selected_term_", function(e) {
+    var checkbox = $(this);
+    var dataRow = checkbox.closest("tr");
+    var template = createTermTemplate(checkbox);
+    template.find("#termCodeSystem").val(checkbox.closest(".searchTemplate").find("#termCodeSystem").val());
+    var dataElements = dataRow.find("td");
+    template.find(".termCodeValue").val(dataElements[1].innerText);
+    template.find(".termCodeText").val(dataElements[2].innerText);
+
+    dataRow.remove();
+    template.closest(".mainSearchCriteria").find("#no-codes").hide();
+  })
 
   $("body").on("click", ".save_context_link", function(e) {
     e.preventDefault();
@@ -112,18 +126,23 @@ $(function() {
 
   $("body").on("click", ".addTerm", function(e) {
     e.preventDefault();
-    var template = $(this).closest(".mainSearchCriteria").find(".termTemplate").clone().removeClass("termTemplate").addClass("term");
-    template.insertBefore($(this).closest(".mainSearchCriteria").find("div.actions"));
-  });
-  $("body").on("click", ".searchTerm", function(e) {
-    e.preventDefault();
-    $(this).closest(".mainSearchCriteria").find(".searchTemplate").toggle();
+    createTermTemplate($(this));
+
+    $(this).closest(".mainSearchCriteria").find("#no-codes").hide();
   });
 
-  $("body").on("click", ".removeTerm", function(e) {
+  $("body").on("click", ".removeContextItem", function(e) {
     e.preventDefault();
     $(this).closest(".term, .contextItemContainer").remove();
   });
 
-  $(document).ready(registerTypeahead);
+  $("body").on("click", ".removeTerm", function(e) {
+    e.preventDefault();
+    var elem = $(this);
+    var mainSearchCriteriaElem = elem.closest(".mainSearchCriteria");
+    elem.closest(".term").remove();
+    if (mainSearchCriteriaElem.children(".term").length == 0) {
+      mainSearchCriteriaElem.find("#no-codes").show();
+    }
+  });
 });

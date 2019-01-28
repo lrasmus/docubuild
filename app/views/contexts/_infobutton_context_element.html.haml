@@ -3,7 +3,7 @@
 - selected_values = context_group.nil? ? [] : context_group[1].map{ |c| c.code }
 .contextItemContainer
   %span.actions
-    %a.removeTerm{:href=>"#"}
+    %a.removeContextItem{:href=>"#"}
       %i.fa.fa-trash-o{"aria-hidden" => true}
   = select_tag("contextElement", options_for_select(context_categories.collect {|c| [ c[:name], c[:value] ] }, selected_category), {include_blank: true, :class => "contextElement"})
 
