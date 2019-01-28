@@ -45,6 +45,9 @@ Rails.application.routes.draw do
     resources :document_files
   end
 
+
+  get '/terminology/search/:vocab/:term', to: 'terminology#search', constraints: {vocab: /[^\/]+/}
+
   # Set API response location
   #mount API::V1::Base, at: "/api"
   scope module: 'api' do
@@ -55,6 +58,7 @@ Rails.application.routes.draw do
       get '/api/documents/:id', to: 'documents#show'
       get '/api/infobuttonRequests/search', to: 'infobutton_requests#search'
 
+      # V1 specific endpoints
       get '/api/v1/documents', to: 'documents#index'
       get '/api/v1/documents/:id', to: 'documents#show'
       get '/api/v1/infobuttonRequests/search', to: 'infobutton_requests#search'

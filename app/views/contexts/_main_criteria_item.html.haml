@@ -1,7 +1,8 @@
 - context ||= ::Context.new
-= select_tag("termCodeSystem", options_for_select(main_criteria_context_values.collect {|c| [ c[:name], c[:value] ] }, context.code_system_oid), {include_blank: true, :class => "termCodeSystem"})
-%input.termCodeValue{:type => "text", :value => context.code, :placeholder => "Code (e.g. 123.4)"}
-%input.termCodeText{:type => "text", :value => context.term, :placeholder => "Term (e.g. Diabetes"}
-%span.actions
-  %a.removeTerm{:href=>"#"}
-    %i.fa.fa-trash-o{"aria-hidden" => true}
+%div.term
+  = select_tag("termCodeSystem", options_for_select(main_criteria_context_values.collect {|c| [ c[:name], c[:value] ] }, context.code_system_oid), {include_blank: true, :class => "termCodeSystem"})
+  %input.termCodeValue{:type => "text", :value => context.code, :placeholder => "Code (e.g. 123.4)"}
+  %input.termCodeText{:type => "text", :value => context.term, :placeholder => "Term (e.g. Diabetes"}
+  %span.actions
+    %a.removeTerm{:href=>"#"}
+      %i.fa.fa-minus-square{"aria-hidden" => true}
