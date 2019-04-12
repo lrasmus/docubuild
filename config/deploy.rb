@@ -26,7 +26,7 @@ set :base_uri, '/'
 set :site_name_alias, "docubuild-#{ fetch(:stage) }"
 
 # Default value for :linked_files is []
-set :linked_files, %w{config/database.yml config/application.yml config/secrets.yml}
+set :linked_files, %w{config/database.yml config/application.yml config/secrets.yml config/initializers/umls.rb}
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle tmp/import}
