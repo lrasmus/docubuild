@@ -1,0 +1,80 @@
+.termCodeSearch {
+  width: 300px;
+}
+
+.termCodeSystem {
+  width: 130px;
+}
+.termCodeValue {
+  width: 140px;
+}
+.termCodeText {
+  width: 250px;
+}
+
+.termTemplate {
+  display: none;
+}
+
+.termTemplate, .searchTemplate {
+  .actions {
+    i {
+      font-size: 12pt;
+    }
+  }
+}
+
+.searchTemplate {
+  margin-top: 20px;
+}
+
+.addTerm, .searchTerm {
+  border: 2px solid #008acb;
+  color: #fff;
+  background: #008acb;
+  font-size: 12px;
+  display: inline-block;
+  padding: 2px 5px;
+  border-radius: 7px;
+}
+
+.mainSearchCriteriaList {
+  font-size: 10pt;
+  width: 100%;
+  border-bottom: solid 1px black;
+  margin-bottom: 3px;
+}
+
+.mainSearchCriteria  {
+  width: 600px;
+  .actions {
+    padding-top: 5px;
+    padding-bottom: 15px;
+  }
+}
+
+#termSearchResults {
+  margin-top: 15px;
+
+  table, td, th {
+    border: solid 1px gray;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  td {
+    vertical-align: top;
+  }
+  th {
+    background-color: #eee;
+  }
+  td, th {
+    padding: 1px 5px;
+  }
+}
+
+#termSearchError, #termSearchWaiting {
+  display: none;
+}

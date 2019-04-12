@@ -1,0 +1,11 @@
+%div
+  Search the UMLS: 
+  = select_tag("termCodeSystem", options_for_select(main_criteria_context_values.collect {|c| [ c[:name], c[:value] ] }), {include_blank: false, :class => "termCodeSystem"})
+  %input.termCodeSearch{:type => "text", :placeholder => "Term name or code (e.g. Diabetes, 234.0)"}
+  #termSearchResults
+  #termSearchWaiting
+    .alert-box.alert-info
+      Please wait while we search the UMLS
+  #termSearchError
+    .alert-box.alert-danger
+      There was an error trying to search the UMLS
