@@ -169,7 +169,8 @@ GEM
     paranoia (2.4.1)
       activerecord (>= 4.0, < 5.3)
     pg (0.21.0)
-    puma (3.12.1)
+    puma (5.3.1)
+      nio4r (~> 2.0)
     pundit (2.0.1)
       activesupport (>= 3.0.0)
     racc (1.5.2)
@@ -332,7 +333,7 @@ DEPENDENCIES
   paper_trail
   paranoia (~> 2.0)
   pg (~> 0.21)
-  puma
+  puma (>= 4.3.8)
   pundit
   rack-cors
   rails (>= 5.0.7.2, < 5.1)

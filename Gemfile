@@ -77,7 +77,7 @@ group :development do
 end
 
 gem 'figaro'
-gem 'puma'
+gem 'puma', '>= 4.3.8'
 group :development do
   gem 'capistrano'
   gem 'capistrano-rails', require: false
