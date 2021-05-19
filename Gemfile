@@ -34,7 +34,7 @@ gem 'tinymce-rails', '>= 5.0.3'
 gem 'fastimage'
 gem 'font-awesome-rails', '>= 4.7.0.4'
 
-gem 'rubyzip',  "~> 1.1", require: 'zip'
+gem 'rubyzip',  "~> 1.3", require: 'zip'
 gem 'rest-client'
 
 # API management
