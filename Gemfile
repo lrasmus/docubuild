@@ -25,7 +25,7 @@ gem 'jquery-ui-rails', '>= 6.0.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 #gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', '~> 1.0.0', group: :doc
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
@@ -34,7 +34,7 @@ gem 'tinymce-rails', '>= 5.8.0'
 gem 'fastimage'
 gem 'font-awesome-rails', '>= 4.7.0.7'
 
-gem 'rubyzip',  "~> 1.1", require: 'zip'
+gem 'rubyzip',  "~> 1.3", require: 'zip'
 gem 'rest-client'
 
 # API management
@@ -77,7 +77,7 @@ group :development do
 end
 
 gem 'figaro'
-gem 'puma', '>= 4.3.8'
+gem 'puma', '>= 5.5.1'
 group :development do
   gem 'capistrano'
   gem 'capistrano-rails', require: false
