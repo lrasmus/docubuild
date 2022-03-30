@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Upgraded to Rails 5.0 in October 2017
-gem 'rails', '>= 5.0.7.2', '< 5.1'
+gem 'rails', '~> 5.2', '>= 5.2.6.2'
 gem 'pg', '~> 0.21'
 
 # Allows soft delete of models
@@ -77,7 +77,7 @@ group :development do
 end
 
 gem 'figaro'
-gem 'puma', '>= 5.5.1'
+gem 'puma', '>= 5.6.2'
 group :development do
   gem 'capistrano'
   gem 'capistrano-rails', require: false
