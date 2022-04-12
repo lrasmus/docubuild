@@ -1,18 +1,18 @@
 source 'https://rubygems.org'
 
 # Upgraded to Rails 5.0 in October 2017
-gem 'rails', '~> 5.2', '>= 5.2.6.3'
+gem 'rails', '~> 5.2', '>= 5.2.7'
 gem 'pg', '~> 0.21'
 
 # Allows soft delete of models
 gem "paranoia", "~> 2.0"
 
 # Authentication and authorization gems
-gem 'devise', '>= 4.8.0'
+gem 'devise', '>= 4.8.1'
 gem "pundit"
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0', '>= 5.0.7'
+gem 'sass-rails', '~> 5.1', '>= 5.1.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -29,17 +29,17 @@ gem 'sdoc', '~> 1.0.0', group: :doc
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
-gem "twitter-bootstrap-rails", ">= 4.0.0"
-gem 'tinymce-rails', '>= 5.8.0'
+gem "twitter-bootstrap-rails", ">= 5.0.0"
+gem 'tinymce-rails', '>= 5.10.3'
 gem 'fastimage'
-gem 'font-awesome-rails', '>= 4.7.0.7'
+gem 'font-awesome-rails', '>= 4.7.0.8'
 
 gem 'rubyzip',  "~> 1.3", require: 'zip'
 gem 'rest-client'
 
 # API management
-gem 'active_model_serializers', '>= 0.10.12'
-gem 'apipie-rails', '>= 0.5.19'
+gem 'active_model_serializers', '>= 0.10.13'
+gem 'apipie-rails', '>= 0.7.0'
 gem 'jwt'
 gem 'rack-cors', :require => 'rack/cors'
 
@@ -48,7 +48,7 @@ gem 'rack-cors', :require => 'rack/cors'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'haml'
-gem 'haml-rails', '>= 1.0.0'
+gem 'haml-rails', '>= 2.0.1'
 
 # Track changes to models
 gem 'paper_trail'
