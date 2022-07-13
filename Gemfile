@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Upgraded to Rails 5.0 in October 2017
-gem 'rails', '~> 5.2', '>= 5.2.7'
+gem 'rails', '~> 5.2', '>= 5.2.8.1'
 gem 'pg', '~> 0.21'
 
 # Allows soft delete of models
