@@ -39,7 +39,7 @@ gem 'rest-client'
 
 # API management
 gem 'active_model_serializers', '>= 0.10.13'
-gem 'apipie-rails', '>= 0.7.0'
+gem 'apipie-rails', '>= 0.7.1'
 gem 'jwt'
 gem 'rack-cors', :require => 'rack/cors'
 
