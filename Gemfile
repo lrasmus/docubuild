@@ -12,7 +12,7 @@ gem 'devise', '>= 4.8.1'
 gem "pundit"
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.1', '>= 5.1.0'
+gem 'sass-rails', '~> 6.0', '>= 6.0.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
