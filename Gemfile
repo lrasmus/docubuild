@@ -1,23 +1,23 @@
 source 'https://rubygems.org'
 
 # Upgraded to Rails 5.0 in October 2017
-gem 'rails', '~> 5.2', '>= 5.2.8.1'
+gem 'rails', '~> 6.1', '>= 6.1.7.3'
 gem 'pg', '~> 0.21'
 
 # Allows soft delete of models
-gem "paranoia", "~> 2.0"
+gem "paranoia", "~> 2.4", ">= 2.4.3"
 
 # Authentication and authorization gems
 gem 'devise', '>= 4.8.1'
 gem "pundit"
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.1', '>= 5.1.0'
+gem 'sass-rails', '~> 6.0', '>= 6.0.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '>= 4.4.0'
+gem 'jquery-rails', '>= 4.5.0'
 gem 'jquery-ui-rails', '>= 6.0.1'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -30,7 +30,7 @@ gem 'sdoc', '~> 1.0.0', group: :doc
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 gem "twitter-bootstrap-rails", ">= 5.0.0"
-gem 'tinymce-rails', '>= 5.10.3'
+gem 'tinymce-rails', '>= 6.0.3.1'
 gem 'fastimage'
 gem 'font-awesome-rails', '>= 4.7.0.8'
 
@@ -39,7 +39,7 @@ gem 'rest-client'
 
 # API management
 gem 'active_model_serializers', '>= 0.10.13'
-gem 'apipie-rails', '>= 0.7.1'
+gem 'apipie-rails', '>= 0.8.1'
 gem 'jwt'
 gem 'rack-cors', :require => 'rack/cors'
 
